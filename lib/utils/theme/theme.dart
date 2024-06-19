@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class TAppTheme {
@@ -6,7 +7,7 @@ class TAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    fontFamily: GoogleFonts.montserrat().fontFamily,
     disabledColor: AppColors.grey,
     brightness: Brightness.light,
     primaryColor: AppColors.primary,

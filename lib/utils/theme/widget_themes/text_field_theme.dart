@@ -5,19 +5,25 @@ class CommonTextFormFieldTheme {
   CommonTextFormFieldTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
+    filled: true,
+    fillColor: AppColors.softGrey,
     errorMaxLines: 3,
     prefixIconColor: AppColors.darkGrey,
     suffixIconColor: AppColors.darkGrey,
+    floatingLabelBehavior: FloatingLabelBehavior.never,
     // constraints: const BoxConstraints.expand(
     //   height: AppSizes.inputFieldHeight,
     // ),
     labelStyle: const TextStyle().copyWith(
       fontSize: AppSizes.fontSizeMd,
-      color: AppColors.black,
+      fontWeight: FontWeight.w300,
+      color: AppColors.darkerGrey,
     ),
+
     hintStyle: const TextStyle().copyWith(
       fontSize: AppSizes.fontSizeSm,
-      color: AppColors.black,
+      color: AppColors.darkerGrey,
+      fontWeight: FontWeight.w400,
     ),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
     floatingLabelStyle: const TextStyle().copyWith(
@@ -25,17 +31,21 @@ class CommonTextFormFieldTheme {
         0.8,
       ),
     ),
+    disabledBorder: const OutlineInputBorder().copyWith(
+      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderSide: const BorderSide(color: AppColors.grey),
+    ),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
       borderSide: const BorderSide(color: AppColors.grey),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-      borderSide: const BorderSide(color: AppColors.grey),
+      borderSide: const BorderSide(color: Colors.transparent),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-      borderSide: const BorderSide(color: AppColors.dark),
+      borderSide: const BorderSide(color: Colors.transparent),
     ),
     errorBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
