@@ -1,4 +1,4 @@
-export '/utils/constants/colors.dart';
+export '/utils/constants/app_colors.dart';
 export '/utils/constants/enums.dart';
 export '/utils/constants/image_strings.dart';
 export '/utils/constants/sizes.dart';

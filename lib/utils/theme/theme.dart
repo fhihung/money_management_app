@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:money_management_app/utils/constants/common_colors.dart';
 import 'package:money_management_app/utils/utils.dart';
 
-class TAppTheme {
-  TAppTheme._();
-
-  static ThemeData lightTheme = ThemeData(
-    useMaterial3: true,
-    fontFamily: GoogleFonts.montserrat().fontFamily,
-    disabledColor: AppColors.grey,
-    brightness: Brightness.light,
-    primaryColor: AppColors.primary,
-    textTheme: CommonTextTheme.lightTextTheme,
-    chipTheme: CommonChipTheme.lightChipTheme,
-    scaffoldBackgroundColor: AppColors.white,
-    appBarTheme: CommonAppBarTheme.lightAppBarTheme,
-    checkboxTheme: CommonCheckboxTheme.lightCheckboxTheme,
-    bottomSheetTheme: CommonBottomSheetTheme.lightBottomSheetTheme,
-    elevatedButtonTheme: CommonElevatedButtonTheme.lightElevatedButtonTheme,
-    outlinedButtonTheme: CommonOutlinedButtonTheme.lightOutlinedButtonTheme,
-    inputDecorationTheme: CommonTextFormFieldTheme.lightInputDecorationTheme,
+/// define custom themes here
+final lightTheme = ThemeData(
+  fontFamily: GoogleFonts.archivo().fontFamily,
+  scaffoldBackgroundColor: CommonColors.current.backgroundWhite,
+  brightness: Brightness.light,
+  splashColor: Colors.transparent,
+)..addAppColor(
+    CommonThemes.light,
+    CommonColors.lightThemeColor,
   );
 
-  static ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    fontFamily: 'Poppins',
-    disabledColor: AppColors.grey,
-    brightness: Brightness.dark,
-    primaryColor: AppColors.primary,
-    textTheme: CommonTextTheme.darkTextTheme,
-    chipTheme: CommonChipTheme.darkChipTheme,
-    scaffoldBackgroundColor: AppColors.black,
-    appBarTheme: CommonAppBarTheme.darkAppBarTheme,
-    checkboxTheme: CommonCheckboxTheme.darkCheckboxTheme,
-    bottomSheetTheme: CommonBottomSheetTheme.darkBottomSheetTheme,
-    elevatedButtonTheme: CommonElevatedButtonTheme.darkElevatedButtonTheme,
-    outlinedButtonTheme: CommonOutlinedButtonTheme.darkOutlinedButtonTheme,
-    inputDecorationTheme: CommonTextFormFieldTheme.darkInputDecorationTheme,
+final darkTheme = ThemeData(
+  fontFamily: GoogleFonts.archivo().fontFamily,
+  scaffoldBackgroundColor: CommonColors.current.backgroundWhite,
+  brightness: Brightness.dark,
+  splashColor: Colors.transparent,
+)..addAppColor(
+    CommonThemes.dark,
+    CommonColors.darkThemeColor,
   );
+
+extension ThemeDataExtensions on ThemeData {
+  static final Map<CommonThemes, CommonColors> _appColorMap = {};
+
+  void addAppColor(CommonThemes type, CommonColors appColor) {
+    _appColorMap[type] = appColor;
+  }
+
+  CommonColors get appColor {
+    return _appColorMap[AppThemeSetting.currentCommonThemes] ?? CommonColors.lightThemeColor;
+  }
+}
+
+class AppThemeSetting {
+  const AppThemeSetting._();
+  static CommonThemes currentCommonThemes = CommonThemes.light;
 }

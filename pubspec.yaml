@@ -37,7 +37,13 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
   capped_progress_indicator: ^0.0.2
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+  fluttertoast: ^8.2.6
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
+  shared_preferences: ^2.2.3
 
   #--------------- ./ PACKAGES END ------------------#
 
@@ -50,6 +56,87 @@ dev_dependencies:
   freezed: ^2.5.2
   build_runner: ^2.4.11
 
+
 flutter:
   uses-material-design: true
   generate: true
+
+  #--------------- LOCAL ASSETS ------------------#
+
+  assets:
+    - assets/fonts/
+    - assets/logos/
+    - assets/icons/brands/
+    - assets/icons/categories/
+    - assets/icons/payment_methods/
+    - assets/images/banners/
+    - assets/images/content/
+    - assets/images/on_boarding_images/
+    - assets/images/products/
+    - assets/images/reviews/
+    #    - assets/images/animations/
+    - assets/images/animations/sammy-line-come-back-later.png
+    - assets/images/animations/sammy-line-man-receives-a-mail.png
+    - assets/images/animations/sammy-line-sale.png
+    - assets/images/animations/sammy-line-success.png
+    - assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif
+    - assets/images/animations/sammy-line-workout.gif
+
+  #--------------- LOCAL FONTS ------------------#
+  fonts:
+    - family: Archivo
+      fonts:
+        - asset: assets/fonts/Archivo-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/Archivo-ThinItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Archivo-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Archivo-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Archivo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Archivo-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Archivo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Archivo-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Archivo-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Archivo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Archivo-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Archivo-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/Archivo-BoldItalic.ttf
+          weight: 800
+          style: italic
+
+
+    #--------------- CONFIG ------------------#
+
+flutter_gen:
+  output: lib/resources/generated
+  line_length: 160
+  null_safety: true
+  package_parameter_enabled: true
+  integrations:
+    flutter_svg: true
+    lottie: true
+  assets:
+    enabled: true
+#    exclude:
+
+#      - assets/images/animations/
+
+# Run the following command to generate the files:
+
+#  fluttergen -h
+#  fluttergen -c /flutter_gen.yaml
