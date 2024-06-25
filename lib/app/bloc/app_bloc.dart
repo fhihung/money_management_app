@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:money_management_app/app/bloc/app_event.dart';
 import 'package:money_management_app/app/bloc/app_state.dart';
 import 'package:money_management_app/app/storage_service.dart';
-import 'package:money_management_app/utils/utils.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(const AppState()) {
@@ -24,9 +23,5 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (token != null) {
       emit(state.copyWith(token: token));
     }
-  }
-
-  void _updateThemeSetting(bool isDarkTheme) {
-    AppThemeSetting.currentCommonThemes = isDarkTheme ? CommonThemes.dark : CommonThemes.light;
   }
 }

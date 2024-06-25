@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_app/utils/constants/common_colors.dart';
 
 class CircularContainer extends StatelessWidget {
   const CircularContainer({
@@ -26,7 +25,7 @@ class CircularContainer extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: backgroundColor ?? CommonColors.current.backgroundWhite,
+        // color: backgroundColor ?? AppColors.textBlackDarkVersion,
         borderRadius: BorderRadius.circular(radius),
       ),
       child: child,

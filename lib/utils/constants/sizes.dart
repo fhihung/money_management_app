@@ -6,6 +6,11 @@ class AppSizes {
   static const double lg = 24;
   static const double xl = 32;
 
+  /// Button Height
+  static const double buttonSm = 8;
+  static const double buttonMd = 12;
+  static const double buttonLg = 16;
+
   // Icon sizes
   static const double iconXs = 12;
   static const double iconSm = 16;

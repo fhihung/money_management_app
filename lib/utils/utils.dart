@@ -1,4 +1,4 @@
-export '/utils/constants/app_colors.dart';
+// export '/utils/constants/app_colors.dart';
 export '/utils/constants/enums.dart';
 export '/utils/constants/image_strings.dart';
 export '/utils/constants/sizes.dart';
@@ -17,6 +17,8 @@ export '/utils/helpers/helper_functions.dart';
 export '/utils/http/http_client.dart';
 export '/utils/local_storage/storage_utility.dart';
 export '/utils/logging/logger.dart';
+export '/utils/theme/app_colors.dart';
+export '/utils/theme/app_text_styles.dart';
 export '/utils/theme/theme.dart';
 export '/utils/theme/widget_themes/appbar_theme.dart';
 export '/utils/theme/widget_themes/bottom_sheet_theme.dart';

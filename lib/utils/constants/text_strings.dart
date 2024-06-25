@@ -1,14 +1,14 @@
 /// This class contains all the App Text in String formats.
-class AppTexts {
-  // -- GLOBAL Texts
+class S {
+  // -- GLOBAL Strings
   static const String and = 'and';
   static const String skip = 'Skip';
   static const String done = 'Done';
   static const String submit = 'Submit';
   static const String appName = 'T-Store';
-  static const String tContinue = 'Continue';
+  static const String continueText = 'Continue';
 
-  // -- OnBoarding Texts
+  // -- OnBoarding Strings
   static const String onBoardingTitle1 = 'Choose your product';
   static const String onBoardingTitle2 = 'Select Payment Method';
   static const String onBoardingTitle3 = 'Deliver at your door step';
@@ -27,6 +27,7 @@ class AppTexts {
   static const String username = 'Username';
   static const String phoneNo = 'Phone Number';
   static const String rememberMe = 'Remember Me';
+  static const String keepMeLogin = 'Keep Me Login';
   static const String forgetPassword = 'Forget Password?';
   static const String signIn = 'Sign In';
   static const String createAccount = 'Create Account';

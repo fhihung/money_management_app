@@ -14,6 +14,9 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = context.appColors;
+    final textStyles = context.appTextStyles;
+    final nameController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     return BlocBuilder<LoginBloc, LoginState>(
@@ -27,12 +30,22 @@ class LoginForm extends StatelessWidget {
             ),
             child: Column(
               children: [
+                /// Name
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Iconsax.direct_right),
+                    labelText: 'Name',
+                  ),
+                ),
+                const SizedBox(height: AppSizes.spaceBtwInputFields),
+
                 /// Email
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: 'Account',
+                    labelText: 'Email',
                   ),
                 ),
                 const SizedBox(height: AppSizes.spaceBtwInputFields),
@@ -55,7 +68,7 @@ class LoginForm extends StatelessWidget {
                               Iconsax.eye_slash,
                             ),
                     ),
-                    labelText: AppTexts.password,
+                    labelText: S.password,
                   ),
                 ),
                 const SizedBox(height: AppSizes.spaceBtwInputFields / 2),
@@ -68,19 +81,31 @@ class LoginForm extends StatelessWidget {
                     Row(
                       children: [
                         Checkbox(
+                          checkColor: appColors.textGray2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          side: BorderSide(
+                            color: appColors.textGray2,
+                          ),
                           value: state.isRememberMe,
                           onChanged: (value) {
                             bloc.add(RememberMePressed(isCheck: value!));
                           },
                         ),
-                        const Text(AppTexts.rememberMe),
+                        Text(
+                          S.keepMeLogin,
+                          style: textStyles.captionSm.apply(
+                            color: appColors.textGray2,
+                          ),
+                        ),
                       ],
                     ),
                     TextButton(
                       onPressed: () {
                         bloc.add(const ForgotPasswordButtonPressed());
                       },
-                      child: const Text(AppTexts.forgetPassword),
+                      child: const Text(S.forgetPassword),
                     ),
                   ],
                 ),
@@ -99,7 +124,7 @@ class LoginForm extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text(AppTexts.signIn),
+                    child: const Text(S.signIn),
                   ),
                 ),
                 const SizedBox(
@@ -118,7 +143,7 @@ class LoginForm extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      AppTexts.createAccount,
+                      S.createAccount,
                     ),
                   ),
                 ),

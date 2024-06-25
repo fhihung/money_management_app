@@ -32,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       // Title
                       Text(
-                        AppTexts.signUpTitle,
+                        S.signUpTitle,
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       const SizedBox(height: AppSizes.spaceBtwSections),
@@ -51,7 +51,7 @@ class SignUpScreen extends StatelessWidget {
                               },
                               controller: nameController,
                               decoration: const InputDecoration(
-                                labelText: AppTexts.username,
+                                labelText: S.username,
                                 prefixIcon: Icon(Iconsax.user_edit),
                               ),
                             ),
@@ -87,7 +87,7 @@ class SignUpScreen extends StatelessWidget {
                             TextFormField(
                               controller: phoneNumberController,
                               decoration: const InputDecoration(
-                                labelText: AppTexts.phoneNo,
+                                labelText: S.phoneNo,
                                 prefixIcon: Icon(Iconsax.call),
                               ),
                             ),
@@ -103,7 +103,7 @@ class SignUpScreen extends StatelessWidget {
                               },
                               controller: passwordController,
                               decoration: const InputDecoration(
-                                labelText: AppTexts.password,
+                                labelText: S.password,
                                 prefixIcon: Icon(Iconsax.password_check),
                                 suffixIcon: Icon(Iconsax.eye_slash),
                               ),
@@ -144,11 +144,11 @@ class SignUpScreen extends StatelessWidget {
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: '${AppTexts.iAgreeTo} ',
+                                          text: '${S.iAgreeTo} ',
                                           style: Theme.of(context).textTheme.bodySmall,
                                         ),
                                         TextSpan(
-                                          text: '${AppTexts.privacyPolicy} ',
+                                          text: '${S.privacyPolicy} ',
                                           style: Theme.of(context).textTheme.bodyMedium!.apply(
                                                 // color: dark ? AppColors.white : AppColors.primary,
                                                 decoration: TextDecoration.underline,
@@ -156,11 +156,11 @@ class SignUpScreen extends StatelessWidget {
                                               ),
                                         ),
                                         TextSpan(
-                                          text: '${AppTexts.and} ',
+                                          text: '${S.and} ',
                                           style: Theme.of(context).textTheme.bodySmall,
                                         ),
                                         TextSpan(
-                                          text: '${AppTexts.termsOfUse} ',
+                                          text: '${S.termsOfUse} ',
                                           style: Theme.of(context).textTheme.bodyMedium!.apply(
                                                 // color: dark ? AppColors.white : AppColors.primary,
                                                 decoration: TextDecoration.underline,
@@ -198,7 +198,7 @@ class SignUpScreen extends StatelessWidget {
                                     );
                                   }
                                 },
-                                child: const Text(AppTexts.createAccount),
+                                child: const Text(S.createAccount),
                               ),
                             ),
                           ],
@@ -207,7 +207,7 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: AppSizes.spaceBtwSections),
 
                       // Divider
-                      // const AppDividerWidget(text: AppTexts.orSignUpWith),
+                      // const AppDividerWidget(text: S.orSignUpWith),
                       const SizedBox(height: AppSizes.spaceBtwItems),
 
                       // Social Buttons

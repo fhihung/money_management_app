@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   shared_preferences: ^2.2.3
+  theme_tailor_annotation: ^3.0.1
 
   #--------------- ./ PACKAGES END ------------------#
 
@@ -55,6 +56,7 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
   freezed: ^2.5.2
   build_runner: ^2.4.11
+  theme_tailor: ^3.0.1
 
 
 flutter:

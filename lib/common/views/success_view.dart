@@ -51,7 +51,7 @@ class SuccessView extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: onPressed,
-                  child: Text(textButton ?? AppTexts.tContinue),
+                  child: Text(textButton ?? S.continueText),
                 ),
               ),
             ],

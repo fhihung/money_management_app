@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:money_management_app/login/screens/login_screen.dart';
 import 'package:money_management_app/models/m_user.dart';
-import 'package:money_management_app/utils/constants/common_colors.dart';
 
 class SignUpController {
   final String apiUrl = 'https://371e-14-248-162-193.ngrok-free.app/api/';
@@ -43,7 +42,7 @@ class SignUpController {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              // backgroundColor: CommonColors.current.white,
+              // backgroundColor: AppColors.current.white,
               title: Text(
                 'Registration Successful',
                 textAlign: TextAlign.center,
@@ -80,12 +79,12 @@ class SignUpController {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              // backgroundColor: CommonColors.current.white,
+              // backgroundColor: AppColors.current.white,
               title: Text(
                 'Unexpected response format.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium!.apply(
-                      color: CommonColors.current.backgroundWhite,
+                    // color: AppColors.current.backgroundWhite,
                     ),
               ),
               content: const Text('The response was not in the expected format.'),
@@ -113,12 +112,12 @@ class SignUpController {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            // backgroundColor: CommonColors.current.white,
+            // backgroundColor: AppColors.current.white,
             title: Text(
               'Failed to register user',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium!.apply(
-                    color: CommonColors.current.textRed,
+                  // color: AppColors.current.textRed,
                   ),
             ),
             content: Text(

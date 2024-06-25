@@ -13,7 +13,7 @@ class OnBoardingSkip extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       child: const Text(
-        AppTexts.skip,
+        S.skip,
       ),
     );
   }
