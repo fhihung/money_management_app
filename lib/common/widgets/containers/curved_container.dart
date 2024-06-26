@@ -14,7 +14,7 @@
 //     return ClipPath(
 //       clipper: CustomCurvedEdges(),
 //       child: Container(
-//         color: CommonColors.primary,
+//         color: AppColors.primary,
 //         padding: EdgeInsets.zero,
 //         child: SizedBox(
 //           // height: 400,
@@ -25,14 +25,14 @@
 //                 top: -150,
 //                 right: -250,
 //                 child: CircularContainer(
-//                   backgroundColor: CommonColors.white.withOpacity(0.1),
+//                   backgroundColor: AppColors.white.withOpacity(0.1),
 //                 ),
 //               ),
 //               Positioned(
 //                 top: 100,
 //                 right: -300,
 //                 child: CircularContainer(
-//                   backgroundColor: CommonColors.white.withOpacity(0.1),
+//                   backgroundColor: AppColors.white.withOpacity(0.1),
 //                 ),
 //               ),
 //               if (child != null) child!,

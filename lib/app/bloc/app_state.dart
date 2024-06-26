@@ -7,6 +7,8 @@ class AppState with _$AppState {
   const factory AppState({
     @Default(false) bool isLoading,
     @Default(false) bool isCompleteOnboarding,
+    @Default(false) bool isLoggedIn,
+    @Default(false) bool isDarkTheme,
     String? token,
   }) = _AppState;
 }

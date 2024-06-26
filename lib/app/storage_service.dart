@@ -44,4 +44,14 @@ class StorageService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('onboarding_complete') ?? false;
   }
+
+  Future<void> setDarkTheme({required bool isDarkTheme}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkMode', isDarkTheme);
+  }
+
+  Future<bool> isDarkTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isDarkMode') ?? false;
+  }
 }

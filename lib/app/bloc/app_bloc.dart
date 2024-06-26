@@ -11,6 +11,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppInitiated>(
       _onAppInitiated,
     );
+
+    on<ThemeChanged>(
+      _onThemeChanged,
+    );
   }
   StorageService storageService = StorageService();
 
@@ -24,6 +28,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (token != null) {
       emit(state.copyWith(token: token));
     }
+  }
+
+  FutureOr<void> _onThemeChanged(ThemeChanged event, Emitter<AppState> emit) async {
+    await storageService.setDarkTheme(isDarkTheme: event.isDarkTheme);
+    _updateThemeSetting(event.isDarkTheme);
+    emit(state.copyWith(isDarkTheme: event.isDarkTheme));
   }
 
   void _updateThemeSetting(bool isDarkTheme) {

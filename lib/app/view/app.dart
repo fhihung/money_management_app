@@ -10,6 +10,7 @@ class App extends StatelessWidget {
   const App({super.key});
   @override
   Widget build(BuildContext context) {
+    AppColors.current = AppColors.lightThemeColor;
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
         BlocProvider.of<AppBloc>(context).add(const AppInitiated());
@@ -17,7 +18,7 @@ class App extends StatelessWidget {
           title: 'Food Delivery App',
           theme: lightTheme,
           darkTheme: darkTheme,
-          themeMode: ThemeMode.system,
+          themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
           // localizationsDelegates: AppLocalizations.localizationsDelegates,
           // supportedLocales: AppLocalizations.supportedLocales,
           home: OnBoardingScreen(),

@@ -33,28 +33,28 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
         elevation: 0,
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTapped,
-        // backgroundColor: dark ? CommonColors.black : CommonColors.white,
-        // indicatorColor: dark ? CommonColors.white.withOpacity(0.1) : CommonColors.black.withOpacity(0.1),
+        // backgroundColor: dark ? AppColors.black : AppColors.white,
+        // indicatorColor: dark ? AppColors.white.withOpacity(0.1) : AppColors.black.withOpacity(0.1),
         destinations: [
           NavigationDestination(
             selectedIcon: Icon(
               Iconsax.home5,
-              // color: dark ? CommonColors.white : CommonColors.black,
+              // color: dark ? AppColors.white : AppColors.black,
             ),
             icon: Icon(
               Iconsax.home_1,
-              // color: dark ? CommonColors.white : CommonColors.black,
+              // color: dark ? AppColors.white : AppColors.black,
             ),
             label: 'Home',
           ),
           // NavigationDestination(
           //   selectedIcon: Icon(
           //     Iconsax.user,
-          //     color: dark ? CommonColors.white : CommonColors.black,
+          //     color: dark ? AppColors.white : AppColors.black,
           //   ),
           //   icon: Icon(
           //     Iconsax.user,
-          //     color: dark ? CommonColors.white : CommonColors.black,
+          //     color: dark ? AppColors.white : AppColors.black,
           //   ),
           //   label: 'Profile',
           // ),

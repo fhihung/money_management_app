@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/onboarding/bloc/onboarding_bloc.dart';
 import 'package:money_management_app/onboarding/bloc/onboarding_event.dart';
 import 'package:money_management_app/onboarding/bloc/onboarding_state.dart';
-import 'package:money_management_app/onboarding/widgets/circular_button_widget.dart';
 import 'package:money_management_app/onboarding/widgets/onboarding_page_widget.dart';
 import 'package:money_management_app/onboarding/widgets/onboarding_skip_widget.dart';
 import 'package:money_management_app/onboarding/widgets/page_indicator_widget.dart';
@@ -74,13 +73,17 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
 
                   // Next Button
-                  Positioned(
+                  Positioned.fill(
                     bottom: TDeviceUtils.getBottomNavigationBarHeight(),
                     right: AppSizes.defaultSpace,
-                    child: CircularButton(
-                      onPressed: () {
-                        bloc.add(NextPage(context: context));
-                      },
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        child: Text('Continue'),
+                        onPressed: () {
+                          bloc.add(NextPage(context: context));
+                        },
+                      ),
                     ),
                   ),
                 ],
