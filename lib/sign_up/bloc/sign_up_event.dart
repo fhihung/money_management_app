@@ -19,8 +19,6 @@ class SignUpSubmitted extends SignUpEvent with _$SignUpSubmitted {
     required String email,
     required String password,
     required String passwordConfirmation,
-    required String address,
-    required String phoneNumber,
     required BuildContext context,
   }) = _SignUpSubmitted;
 }

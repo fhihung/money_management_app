@@ -5,6 +5,7 @@ import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/login/bloc/login_event.dart';
 import 'package:money_management_app/login/bloc/login_state.dart';
 import 'package:money_management_app/sign_up/screens/sign_up_screen.dart';
+import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
@@ -15,14 +16,14 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    final textStyles = context.appTextStyles;
-    final nameController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         final bloc = context.read<LoginBloc>();
         return Form(
+          key: formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -30,18 +31,14 @@ class LoginForm extends StatelessWidget {
             ),
             child: Column(
               children: [
-                /// Name
-                TextFormField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: 'Name',
-                  ),
-                ),
-                const SizedBox(height: AppSizes.spaceBtwInputFields),
-
                 /// Email
                 TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Vui lòng nhập email';
+                    }
+                    return null;
+                  },
                   controller: emailController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.direct_right),
@@ -52,6 +49,12 @@ class LoginForm extends StatelessWidget {
 
                 /// Password
                 TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Vui lòng nhập mật khẩu';
+                    }
+                    return null;
+                  },
                   controller: passwordController,
                   obscureText: !state.isShowPassword,
                   decoration: InputDecoration(
@@ -95,7 +98,7 @@ class LoginForm extends StatelessWidget {
                         ),
                         Text(
                           S.keepMeLogin,
-                          style: textStyles.captionSm.apply(
+                          style: AppTextStyles.captionSm.apply(
                             color: appColors.textGray2,
                           ),
                         ),
@@ -115,37 +118,54 @@ class LoginForm extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(),
                     onPressed: () {
-                      bloc.add(
-                        LoginButtonPressed(
-                          context: context,
-                          email: emailController.text,
-                          password: passwordController.text,
-                        ),
-                      );
+                      if (formKey.currentState!.validate()) {
+                        bloc.add(
+                          LoginButtonPressed(
+                            context: context,
+                            email: emailController.text,
+                            password: passwordController.text,
+                          ),
+                        );
+                      }
                     },
-                    child: const Text(S.signIn),
+                    child: const Text(S.continueText),
                   ),
                 ),
                 const SizedBox(
                   height: AppSizes.spaceBtwItems,
                 ),
                 // Sign Up Button
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const SignUpScreen(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      S.createAccount,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: AppTextStyles.captionLg.copyWith(
+                        color: appColors.textGray3,
+                      ),
                     ),
-                  ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.xs,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const SignUpScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(S.createAccount,
+                          style: AppTextStyles.captionLg.apply(
+                            color: appColors.textBlackDarkVersion,
+                          )),
+                    ),
+                  ],
                 ),
               ],
             ),

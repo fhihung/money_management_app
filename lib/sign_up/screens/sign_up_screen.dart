@@ -4,6 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_event.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_state.dart';
+import 'package:money_management_app/sign_up/screens/select_country_screen.dart';
+import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -11,10 +13,10 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = context.appColors;
+    final formKey = GlobalKey<FormState>();
     final nameController = TextEditingController();
     final emailController = TextEditingController();
-    final addressController = TextEditingController();
-    final phoneNumberController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
 
@@ -31,18 +33,24 @@ class SignUpScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Title
-                      Text(
+                      const Text(
                         S.signUpTitle,
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: AppTextStyles.headlineLg,
+                      ),
+                      Text(
+                        S.signUpSubTitle,
+                        style: AppTextStyles.bodyMd1.copyWith(color: appColors.textGray2),
                       ),
                       const SizedBox(height: AppSizes.spaceBtwSections),
 
                       // Form
                       Form(
+                        key: formKey,
                         child: Column(
                           children: [
                             // Username
                             TextFormField(
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Vui lòng nhập tên';
@@ -52,10 +60,12 @@ class SignUpScreen extends StatelessWidget {
                               controller: nameController,
                               decoration: const InputDecoration(
                                 labelText: S.username,
-                                prefixIcon: Icon(Iconsax.user_edit),
+                                prefixIcon: Icon(Iconsax.user),
                               ),
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwInputFields),
+                            const SizedBox(
+                              height: AppSizes.spaceBtwInputFields,
+                            ),
 
                             // Email
                             TextFormField(
@@ -71,27 +81,9 @@ class SignUpScreen extends StatelessWidget {
                                 prefixIcon: Icon(Iconsax.direct),
                               ),
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwInputFields),
-
-                            // Address
-                            TextFormField(
-                              controller: addressController,
-                              decoration: const InputDecoration(
-                                labelText: 'Address',
-                                prefixIcon: Icon(Iconsax.location),
-                              ),
+                            const SizedBox(
+                              height: AppSizes.spaceBtwInputFields,
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwInputFields),
-
-                            // Phone Number
-                            TextFormField(
-                              controller: phoneNumberController,
-                              decoration: const InputDecoration(
-                                labelText: S.phoneNo,
-                                prefixIcon: Icon(Iconsax.call),
-                              ),
-                            ),
-                            const SizedBox(height: AppSizes.spaceBtwInputFields),
 
                             // Password
                             TextFormField(
@@ -108,7 +100,9 @@ class SignUpScreen extends StatelessWidget {
                                 suffixIcon: Icon(Iconsax.eye_slash),
                               ),
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwInputFields),
+                            const SizedBox(
+                              height: AppSizes.spaceBtwInputFields,
+                            ),
 
                             // Confirm Password
                             TextFormField(
@@ -149,11 +143,7 @@ class SignUpScreen extends StatelessWidget {
                                         ),
                                         TextSpan(
                                           text: '${S.privacyPolicy} ',
-                                          style: Theme.of(context).textTheme.bodyMedium!.apply(
-                                                // color: dark ? AppColors.white : AppColors.primary,
-                                                decoration: TextDecoration.underline,
-                                                // decorationColor: dark ? AppColors.white : AppColors.primary,
-                                              ),
+                                          style: Theme.of(context).textTheme.bodyMedium!.apply(),
                                         ),
                                         TextSpan(
                                           text: '${S.and} ',
@@ -161,11 +151,7 @@ class SignUpScreen extends StatelessWidget {
                                         ),
                                         TextSpan(
                                           text: '${S.termsOfUse} ',
-                                          style: Theme.of(context).textTheme.bodyMedium!.apply(
-                                                // color: dark ? AppColors.white : AppColors.primary,
-                                                decoration: TextDecoration.underline,
-                                                // decorationColor: dark ? AppColors.white : AppColors.primary,
-                                              ),
+                                          style: Theme.of(context).textTheme.bodyMedium!.apply(),
                                         ),
                                       ],
                                     ),
@@ -180,22 +166,22 @@ class SignUpScreen extends StatelessWidget {
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (passwordController.text == confirmPasswordController.text) {
-                                    context.read<SignUpBloc>().add(
-                                          SignUpSubmitted(
-                                            context: context,
-                                            email: emailController.text,
-                                            name: nameController.text,
-                                            password: passwordController.text,
-                                            address: addressController.text,
-                                            phoneNumber: phoneNumberController.text,
-                                            passwordConfirmation: confirmPasswordController.text,
-                                          ),
-                                        );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Passwords do not match')),
-                                    );
+                                  if (formKey.currentState!.validate()) {
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => SelectCountryScreen()));
+                                    // Form is valid, proceed with the action
+                                    // Do something, like sending data to server
+                                    if (passwordController.text == confirmPasswordController.text) {
+                                      context.read<SignUpBloc>().add(
+                                            SignUpSubmitted(
+                                              context: context,
+                                              email: emailController.text,
+                                              name: nameController.text,
+                                              password: passwordController.text,
+                                              passwordConfirmation: confirmPasswordController.text,
+                                            ),
+                                          );
+                                    }
                                   }
                                 },
                                 child: const Text(S.createAccount),

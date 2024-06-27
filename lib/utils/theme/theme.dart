@@ -43,10 +43,19 @@ import 'package:money_management_app/utils/utils.dart';
 
 abstract final class AppThemes {
   static final ThemeData lightTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.lightThemeColors.backgroundWhite2DarkVersion,
+    ),
+    scaffoldBackgroundColor: AppColors.lightThemeColors.backgroundWhite2DarkVersion,
     checkboxTheme: CommonCheckboxTheme.lightCheckboxTheme,
     inputDecorationTheme: CommonTextFormFieldTheme.lightInputDecorationTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSizes.buttonLg,
+        ),
+        foregroundColor: AppColors.lightThemeColors.textWhite,
+        backgroundColor: AppColors.lightThemeColors.backgroundPrimary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(360),
         ),
@@ -59,20 +68,39 @@ abstract final class AppThemes {
         ),
       ),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.lightThemeColors.textBlackDarkVersion,
+      ),
+    ),
     fontFamily: GoogleFonts.archivo().fontFamily,
-    scaffoldBackgroundColor: AppColors.defaultAppColors.backgroundWhite2DarkVersion,
     brightness: Brightness.light,
     splashColor: Colors.transparent,
     extensions: {
       AppColors.lightThemeColors,
-      AppTextStyles.defaultTextStyles,
       AppButtons.defaultButtons,
     },
   );
 
   static final ThemeData darkTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
+    ),
+    scaffoldBackgroundColor: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
     checkboxTheme: CommonCheckboxTheme.darkCheckboxTheme,
     inputDecorationTheme: CommonTextFormFieldTheme.darkInputDecorationTheme,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSizes.buttonLg,
+        ),
+        foregroundColor: AppColors.darkThemeColors.textWhite,
+        backgroundColor: AppColors.darkThemeColors.backgroundPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(360),
+        ),
+      ),
+    ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -80,20 +108,16 @@ abstract final class AppThemes {
         ),
       ),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(360),
-        ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.darkThemeColors.textBlackDarkVersion,
       ),
     ),
-    scaffoldBackgroundColor: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
     fontFamily: GoogleFonts.archivo().fontFamily,
     brightness: Brightness.dark,
     splashColor: Colors.transparent,
     extensions: {
       AppColors.darkThemeColors,
-      AppTextStyles.defaultTextStyles,
       AppButtons.defaultButtons,
     },
   );

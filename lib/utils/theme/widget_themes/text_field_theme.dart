@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_app/utils/theme/app_colors.dart';
-import 'package:money_management_app/utils/theme/app_text_styles.dart';
+import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class CommonTextFormFieldTheme {
@@ -14,8 +13,8 @@ class CommonTextFormFieldTheme {
     // constraints:  BoxConstraints.expand(
     //   height: AppSizes.inputFieldHeight,
     // ),
-    labelStyle: AppTextStyles.defaultTextStyles.bodySm2,
-    hintStyle: AppTextStyles.defaultTextStyles.bodySm2.copyWith(
+    labelStyle: AppTextStyles.bodySm2,
+    hintStyle: AppTextStyles.bodySm2.copyWith(
       color: AppColors.lightThemeColors.textGray2,
     ),
     // errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
@@ -56,8 +55,8 @@ class CommonTextFormFieldTheme {
     // constraints:  BoxConstraints.expand(
     //   height: AppSizes.inputFieldHeight,
     // ),
-    labelStyle: AppTextStyles.defaultTextStyles.bodySm2,
-    hintStyle: AppTextStyles.defaultTextStyles.bodySm2.copyWith(
+    labelStyle: AppTextStyles.bodySm2,
+    hintStyle: AppTextStyles.bodySm2.copyWith(
       color: AppColors.darkThemeColors.textGray2,
     ),
     // errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),

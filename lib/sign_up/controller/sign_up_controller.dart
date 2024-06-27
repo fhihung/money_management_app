@@ -9,9 +9,7 @@ import 'package:money_management_app/models/m_user.dart';
 class SignUpController {
   final String apiUrl = 'https://371e-14-248-162-193.ngrok-free.app/api/';
 
-  Future<MUser?> register(
-    String? address,
-    String? phoneNumber, {
+  Future<MUser?> register({
     required String name,
     required int role,
     required String email,
@@ -30,8 +28,6 @@ class SignUpController {
         'email': email.toString(),
         'password': password.toString(),
         'password_confirmation': passwordConfirmation.toString(),
-        'address': address.toString(),
-        'phone_number': phoneNumber.toString(),
       }),
     );
 

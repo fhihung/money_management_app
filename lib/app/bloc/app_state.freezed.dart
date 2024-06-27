@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isCompleteOnboarding => throw _privateConstructorUsedError;
+  bool get isDarkTheme => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,11 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({bool isLoading, bool isCompleteOnboarding, String? token});
+  $Res call(
+      {bool isLoading,
+      bool isCompleteOnboarding,
+      bool isDarkTheme,
+      String? token});
 }
 
 /// @nodoc
@@ -48,6 +53,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? isLoading = null,
     Object? isCompleteOnboarding = null,
+    Object? isDarkTheme = null,
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
@@ -58,6 +64,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       isCompleteOnboarding: null == isCompleteOnboarding
           ? _value.isCompleteOnboarding
           : isCompleteOnboarding // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDarkTheme: null == isDarkTheme
+          ? _value.isDarkTheme
+          : isDarkTheme // ignore: cast_nullable_to_non_nullable
               as bool,
       token: freezed == token
           ? _value.token
@@ -75,7 +85,11 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isCompleteOnboarding, String? token});
+  $Res call(
+      {bool isLoading,
+      bool isCompleteOnboarding,
+      bool isDarkTheme,
+      String? token});
 }
 
 /// @nodoc
@@ -91,6 +105,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isCompleteOnboarding = null,
+    Object? isDarkTheme = null,
     Object? token = freezed,
   }) {
     return _then(_$AppStateImpl(
@@ -101,6 +116,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
       isCompleteOnboarding: null == isCompleteOnboarding
           ? _value.isCompleteOnboarding
           : isCompleteOnboarding // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDarkTheme: null == isDarkTheme
+          ? _value.isDarkTheme
+          : isDarkTheme // ignore: cast_nullable_to_non_nullable
               as bool,
       token: freezed == token
           ? _value.token
@@ -114,7 +133,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
 
 class _$AppStateImpl implements _AppState {
   const _$AppStateImpl(
-      {this.isLoading = false, this.isCompleteOnboarding = false, this.token});
+      {this.isLoading = false,
+      this.isCompleteOnboarding = false,
+      this.isDarkTheme = false,
+      this.token});
 
   @override
   @JsonKey()
@@ -123,11 +145,14 @@ class _$AppStateImpl implements _AppState {
   @JsonKey()
   final bool isCompleteOnboarding;
   @override
+  @JsonKey()
+  final bool isDarkTheme;
+  @override
   final String? token;
 
   @override
   String toString() {
-    return 'AppState(isLoading: $isLoading, isCompleteOnboarding: $isCompleteOnboarding, token: $token)';
+    return 'AppState(isLoading: $isLoading, isCompleteOnboarding: $isCompleteOnboarding, isDarkTheme: $isDarkTheme, token: $token)';
   }
 
   @override
@@ -139,12 +164,14 @@ class _$AppStateImpl implements _AppState {
                 other.isLoading == isLoading) &&
             (identical(other.isCompleteOnboarding, isCompleteOnboarding) ||
                 other.isCompleteOnboarding == isCompleteOnboarding) &&
+            (identical(other.isDarkTheme, isDarkTheme) ||
+                other.isDarkTheme == isDarkTheme) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, isCompleteOnboarding, token);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isCompleteOnboarding, isDarkTheme, token);
 
   @JsonKey(ignore: true)
   @override
@@ -157,12 +184,15 @@ abstract class _AppState implements AppState {
   const factory _AppState(
       {final bool isLoading,
       final bool isCompleteOnboarding,
+      final bool isDarkTheme,
       final String? token}) = _$AppStateImpl;
 
   @override
   bool get isLoading;
   @override
   bool get isCompleteOnboarding;
+  @override
+  bool get isDarkTheme;
   @override
   String? get token;
   @override

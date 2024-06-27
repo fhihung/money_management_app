@@ -29,8 +29,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       await signUpController.register(
         context: event.context,
-        event.address,
-        event.phoneNumber,
         name: event.name,
         role: 2,
         email: event.email,

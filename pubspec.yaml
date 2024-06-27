@@ -68,6 +68,10 @@ flutter:
   assets:
     - assets/fonts/
     - assets/logos/
+    - assets/icons/regular/user.png
+    - assets/icons/bold/
+    - assets/icons/color/
+    - assets/icons/regular/
     - assets/icons/brands/
     - assets/icons/categories/
     - assets/icons/payment_methods/

@@ -17,6 +17,7 @@ class App extends StatelessWidget {
           title: 'Food Delivery App',
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
+          themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
           // localizationsDelegates: AppLocalizations.localizationsDelegates,
           // supportedLocales: AppLocalizations.supportedLocales,
           home: OnBoardingScreen(),

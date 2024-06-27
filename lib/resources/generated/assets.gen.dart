@@ -86,9 +86,18 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  $AssetsIconsBoldGen get bold => const $AssetsIconsBoldGen();
   $AssetsIconsBrandsGen get brands => const $AssetsIconsBrandsGen();
   $AssetsIconsCategoriesGen get categories => const $AssetsIconsCategoriesGen();
+  $AssetsIconsColorGen get color => const $AssetsIconsColorGen();
   $AssetsIconsPaymentMethodsGen get paymentMethods => const $AssetsIconsPaymentMethodsGen();
+  $AssetsIconsRegularGen get regular => const $AssetsIconsRegularGen();
+
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [user];
 }
 
 class $AssetsImagesGen {
@@ -119,6 +128,44 @@ class $AssetsLogosGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [facebookIcon, googleIcon, tStoreSplashLogoBlack, tStoreSplashLogoWhite];
+}
+
+class $AssetsIconsBoldGen {
+  const $AssetsIconsBoldGen();
+
+  /// File path: assets/icons/bold/Card.svg
+  SvgGenImage get card => const SvgGenImage('assets/icons/bold/Card.svg');
+
+  /// File path: assets/icons/bold/Chart Square.svg
+  SvgGenImage get chartSquare => const SvgGenImage('assets/icons/bold/Chart Square.svg');
+
+  /// File path: assets/icons/bold/Danger Circle.svg
+  SvgGenImage get dangerCircle => const SvgGenImage('assets/icons/bold/Danger Circle.svg');
+
+  /// File path: assets/icons/bold/Home 2.svg
+  SvgGenImage get home2 => const SvgGenImage('assets/icons/bold/Home 2.svg');
+
+  /// File path: assets/icons/bold/Menu Dots.svg
+  SvgGenImage get menuDots => const SvgGenImage('assets/icons/bold/Menu Dots.svg');
+
+  /// File path: assets/icons/bold/Settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/bold/Settings.svg');
+
+  /// File path: assets/icons/bold/Square Transfer Horizontal.svg
+  SvgGenImage get squareTransferHorizontal => const SvgGenImage('assets/icons/bold/Square Transfer Horizontal.svg');
+
+  /// File path: assets/icons/bold/bank-filled.svg
+  SvgGenImage get bankFilled => const SvgGenImage('assets/icons/bold/bank-filled.svg');
+
+  /// File path: assets/icons/bold/instagram-filled 1.svg
+  SvgGenImage get instagramFilled1 => const SvgGenImage('assets/icons/bold/instagram-filled 1.svg');
+
+  /// File path: assets/icons/bold/telegram 1.svg
+  SvgGenImage get telegram1 => const SvgGenImage('assets/icons/bold/telegram 1.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values =>
+      [card, chartSquare, dangerCircle, home2, menuDots, settings, squareTransferHorizontal, bankFilled, instagramFilled1, telegram1];
 }
 
 class $AssetsIconsBrandsGen {
@@ -206,6 +253,118 @@ class $AssetsIconsCategoriesGen {
       ];
 }
 
+class $AssetsIconsColorGen {
+  const $AssetsIconsColorGen();
+
+  /// File path: assets/icons/color/Bitcoin Coin.svg
+  SvgGenImage get bitcoinCoin => const SvgGenImage('assets/icons/color/Bitcoin Coin.svg');
+
+  /// File path: assets/icons/color/Bus.svg
+  SvgGenImage get bus => const SvgGenImage('assets/icons/color/Bus.svg');
+
+  /// File path: assets/icons/color/Canada.svg
+  SvgGenImage get canada => const SvgGenImage('assets/icons/color/Canada.svg');
+
+  /// File path: assets/icons/color/Car.svg
+  SvgGenImage get car => const SvgGenImage('assets/icons/color/Car.svg');
+
+  /// File path: assets/icons/color/Circle.svg
+  SvgGenImage get circle => const SvgGenImage('assets/icons/color/Circle.svg');
+
+  /// File path: assets/icons/color/Clothes.svg
+  SvgGenImage get clothes => const SvgGenImage('assets/icons/color/Clothes.svg');
+
+  /// File path: assets/icons/color/Coffee.png
+  AssetGenImage get coffee => const AssetGenImage('assets/icons/color/Coffee.png');
+
+  /// File path: assets/icons/color/Ethereum Coin.svg
+  SvgGenImage get ethereumCoin => const SvgGenImage('assets/icons/color/Ethereum Coin.svg');
+
+  /// File path: assets/icons/color/Figma.png
+  AssetGenImage get figma => const AssetGenImage('assets/icons/color/Figma.png');
+
+  /// File path: assets/icons/color/Food.svg
+  SvgGenImage get food => const SvgGenImage('assets/icons/color/Food.svg');
+
+  /// File path: assets/icons/color/Game.svg
+  SvgGenImage get game => const SvgGenImage('assets/icons/color/Game.svg');
+
+  /// File path: assets/icons/color/House.svg
+  SvgGenImage get house => const SvgGenImage('assets/icons/color/House.svg');
+
+  /// File path: assets/icons/color/PayPal.svg
+  SvgGenImage get payPal => const SvgGenImage('assets/icons/color/PayPal.svg');
+
+  /// File path: assets/icons/color/Paypal-vertical.svg
+  SvgGenImage get paypalVertical => const SvgGenImage('assets/icons/color/Paypal-vertical.svg');
+
+  /// File path: assets/icons/color/South Korea.svg
+  SvgGenImage get southKorea => const SvgGenImage('assets/icons/color/South Korea.svg');
+
+  /// File path: assets/icons/color/Tether.svg
+  SvgGenImage get tether => const SvgGenImage('assets/icons/color/Tether.svg');
+
+  /// File path: assets/icons/color/Text area.svg
+  SvgGenImage get textArea => const SvgGenImage('assets/icons/color/Text area.svg');
+
+  /// File path: assets/icons/color/United kingdom.svg
+  SvgGenImage get unitedKingdom => const SvgGenImage('assets/icons/color/United kingdom.svg');
+
+  /// File path: assets/icons/color/United states.svg
+  SvgGenImage get unitedStates => const SvgGenImage('assets/icons/color/United states.svg');
+
+  /// File path: assets/icons/color/Vector.svg
+  SvgGenImage get vector => const SvgGenImage('assets/icons/color/Vector.svg');
+
+  /// File path: assets/icons/color/Water.png
+  AssetGenImage get water => const AssetGenImage('assets/icons/color/Water.png');
+
+  /// File path: assets/icons/color/apple.png
+  AssetGenImage get apple => const AssetGenImage('assets/icons/color/apple.png');
+
+  /// File path: assets/icons/color/flat-color-icons_google.svg
+  SvgGenImage get flatColorIconsGoogle => const SvgGenImage('assets/icons/color/flat-color-icons_google.svg');
+
+  /// File path: assets/icons/color/forever 1.svg
+  SvgGenImage get forever1 => const SvgGenImage('assets/icons/color/forever 1.svg');
+
+  /// File path: assets/icons/color/ic_baseline-apple.svg
+  SvgGenImage get icBaselineApple => const SvgGenImage('assets/icons/color/ic_baseline-apple.svg');
+
+  /// File path: assets/icons/color/x 1.svg
+  SvgGenImage get x1 => const SvgGenImage('assets/icons/color/x 1.svg');
+
+  /// List of all assets
+  List<dynamic> get values => [
+        bitcoinCoin,
+        bus,
+        canada,
+        car,
+        circle,
+        clothes,
+        coffee,
+        ethereumCoin,
+        figma,
+        food,
+        game,
+        house,
+        payPal,
+        paypalVertical,
+        southKorea,
+        tether,
+        textArea,
+        unitedKingdom,
+        unitedStates,
+        vector,
+        water,
+        apple,
+        flatColorIconsGoogle,
+        forever1,
+        icBaselineApple,
+        x1
+      ];
+}
+
 class $AssetsIconsPaymentMethodsGen {
   const $AssetsIconsPaymentMethodsGen();
 
@@ -238,6 +397,16 @@ class $AssetsIconsPaymentMethodsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [applePay, creditCard, googlePay, masterCard, paypal, paystack, paytm, successfulPaymentIcon, visa];
+}
+
+class $AssetsIconsRegularGen {
+  const $AssetsIconsRegularGen();
+
+  /// File path: assets/icons/regular/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/regular/user.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [user];
 }
 
 class $AssetsImagesAnimationsGen {

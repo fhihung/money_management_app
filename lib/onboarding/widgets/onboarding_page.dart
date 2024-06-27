@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:money_management_app/utils/theme/app_colors.dart';
-import 'package:money_management_app/utils/theme/app_text_styles.dart';
+import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -18,7 +17,6 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    final textStyles = context.appTextStyles;
     return Padding(
       padding: const EdgeInsets.all(AppSizes.defaultSpace),
       child: Column(
@@ -32,7 +30,7 @@ class OnBoardingPage extends StatelessWidget {
             title,
             // TTexts.onBoardingTitle1,
             // style: AppTextStyle.headlineMd,
-            style: textStyles.headlineLg,
+            style: AppTextStyles.headlineLg,
             textAlign: TextAlign.center,
           ),
           const SizedBox(
@@ -41,7 +39,7 @@ class OnBoardingPage extends StatelessWidget {
           Text(
             subtitle,
             // TTexts.onBoardingSubTitle1,
-            style: textStyles.bodySm2.copyWith(color: appColors.textGray2),
+            style: AppTextStyles.bodySm2.copyWith(color: appColors.textGray2),
             textAlign: TextAlign.center,
           ),
         ],

@@ -7,8 +7,7 @@ import 'package:money_management_app/onboarding/widgets/onboarding_page.dart';
 import 'package:money_management_app/onboarding/widgets/page_indicator_widget.dart';
 import 'package:money_management_app/resources/generated/assets.gen.dart';
 import 'package:money_management_app/utils/theme/app_buttons.dart';
-import 'package:money_management_app/utils/theme/app_colors.dart';
-import 'package:money_management_app/utils/theme/app_text_styles.dart';
+import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart'; // Assuming this contains AppTexts, AppSizes, TImages, TDeviceUtils
 
 class OnBoardingScreen extends StatelessWidget {
@@ -35,7 +34,6 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    final appTextStyles = Theme.of(context).extension<AppTextStyles>()!;
     final appButtons = Theme.of(context).extension<AppButtons>()!;
     final bloc = context.read<OnBoardingBloc>();
     return BlocBuilder<OnBoardingBloc, OnBoardingState>(
@@ -102,7 +100,7 @@ class OnBoardingScreen extends StatelessWidget {
                       // style: ElevatedButton.styleFrom(),
                       child: Text(
                         S.continueText,
-                        style: appTextStyles.buttonSm.copyWith(
+                        style: AppTextStyles.buttonSm.copyWith(
                           color: appColors.textWhite,
                         ),
                       ),
