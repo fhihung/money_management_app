@@ -20,6 +20,8 @@ mixin _$SignUpState {
   String get errorMessage => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   MUser? get user => throw _privateConstructorUsedError;
+  String? get selectedCurrency => throw _privateConstructorUsedError;
+  String? get selectedCountry => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -32,7 +34,13 @@ abstract class $SignUpStateCopyWith<$Res> {
           SignUpState value, $Res Function(SignUpState) then) =
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
-  $Res call({bool isLoading, String errorMessage, String? token, MUser? user});
+  $Res call(
+      {bool isLoading,
+      String errorMessage,
+      String? token,
+      MUser? user,
+      String? selectedCurrency,
+      String? selectedCountry});
 }
 
 /// @nodoc
@@ -52,6 +60,8 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? errorMessage = null,
     Object? token = freezed,
     Object? user = freezed,
+    Object? selectedCurrency = freezed,
+    Object? selectedCountry = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -70,6 +80,14 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as MUser?,
+      selectedCurrency: freezed == selectedCurrency
+          ? _value.selectedCurrency
+          : selectedCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedCountry: freezed == selectedCountry
+          ? _value.selectedCountry
+          : selectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -82,7 +100,13 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String errorMessage, String? token, MUser? user});
+  $Res call(
+      {bool isLoading,
+      String errorMessage,
+      String? token,
+      MUser? user,
+      String? selectedCurrency,
+      String? selectedCountry});
 }
 
 /// @nodoc
@@ -100,6 +124,8 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? token = freezed,
     Object? user = freezed,
+    Object? selectedCurrency = freezed,
+    Object? selectedCountry = freezed,
   }) {
     return _then(_$SignUpStateImpl(
       isLoading: null == isLoading
@@ -118,6 +144,14 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as MUser?,
+      selectedCurrency: freezed == selectedCurrency
+          ? _value.selectedCurrency
+          : selectedCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedCountry: freezed == selectedCountry
+          ? _value.selectedCountry
+          : selectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -126,7 +160,12 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 
 class _$SignUpStateImpl implements _SignUpState {
   const _$SignUpStateImpl(
-      {this.isLoading = false, this.errorMessage = '', this.token, this.user});
+      {this.isLoading = false,
+      this.errorMessage = '',
+      this.token,
+      this.user,
+      this.selectedCurrency = 'VND',
+      this.selectedCountry = 'Vietnam'});
 
   @override
   @JsonKey()
@@ -138,10 +177,16 @@ class _$SignUpStateImpl implements _SignUpState {
   final String? token;
   @override
   final MUser? user;
+  @override
+  @JsonKey()
+  final String? selectedCurrency;
+  @override
+  @JsonKey()
+  final String? selectedCountry;
 
   @override
   String toString() {
-    return 'SignUpState(isLoading: $isLoading, errorMessage: $errorMessage, token: $token, user: $user)';
+    return 'SignUpState(isLoading: $isLoading, errorMessage: $errorMessage, token: $token, user: $user, selectedCurrency: $selectedCurrency, selectedCountry: $selectedCountry)';
   }
 
   @override
@@ -154,12 +199,16 @@ class _$SignUpStateImpl implements _SignUpState {
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.token, token) || other.token == token) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.selectedCurrency, selectedCurrency) ||
+                other.selectedCurrency == selectedCurrency) &&
+            (identical(other.selectedCountry, selectedCountry) ||
+                other.selectedCountry == selectedCountry));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, errorMessage, token, user);
+  int get hashCode => Object.hash(runtimeType, isLoading, errorMessage, token,
+      user, selectedCurrency, selectedCountry);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +222,9 @@ abstract class _SignUpState implements SignUpState {
       {final bool isLoading,
       final String errorMessage,
       final String? token,
-      final MUser? user}) = _$SignUpStateImpl;
+      final MUser? user,
+      final String? selectedCurrency,
+      final String? selectedCountry}) = _$SignUpStateImpl;
 
   @override
   bool get isLoading;
@@ -183,6 +234,10 @@ abstract class _SignUpState implements SignUpState {
   String? get token;
   @override
   MUser? get user;
+  @override
+  String? get selectedCurrency;
+  @override
+  String? get selectedCountry;
   @override
   @JsonKey(ignore: true)
   _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>

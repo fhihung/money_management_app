@@ -279,3 +279,243 @@ abstract class _SignUpSubmitted implements SignUpSubmitted {
   _$$SignUpSubmittedImplCopyWith<_$SignUpSubmittedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$CountrySelected {
+  String? get selectedCountry => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CountrySelectedCopyWith<CountrySelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CountrySelectedCopyWith<$Res> {
+  factory $CountrySelectedCopyWith(
+          CountrySelected value, $Res Function(CountrySelected) then) =
+      _$CountrySelectedCopyWithImpl<$Res, CountrySelected>;
+  @useResult
+  $Res call({String? selectedCountry});
+}
+
+/// @nodoc
+class _$CountrySelectedCopyWithImpl<$Res, $Val extends CountrySelected>
+    implements $CountrySelectedCopyWith<$Res> {
+  _$CountrySelectedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCountry = freezed,
+  }) {
+    return _then(_value.copyWith(
+      selectedCountry: freezed == selectedCountry
+          ? _value.selectedCountry
+          : selectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CountrySelectedImplCopyWith<$Res>
+    implements $CountrySelectedCopyWith<$Res> {
+  factory _$$CountrySelectedImplCopyWith(_$CountrySelectedImpl value,
+          $Res Function(_$CountrySelectedImpl) then) =
+      __$$CountrySelectedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? selectedCountry});
+}
+
+/// @nodoc
+class __$$CountrySelectedImplCopyWithImpl<$Res>
+    extends _$CountrySelectedCopyWithImpl<$Res, _$CountrySelectedImpl>
+    implements _$$CountrySelectedImplCopyWith<$Res> {
+  __$$CountrySelectedImplCopyWithImpl(
+      _$CountrySelectedImpl _value, $Res Function(_$CountrySelectedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCountry = freezed,
+  }) {
+    return _then(_$CountrySelectedImpl(
+      selectedCountry: freezed == selectedCountry
+          ? _value.selectedCountry
+          : selectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CountrySelectedImpl implements _CountrySelected {
+  const _$CountrySelectedImpl({required this.selectedCountry});
+
+  @override
+  final String? selectedCountry;
+
+  @override
+  String toString() {
+    return 'CountrySelected(selectedCountry: $selectedCountry)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CountrySelectedImpl &&
+            (identical(other.selectedCountry, selectedCountry) ||
+                other.selectedCountry == selectedCountry));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedCountry);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CountrySelectedImplCopyWith<_$CountrySelectedImpl> get copyWith =>
+      __$$CountrySelectedImplCopyWithImpl<_$CountrySelectedImpl>(
+          this, _$identity);
+}
+
+abstract class _CountrySelected implements CountrySelected {
+  const factory _CountrySelected({required final String? selectedCountry}) =
+      _$CountrySelectedImpl;
+
+  @override
+  String? get selectedCountry;
+  @override
+  @JsonKey(ignore: true)
+  _$$CountrySelectedImplCopyWith<_$CountrySelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CurrencySelected {
+  String? get selectedCurrency => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CurrencySelectedCopyWith<CurrencySelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CurrencySelectedCopyWith<$Res> {
+  factory $CurrencySelectedCopyWith(
+          CurrencySelected value, $Res Function(CurrencySelected) then) =
+      _$CurrencySelectedCopyWithImpl<$Res, CurrencySelected>;
+  @useResult
+  $Res call({String? selectedCurrency});
+}
+
+/// @nodoc
+class _$CurrencySelectedCopyWithImpl<$Res, $Val extends CurrencySelected>
+    implements $CurrencySelectedCopyWith<$Res> {
+  _$CurrencySelectedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCurrency = freezed,
+  }) {
+    return _then(_value.copyWith(
+      selectedCurrency: freezed == selectedCurrency
+          ? _value.selectedCurrency
+          : selectedCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CurrencySelectedImplCopyWith<$Res>
+    implements $CurrencySelectedCopyWith<$Res> {
+  factory _$$CurrencySelectedImplCopyWith(_$CurrencySelectedImpl value,
+          $Res Function(_$CurrencySelectedImpl) then) =
+      __$$CurrencySelectedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? selectedCurrency});
+}
+
+/// @nodoc
+class __$$CurrencySelectedImplCopyWithImpl<$Res>
+    extends _$CurrencySelectedCopyWithImpl<$Res, _$CurrencySelectedImpl>
+    implements _$$CurrencySelectedImplCopyWith<$Res> {
+  __$$CurrencySelectedImplCopyWithImpl(_$CurrencySelectedImpl _value,
+      $Res Function(_$CurrencySelectedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCurrency = freezed,
+  }) {
+    return _then(_$CurrencySelectedImpl(
+      selectedCurrency: freezed == selectedCurrency
+          ? _value.selectedCurrency
+          : selectedCurrency // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CurrencySelectedImpl implements _CurrencySelected {
+  const _$CurrencySelectedImpl({required this.selectedCurrency});
+
+  @override
+  final String? selectedCurrency;
+
+  @override
+  String toString() {
+    return 'CurrencySelected(selectedCurrency: $selectedCurrency)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CurrencySelectedImpl &&
+            (identical(other.selectedCurrency, selectedCurrency) ||
+                other.selectedCurrency == selectedCurrency));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedCurrency);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CurrencySelectedImplCopyWith<_$CurrencySelectedImpl> get copyWith =>
+      __$$CurrencySelectedImplCopyWithImpl<_$CurrencySelectedImpl>(
+          this, _$identity);
+}
+
+abstract class _CurrencySelected implements CurrencySelected {
+  const factory _CurrencySelected({required final String? selectedCurrency}) =
+      _$CurrencySelectedImpl;
+
+  @override
+  String? get selectedCurrency;
+  @override
+  @JsonKey(ignore: true)
+  _$$CurrencySelectedImplCopyWith<_$CurrencySelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

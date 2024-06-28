@@ -92,12 +92,6 @@ class $AssetsIconsGen {
   $AssetsIconsColorGen get color => const $AssetsIconsColorGen();
   $AssetsIconsPaymentMethodsGen get paymentMethods => const $AssetsIconsPaymentMethodsGen();
   $AssetsIconsRegularGen get regular => const $AssetsIconsRegularGen();
-
-  /// File path: assets/icons/user.png
-  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [user];
 }
 
 class $AssetsImagesGen {
@@ -106,9 +100,22 @@ class $AssetsImagesGen {
   $AssetsImagesAnimationsGen get animations => const $AssetsImagesAnimationsGen();
   $AssetsImagesBannersGen get banners => const $AssetsImagesBannersGen();
   $AssetsImagesContentGen get content => const $AssetsImagesContentGen();
+
+  /// File path: assets/images/decor.svg
+  SvgGenImage get decor => const SvgGenImage('assets/images/decor.svg');
+
+  /// File path: assets/images/notification_app.png
+  AssetGenImage get notificationApp => const AssetGenImage('assets/images/notification_app.png');
+
   $AssetsImagesOnBoardingImagesGen get onBoardingImages => const $AssetsImagesOnBoardingImagesGen();
   $AssetsImagesProductsGen get products => const $AssetsImagesProductsGen();
   $AssetsImagesReviewsGen get reviews => const $AssetsImagesReviewsGen();
+
+  /// File path: assets/images/success.png
+  AssetGenImage get success => const AssetGenImage('assets/images/success.png');
+
+  /// List of all assets
+  List<dynamic> get values => [decor, notificationApp, success];
 }
 
 class $AssetsLogosGen {
@@ -402,11 +409,14 @@ class $AssetsIconsPaymentMethodsGen {
 class $AssetsIconsRegularGen {
   const $AssetsIconsRegularGen();
 
+  /// File path: assets/icons/regular/Letter.png
+  AssetGenImage get letter => const AssetGenImage('assets/icons/regular/Letter.png');
+
   /// File path: assets/icons/regular/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/regular/user.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [user];
+  List<AssetGenImage> get values => [letter, user];
 }
 
 class $AssetsImagesAnimationsGen {

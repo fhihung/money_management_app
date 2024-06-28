@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class CommonTextFormFieldTheme {
@@ -21,30 +20,35 @@ class CommonTextFormFieldTheme {
     floatingLabelStyle: const TextStyle().copyWith(
       color: AppColors.lightThemeColors.textGray2,
     ),
-    disabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-      borderSide: BorderSide(color: AppColors.lightThemeColors.border5),
-    ),
-    border: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-      borderSide: BorderSide(color: AppColors.lightThemeColors.border5),
-    ),
+    // disabledBorder: const OutlineInputBorder().copyWith(
+    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+    //   borderSide: BorderSide(color: AppColors.lightThemeColors.border5),
+    // ),
+    // border: const OutlineInputBorder().copyWith(
+    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+    //   borderSide: BorderSide(color: AppColors.lightThemeColors.border5),
+    // ),
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
       borderSide: BorderSide(color: AppColors.lightThemeColors.border5),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
       borderSide: BorderSide(color: AppColors.lightThemeColors.border1),
     ),
-    // errorBorder: const OutlineInputBorder().copyWith(
-    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-    //   borderSide: const BorderSide(color: AppColors.warning),
-    // ),
-    // focusedErrorBorder: const OutlineInputBorder().copyWith(
-    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-    //   borderSide: const BorderSide(width: 2, color: AppColors.warning),
-    // ),
+    errorBorder: const OutlineInputBorder().copyWith(
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
+      borderSide: BorderSide(
+        color: AppColors.lightThemeColors.backgroundRed,
+      ),
+    ),
+    focusedErrorBorder: const OutlineInputBorder().copyWith(
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
+      borderSide: BorderSide(
+        width: 2,
+        color: AppColors.lightThemeColors.backgroundRed,
+      ),
+    ),
   );
 
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
@@ -63,26 +67,26 @@ class CommonTextFormFieldTheme {
     floatingLabelStyle: const TextStyle().copyWith(
       color: AppColors.darkThemeColors.textGray2,
     ),
-    disabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-      borderSide: BorderSide(color: AppColors.darkThemeColors.border5),
-    ),
+    // disabledBorder: const OutlineInputBorder().copyWith(
+    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+    //   borderSide: BorderSide(color: AppColors.darkThemeColors.border5),
+    // ),
     border: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
       borderSide: BorderSide(color: AppColors.darkThemeColors.border5),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
       borderSide: BorderSide(color: AppColors.darkThemeColors.border1),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
       borderSide: BorderSide(color: AppColors.darkThemeColors.border1),
     ),
-    // errorBorder: const OutlineInputBorder().copyWith(
-    //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
-    //   borderSide: const BorderSide(color: AppColors.warning),
-    // ),
+    errorBorder: const OutlineInputBorder().copyWith(
+      borderRadius: BorderRadius.circular(AppSpaces.space4),
+      borderSide: BorderSide(color: AppColors.darkThemeColors.backgroundRed),
+    ),
     // focusedErrorBorder: const OutlineInputBorder().copyWith(
     //   borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
     //   borderSide: const BorderSide(width: 2, color: AppColors.warning),

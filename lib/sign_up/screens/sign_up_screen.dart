@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:money_management_app/common/widgets/app_divider.dart';
+import 'package:money_management_app/login/screens/login_screen.dart';
+import 'package:money_management_app/onboarding/widgets/app_social_buttons.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_event.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_state.dart';
 import 'package:money_management_app/sign_up/screens/select_country_screen.dart';
-import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -23,7 +25,11 @@ class SignUpScreen extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            foregroundColor: appColors.backgroundGray,
+          ),
           body: Stack(
             children: [
               SingleChildScrollView(
@@ -39,9 +45,13 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       Text(
                         S.signUpSubTitle,
-                        style: AppTextStyles.bodyMd1.copyWith(color: appColors.textGray2),
+                        style: AppTextStyles.bodyMd1.copyWith(
+                          color: appColors.textGray2,
+                        ),
                       ),
-                      const SizedBox(height: AppSizes.spaceBtwSections),
+                      const SizedBox(
+                        height: AppSizes.spaceBtwSections,
+                      ),
 
                       // Form
                       Form(
@@ -53,13 +63,13 @@ class SignUpScreen extends StatelessWidget {
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Vui lòng nhập tên';
+                                  return '${S.pleaseEnterYour} ${S.name.toLowerCase()}';
                                 }
                                 return null;
                               },
                               controller: nameController,
                               decoration: const InputDecoration(
-                                labelText: S.username,
+                                labelText: S.name,
                                 prefixIcon: Icon(Iconsax.user),
                               ),
                             ),
@@ -71,14 +81,14 @@ class SignUpScreen extends StatelessWidget {
                             TextFormField(
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Vui lòng nhập email';
+                                  return '${S.pleaseEnterYour} ${S.email.toLowerCase()}';
                                 }
                                 return null;
                               },
                               controller: emailController,
                               decoration: const InputDecoration(
-                                labelText: 'Email',
-                                prefixIcon: Icon(Iconsax.direct),
+                                labelText: S.email,
+                                prefixIcon: Icon(Iconsax.sms),
                               ),
                             ),
                             const SizedBox(
@@ -89,14 +99,14 @@ class SignUpScreen extends StatelessWidget {
                             TextFormField(
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Vui lòng nhập mật khẩu';
+                                  return '${S.pleaseEnterYour} ${S.password.toLowerCase()}';
                                 }
                                 return null;
                               },
                               controller: passwordController,
                               decoration: const InputDecoration(
                                 labelText: S.password,
-                                prefixIcon: Icon(Iconsax.password_check),
+                                prefixIcon: Icon(Iconsax.lock_1),
                                 suffixIcon: Icon(Iconsax.eye_slash),
                               ),
                             ),
@@ -108,19 +118,18 @@ class SignUpScreen extends StatelessWidget {
                             TextFormField(
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Vui lòng nhập lại mật khẩu';
+                                  return '${S.pleaseEnterYour} ${S.password.toLowerCase()}';
                                 }
                                 return null;
                               },
                               controller: confirmPasswordController,
                               decoration: const InputDecoration(
-                                labelText: 'Confirm Password',
-                                prefixIcon: Icon(Iconsax.password_check),
+                                labelText: S.confirmPassword,
+                                prefixIcon: Icon(Iconsax.lock_1),
                                 suffixIcon: Icon(Iconsax.eye_slash),
                               ),
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwSections),
-
+                            const SizedBox(height: AppSpaces.space6),
                             // Term & Condition
                             Row(
                               children: [
@@ -139,19 +148,27 @@ class SignUpScreen extends StatelessWidget {
                                       children: [
                                         TextSpan(
                                           text: '${S.iAgreeTo} ',
-                                          style: Theme.of(context).textTheme.bodySmall,
+                                          style: AppTextStyles.captionLg.copyWith(
+                                            color: appColors.textGray3,
+                                          ),
                                         ),
                                         TextSpan(
                                           text: '${S.privacyPolicy} ',
-                                          style: Theme.of(context).textTheme.bodyMedium!.apply(),
+                                          style: AppTextStyles.captionLg.apply(
+                                            color: appColors.textBlackDarkVersion,
+                                          ),
                                         ),
                                         TextSpan(
                                           text: '${S.and} ',
-                                          style: Theme.of(context).textTheme.bodySmall,
+                                          style: AppTextStyles.captionLg.copyWith(
+                                            color: appColors.textGray3,
+                                          ),
                                         ),
                                         TextSpan(
                                           text: '${S.termsOfUse} ',
-                                          style: Theme.of(context).textTheme.bodyMedium!.apply(),
+                                          style: AppTextStyles.captionLg.apply(
+                                            color: appColors.textBlackDarkVersion,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -159,7 +176,7 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: AppSizes.spaceBtwSections),
+                            const SizedBox(height: AppSpaces.space10),
 
                             // Sign Up Button
                             SizedBox(
@@ -168,7 +185,11 @@ class SignUpScreen extends StatelessWidget {
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => SelectCountryScreen()));
+                                      context,
+                                      MaterialPageRoute<void>(
+                                        builder: (context) => const SelectCountryScreen(),
+                                      ),
+                                    );
                                     // Form is valid, proceed with the action
                                     // Do something, like sending data to server
                                     if (passwordController.text == confirmPasswordController.text) {
@@ -187,17 +208,61 @@ class SignUpScreen extends StatelessWidget {
                                 child: const Text(S.createAccount),
                               ),
                             ),
+                            const SizedBox(height: AppSpaces.space7),
+
+                            /// Already have an account
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  S.alreadyHaveAnAccount,
+                                  style: AppTextStyles.captionLg.copyWith(
+                                    color: appColors.textGray3,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: AppSpaces.space2,
+                                ),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    minimumSize: Size.zero,
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                        builder: (context) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    S.logIn,
+                                    style: AppTextStyles.captionLg.apply(
+                                      color: appColors.textBlackDarkVersion,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: AppSizes.spaceBtwSections),
+                      const SizedBox(
+                        height: AppSpaces.space10,
+                      ),
 
-                      // Divider
-                      // const AppDividerWidget(text: S.orSignUpWith),
-                      const SizedBox(height: AppSizes.spaceBtwItems),
+                      /// Divider
+                      const AppDivider(text: 'OR'),
 
-                      // Social Buttons
-                      // const AppSocialButtons(),
+                      const SizedBox(
+                        height: AppSpaces.space7,
+                      ),
+
+                      /// Sign Up with Social Account
+                      const AppSocialButtons(),
                     ],
                   ),
                 ),
@@ -205,7 +270,7 @@ class SignUpScreen extends StatelessWidget {
 
               // Loading Indicator
               if (state.isLoading)
-                Center(
+                const Center(
                   child: CircularProgressIndicator(),
                 ),
             ],

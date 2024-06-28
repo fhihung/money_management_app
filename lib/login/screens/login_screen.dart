@@ -8,7 +8,6 @@ import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/login/bloc/login_state.dart';
 import 'package:money_management_app/login/widgets/login_form.dart';
 import 'package:money_management_app/onboarding/widgets/app_social_buttons.dart';
-import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -65,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     const LoginForm(),
 
                     /// Divider
-                    const AppDivider(text: 'OR'),
+                    AppDivider(text: S.or.toUpperCase()),
 
                     const SizedBox(
                       height: AppSizes.spaceBtwSections,

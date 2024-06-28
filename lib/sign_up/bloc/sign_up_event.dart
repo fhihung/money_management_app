@@ -22,3 +22,17 @@ class SignUpSubmitted extends SignUpEvent with _$SignUpSubmitted {
     required BuildContext context,
   }) = _SignUpSubmitted;
 }
+
+@freezed
+class CountrySelected extends SignUpEvent with _$CountrySelected {
+  const factory CountrySelected({
+    required String? selectedCountry,
+  }) = _CountrySelected;
+}
+
+@freezed
+class CurrencySelected extends SignUpEvent with _$CurrencySelected {
+  const factory CurrencySelected({
+    required String? selectedCurrency,
+  }) = _CurrencySelected;
+}

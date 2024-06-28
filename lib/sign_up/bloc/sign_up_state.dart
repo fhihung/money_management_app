@@ -12,5 +12,7 @@ class SignUpState with _$SignUpState {
     @Default('') String errorMessage,
     String? token,
     MUser? user,
+    @Default('VND') String? selectedCurrency,
+    @Default('Vietnam') String? selectedCountry,
   }) = _SignUpState;
 }

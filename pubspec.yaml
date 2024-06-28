@@ -45,6 +45,7 @@ dependencies:
   google_fonts: ^6.2.1
   shared_preferences: ^2.2.3
   theme_tailor_annotation: ^3.0.1
+  dropdown_button2: ^2.3.9
 
   #--------------- ./ PACKAGES END ------------------#
 
@@ -68,7 +69,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/logos/
-    - assets/icons/regular/user.png
+    - assets/images/
     - assets/icons/bold/
     - assets/icons/color/
     - assets/icons/regular/

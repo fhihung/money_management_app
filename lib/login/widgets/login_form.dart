@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:money_management_app/forgot_password/screens/forgot_password_screen.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/login/bloc/login_event.dart';
 import 'package:money_management_app/login/bloc/login_state.dart';
 import 'package:money_management_app/sign_up/screens/sign_up_screen.dart';
-import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
@@ -35,14 +35,14 @@ class LoginForm extends StatelessWidget {
                 TextFormField(
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Vui lòng nhập email';
+                      return '${S.pleaseEnterYour} ${S.email.toLowerCase()}';
                     }
                     return null;
                   },
                   controller: emailController,
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: 'Email',
+                    prefixIcon: Icon(Iconsax.sms),
+                    labelText: S.email,
                   ),
                 ),
                 const SizedBox(height: AppSizes.spaceBtwInputFields),
@@ -51,14 +51,14 @@ class LoginForm extends StatelessWidget {
                 TextFormField(
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Vui lòng nhập mật khẩu';
+                      return '${S.pleaseEnterYour} ${S.password.toLowerCase()}';
                     }
                     return null;
                   },
                   controller: passwordController,
                   obscureText: !state.isShowPassword,
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Iconsax.password_check),
+                    prefixIcon: const Icon(Iconsax.lock_1),
                     suffixIcon: GestureDetector(
                       onTap: () {
                         bloc.add(const EyeSlashPressed());
@@ -106,7 +106,13 @@ class LoginForm extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        bloc.add(const ForgotPasswordButtonPressed());
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const ForgotPasswordScreen(),
+                          ),
+                        );
+                        // bloc.add(const ForgotPasswordButtonPressed());
                       },
                       child: const Text(S.forgetPassword),
                     ),
@@ -141,7 +147,7 @@ class LoginForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      S.dontHaveAnAccount,
                       style: AppTextStyles.captionLg.copyWith(
                         color: appColors.textGray3,
                       ),

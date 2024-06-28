@@ -43,7 +43,10 @@ import 'package:money_management_app/utils/utils.dart';
 
 abstract final class AppThemes {
   static final ThemeData lightTheme = ThemeData(
+    useMaterial3: false,
     appBarTheme: AppBarTheme(
+      elevation: 0,
+      foregroundColor: AppColors.lightThemeColors.backgroundGray,
       backgroundColor: AppColors.lightThemeColors.backgroundWhite2DarkVersion,
     ),
     scaffoldBackgroundColor: AppColors.lightThemeColors.backgroundWhite2DarkVersion,
@@ -51,6 +54,7 @@ abstract final class AppThemes {
     inputDecorationTheme: CommonTextFormFieldTheme.lightInputDecorationTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         padding: const EdgeInsets.symmetric(
           vertical: AppSizes.buttonLg,
         ),
@@ -83,7 +87,13 @@ abstract final class AppThemes {
   );
 
   static final ThemeData darkTheme = ThemeData(
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
+    ),
+    useMaterial3: false,
     appBarTheme: AppBarTheme(
+      foregroundColor: AppColors.darkThemeColors.backgroundGray,
+      elevation: 0,
       backgroundColor: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
     ),
     scaffoldBackgroundColor: AppColors.darkThemeColors.backgroundWhite2DarkVersion,
@@ -91,6 +101,7 @@ abstract final class AppThemes {
     inputDecorationTheme: CommonTextFormFieldTheme.darkInputDecorationTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         padding: const EdgeInsets.symmetric(
           vertical: AppSizes.buttonLg,
         ),

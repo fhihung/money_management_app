@@ -7,7 +7,6 @@ import 'package:money_management_app/onboarding/widgets/onboarding_page.dart';
 import 'package:money_management_app/onboarding/widgets/page_indicator_widget.dart';
 import 'package:money_management_app/resources/generated/assets.gen.dart';
 import 'package:money_management_app/utils/theme/app_buttons.dart';
-import 'package:money_management_app/utils/theme/widget_themes/app_text_styles.dart';
 import 'package:money_management_app/utils/utils.dart'; // Assuming this contains AppTexts, AppSizes, TImages, TDeviceUtils
 
 class OnBoardingScreen extends StatelessWidget {

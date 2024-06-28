@@ -13,6 +13,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpSubmitted>(
       _onSignUpSubmitted,
     );
+    on<CountrySelected>(
+      _onCountrySelected,
+    );
+    on<CurrencySelected>(
+      _onCurrencySelected,
+    );
   }
   final signUpController = SignUpController();
 
@@ -40,5 +46,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       // Handle error
       emit(state.copyWith(errorMessage: error.toString(), isLoading: false));
     }
+  }
+
+  FutureOr<void> _onCountrySelected(
+    CountrySelected event,
+    Emitter<SignUpState> emit,
+  ) {
+    emit(state.copyWith(selectedCountry: event.selectedCountry));
+  }
+
+  FutureOr<void> _onCurrencySelected(
+    CurrencySelected event,
+    Emitter<SignUpState> emit,
+  ) {
+    emit(state.copyWith(selectedCurrency: event.selectedCurrency));
   }
 }
