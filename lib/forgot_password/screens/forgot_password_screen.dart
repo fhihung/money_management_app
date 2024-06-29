@@ -44,7 +44,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return S.pleaseEnterYour + S.email.toLowerCase();
+                      return '${S.pleaseEnterYour} ${S.email.toLowerCase()}';
                     }
                     return null;
                   },
@@ -64,63 +64,68 @@ class ForgotPasswordScreen extends StatelessWidget {
                 child: ElevatedButton(
                   child: const Text(S.submit),
                   onPressed: () {
-                    if (key.currentState!.validate()) {}
-                    showModalBottomSheet<void>(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(AppSpaces.space8),
-                          topRight: Radius.circular(AppSpaces.space8),
-                        ),
-                      ),
-                      backgroundColor: appColors.backgroundWhite2DarkVersion,
-                      context: context,
-                      builder: (context) => CommonModalBottomSheet(
-                        showTextButton: false,
-                        title: S.verifyEmail,
-                        subtitle: '${S.verifyEmailSubTitle} ${emailController.text} ${S.verifyEmailSubTitle2}',
-                        image: Container(
-                          margin: const EdgeInsets.all(AppSpaces.space9),
-                          // padding: const EdgeInsets.all(16),
-
-                          child: Stack(
-                            children: [
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    color: appColors.backgroundGray7_2,
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                  child: Icon(
-                                    Iconsax.sms_tracking,
-                                    size: 48,
-                                    color: appColors.backgroundDarkVersion,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: SvgPicture.asset(
-                                  Assets.images.decor.path,
-                                  width: 200,
-                                ),
-                              ),
-                            ],
+                    if (key.currentState!.validate()) {
+                      showModalBottomSheet<void>(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(AppSpaces.space8),
+                            topRight: Radius.circular(AppSpaces.space8),
                           ),
                         ),
-                        textButton: S.checkNow,
-                        onPressedElevatedButton: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (context) => const ResetPasswordScreen(),
+                        backgroundColor: appColors.backgroundWhite2DarkVersion,
+                        context: context,
+                        builder: (context) => CommonModalBottomSheet(
+                          showTextButton: false,
+                          title: S.verifyEmail,
+                          subtitle: '${S.verifyEmailSubTitle} ${emailController.text} ${S.verifyEmailSubTitle2}',
+                          image: Container(
+                            margin: const EdgeInsets.all(AppSpaces.space9),
+                            // padding: const EdgeInsets.all(16),
+
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      color: appColors.backgroundGray7_2,
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    child: Icon(
+                                      Iconsax.sms_tracking,
+                                      size: 48,
+                                      color: appColors.backgroundDarkVersion,
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: SvgPicture.asset(
+                                    colorFilter: ColorFilter.mode(
+                                      appColors.backgroundDarkVersion,
+                                      BlendMode.srcIn,
+                                    ),
+                                    Assets.images.decor.path,
+                                    width: 200,
+                                  ),
+                                ),
+                              ],
                             ),
-                          );
-                        },
-                        onPressedTextButton: () {},
-                      ),
-                    );
+                          ),
+                          textButton: S.checkNow,
+                          onPressedElevatedButton: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) => const ResetPasswordScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    }
+
                     // Get.off(
                     //   () => VerifyEmailView(
                     //     title: S.changeYourPasswordTitle,

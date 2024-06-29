@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/common_modal_bottom_sheet.dart';
+import 'package:money_management_app/login/screens/login_screen.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_state.dart';
-import 'package:money_management_app/sign_up/screens/select_country_screen.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -159,12 +159,12 @@ class ResetPasswordScreen extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
-                                              textButton: S.continueText,
+                                              textButton: S.logIn,
                                               onPressedElevatedButton: () {
                                                 Navigator.pushReplacement(
                                                   context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => const SelectCountryScreen(),
+                                                  MaterialPageRoute<void>(
+                                                    builder: (context) => const LoginScreen(),
                                                   ),
                                                 );
                                               },
