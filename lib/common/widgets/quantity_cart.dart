@@ -1,33 +1,34 @@
-// import 'package:flutter/material.dart';
-// import 'package:iconsax/iconsax.dart';
-// import 'package:shipper_app/common/common.dart';
-// import 'package:shipper_app/utils/utils.dart';
-//
-// class QuantityCart extends StatelessWidget {
-//   const QuantityCart({
-//     required this.quantity,
-//     super.key,
-//     this.color = AppColors.white,
-//   });
-//   final int quantity;
-//   final Color? color;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final dark = THelperFunctions.isDarkMode(context);
-//     return Stack(
-//       children: [
-//         IconButton(
-//           icon: Icon(
-//             Iconsax.shopping_bag,
-//             color: color ?? (dark ? AppColors.white : AppColors.black),
-//           ),
-//           onPressed: () {},
-//         ),
-//         CommonBadge(
-//           quantity: quantity,
-//         ),
-//       ],
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:money_management_app/common/widgets/common_badge.dart';
+import 'package:money_management_app/utils/constants/colors.dart';
+import 'package:money_management_app/utils/theme/app_colors.dart';
+
+class NotificationWidget extends StatelessWidget {
+  const NotificationWidget({
+    // required this.quantity,
+    super.key,
+    this.color = NeutralColors.white,
+  });
+  // final int quantity;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final appColors = context.appColors;
+    return Stack(
+      children: [
+        IconButton(
+          icon: Icon(
+            Iconsax.notification,
+            color: color ?? appColors.backgroundWhite,
+          ),
+          onPressed: () {},
+        ),
+        const CommonBadge(
+            // quantity: quantity,
+            ),
+      ],
+    );
+  }
+}

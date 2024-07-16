@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_management_app/app/app.dart';
 
 class ProductPrice extends StatelessWidget {
   const ProductPrice({
@@ -15,15 +16,12 @@ class ProductPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = context.appColors;
     return Text(
       '$currencyUnit$price',
       style: isLarge
-          ? Theme.of(context).textTheme.headlineMedium!.apply(
-                decoration: lineThrough ? TextDecoration.lineThrough : null,
-              )
-          : Theme.of(context).textTheme.titleLarge!.apply(
-                decoration: lineThrough ? TextDecoration.lineThrough : null,
-              ),
+          ? AppTextStyles.displaySm.copyWith(color: appColors.textWhite)
+          : AppTextStyles.bodySm2.copyWith(color: appColors.textWhite),
       overflow: TextOverflow.ellipsis,
     );
   }

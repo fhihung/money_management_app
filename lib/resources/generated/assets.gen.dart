@@ -99,6 +99,10 @@ class $AssetsImagesGen {
 
   $AssetsImagesAnimationsGen get animations => const $AssetsImagesAnimationsGen();
   $AssetsImagesBannersGen get banners => const $AssetsImagesBannersGen();
+
+  /// File path: assets/images/bg_gradiante.png
+  AssetGenImage get bgGradiante => const AssetGenImage('assets/images/bg_gradiante.png');
+
   $AssetsImagesContentGen get content => const $AssetsImagesContentGen();
 
   /// File path: assets/images/decor.svg
@@ -115,7 +119,7 @@ class $AssetsImagesGen {
   AssetGenImage get success => const AssetGenImage('assets/images/success.png');
 
   /// List of all assets
-  List<dynamic> get values => [decor, notificationApp, success];
+  List<dynamic> get values => [bgGradiante, decor, notificationApp, success];
 }
 
 class $AssetsLogosGen {

@@ -68,6 +68,7 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
   Color get backgroundPrimaryLight7;
   Color get backgroundPrimaryLight8;
   Color get backgroundPrimaryLight8_2;
+  Color get backgroundPrimaryLight9;
   Color get backgroundSecondary;
   Color get backgroundSecondary1;
   Color get backgroundSecondary2;
@@ -155,6 +156,7 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
     Color? backgroundPrimaryLight7,
     Color? backgroundPrimaryLight8,
     Color? backgroundPrimaryLight8_2,
+    Color? backgroundPrimaryLight9,
     Color? backgroundSecondary,
     Color? backgroundSecondary1,
     Color? backgroundSecondary2,
@@ -257,6 +259,8 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
           backgroundPrimaryLight8 ?? this.backgroundPrimaryLight8,
       backgroundPrimaryLight8_2:
           backgroundPrimaryLight8_2 ?? this.backgroundPrimaryLight8_2,
+      backgroundPrimaryLight9:
+          backgroundPrimaryLight9 ?? this.backgroundPrimaryLight9,
       backgroundSecondary: backgroundSecondary ?? this.backgroundSecondary,
       backgroundSecondary1: backgroundSecondary1 ?? this.backgroundSecondary1,
       backgroundSecondary2: backgroundSecondary2 ?? this.backgroundSecondary2,
@@ -378,6 +382,8 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
           backgroundPrimaryLight8, other.backgroundPrimaryLight8, t)!,
       backgroundPrimaryLight8_2: Color.lerp(
           backgroundPrimaryLight8_2, other.backgroundPrimaryLight8_2, t)!,
+      backgroundPrimaryLight9: Color.lerp(
+          backgroundPrimaryLight9, other.backgroundPrimaryLight9, t)!,
       backgroundSecondary:
           Color.lerp(backgroundSecondary, other.backgroundSecondary, t)!,
       backgroundSecondary1:
@@ -521,6 +527,7 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
             const DeepCollectionEquality().equals(backgroundPrimaryLight7, other.backgroundPrimaryLight7) &&
             const DeepCollectionEquality().equals(backgroundPrimaryLight8, other.backgroundPrimaryLight8) &&
             const DeepCollectionEquality().equals(backgroundPrimaryLight8_2, other.backgroundPrimaryLight8_2) &&
+            const DeepCollectionEquality().equals(backgroundPrimaryLight9, other.backgroundPrimaryLight9) &&
             const DeepCollectionEquality().equals(backgroundSecondary, other.backgroundSecondary) &&
             const DeepCollectionEquality().equals(backgroundSecondary1, other.backgroundSecondary1) &&
             const DeepCollectionEquality().equals(backgroundSecondary2, other.backgroundSecondary2) &&
@@ -611,6 +618,7 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
       const DeepCollectionEquality().hash(backgroundPrimaryLight7),
       const DeepCollectionEquality().hash(backgroundPrimaryLight8),
       const DeepCollectionEquality().hash(backgroundPrimaryLight8_2),
+      const DeepCollectionEquality().hash(backgroundPrimaryLight9),
       const DeepCollectionEquality().hash(backgroundSecondary),
       const DeepCollectionEquality().hash(backgroundSecondary1),
       const DeepCollectionEquality().hash(backgroundSecondary2),
@@ -703,6 +711,7 @@ extension AppColorsBuildContextProps on BuildContext {
   Color get backgroundPrimaryLight7 => appColors.backgroundPrimaryLight7;
   Color get backgroundPrimaryLight8 => appColors.backgroundPrimaryLight8;
   Color get backgroundPrimaryLight8_2 => appColors.backgroundPrimaryLight8_2;
+  Color get backgroundPrimaryLight9 => appColors.backgroundPrimaryLight9;
   Color get backgroundSecondary => appColors.backgroundSecondary;
   Color get backgroundSecondary1 => appColors.backgroundSecondary1;
   Color get backgroundSecondary2 => appColors.backgroundSecondary2;

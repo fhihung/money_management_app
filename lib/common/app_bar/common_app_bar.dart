@@ -10,8 +10,10 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingIcon,
     this.actions,
     this.leadingOnPressed,
+    this.centerTitle,
   });
   final Widget? title;
+  final bool? centerTitle;
   final bool showBackButton;
   final IconData? leadingIcon;
   final List<Widget>? actions;
@@ -19,12 +21,12 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.md,
       ),
       child: AppBar(
+        backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: showBackButton
             ? IconButton(
@@ -43,6 +45,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                   )
                 : null,
         title: title,
+        centerTitle: centerTitle,
         actions: actions,
       ),
     );

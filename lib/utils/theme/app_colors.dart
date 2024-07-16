@@ -66,6 +66,7 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     required this.backgroundPrimaryLight7,
     required this.backgroundPrimaryLight8,
     required this.backgroundPrimaryLight8_2,
+    required this.backgroundPrimaryLight9,
     required this.backgroundSecondary,
     required this.backgroundSecondary1,
     required this.backgroundSecondary2,
@@ -211,6 +212,8 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
   @override
   Color backgroundPrimaryLight8_2;
   @override
+  Color backgroundPrimaryLight9;
+  @override
   Color backgroundSecondary;
   @override
   Color backgroundSecondary1;
@@ -321,6 +324,7 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     backgroundPrimaryLight7: PrimaryColors.light7LightMode,
     backgroundPrimaryLight8: PrimaryColors.light8LightMode,
     backgroundPrimaryLight8_2: PrimaryColors.light8LightMode,
+    backgroundPrimaryLight9: PrimaryColors.light4LightMode,
     backgroundSecondary: SecondaryColors.baseLightMode,
     backgroundSecondary1: SecondaryColors.light1LightMode,
     backgroundSecondary2: SecondaryColors.light2LightMode,
@@ -407,6 +411,7 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     backgroundPrimaryLight7: PrimaryColors.light7LightMode,
     backgroundPrimaryLight8: PrimaryColors.light8LightMode,
     backgroundPrimaryLight8_2: PrimaryColors.light8LightMode,
+    backgroundPrimaryLight9: PrimaryColors.light4LightMode,
     backgroundSecondary: SecondaryColors.baseLightMode,
     backgroundSecondary1: SecondaryColors.light1LightMode,
     backgroundSecondary2: SecondaryColors.light2LightMode,
@@ -493,6 +498,7 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     backgroundPrimaryLight7: PrimaryColors.light7DarkMode,
     backgroundPrimaryLight8: PrimaryColors.light6DarkMode,
     backgroundPrimaryLight8_2: const Color(0xFF32373E),
+    backgroundPrimaryLight9: PrimaryColors.dark3DarkMode,
     backgroundSecondary: SecondaryColors.baseDarkMode,
     backgroundSecondary1: SecondaryColors.baseDarkMode,
     backgroundSecondary2: SecondaryColors.light2DarkMode,

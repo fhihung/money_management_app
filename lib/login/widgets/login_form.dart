@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/forgot_password/screens/forgot_password_screen.dart';
+import 'package:money_management_app/home/pages/home_page.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/login/bloc/login_event.dart';
 import 'package:money_management_app/login/bloc/login_state.dart';
@@ -132,6 +133,12 @@ class LoginForm extends StatelessWidget {
                             context: context,
                             email: emailController.text,
                             password: passwordController.text,
+                          ),
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const HomePage(),
                           ),
                         );
                       }
