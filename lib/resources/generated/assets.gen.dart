@@ -144,17 +144,11 @@ class $AssetsLogosGen {
 class $AssetsIconsBoldGen {
   const $AssetsIconsBoldGen();
 
-  /// File path: assets/icons/bold/Card.svg
-  SvgGenImage get card => const SvgGenImage('assets/icons/bold/Card.svg');
-
   /// File path: assets/icons/bold/Chart Square.svg
   SvgGenImage get chartSquare => const SvgGenImage('assets/icons/bold/Chart Square.svg');
 
   /// File path: assets/icons/bold/Danger Circle.svg
   SvgGenImage get dangerCircle => const SvgGenImage('assets/icons/bold/Danger Circle.svg');
-
-  /// File path: assets/icons/bold/Home 2.svg
-  SvgGenImage get home2 => const SvgGenImage('assets/icons/bold/Home 2.svg');
 
   /// File path: assets/icons/bold/Menu Dots.svg
   SvgGenImage get menuDots => const SvgGenImage('assets/icons/bold/Menu Dots.svg');
@@ -165,18 +159,50 @@ class $AssetsIconsBoldGen {
   /// File path: assets/icons/bold/Square Transfer Horizontal.svg
   SvgGenImage get squareTransferHorizontal => const SvgGenImage('assets/icons/bold/Square Transfer Horizontal.svg');
 
+  /// File path: assets/icons/bold/arrange-square.png
+  AssetGenImage get arrangeSquare => const AssetGenImage('assets/icons/bold/arrange-square.png');
+
   /// File path: assets/icons/bold/bank-filled.svg
   SvgGenImage get bankFilled => const SvgGenImage('assets/icons/bold/bank-filled.svg');
 
+  /// File path: assets/icons/bold/card.png
+  AssetGenImage get card => const AssetGenImage('assets/icons/bold/card.png');
+
+  /// File path: assets/icons/bold/chart-2.png
+  AssetGenImage get chart2 => const AssetGenImage('assets/icons/bold/chart-2.png');
+
+  /// File path: assets/icons/bold/chart.png
+  AssetGenImage get chart => const AssetGenImage('assets/icons/bold/chart.png');
+
+  /// File path: assets/icons/bold/home-2.png
+  AssetGenImage get home2 => const AssetGenImage('assets/icons/bold/home-2.png');
+
   /// File path: assets/icons/bold/instagram-filled 1.svg
   SvgGenImage get instagramFilled1 => const SvgGenImage('assets/icons/bold/instagram-filled 1.svg');
+
+  /// File path: assets/icons/bold/setting.png
+  AssetGenImage get setting => const AssetGenImage('assets/icons/bold/setting.png');
 
   /// File path: assets/icons/bold/telegram 1.svg
   SvgGenImage get telegram1 => const SvgGenImage('assets/icons/bold/telegram 1.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [card, chartSquare, dangerCircle, home2, menuDots, settings, squareTransferHorizontal, bankFilled, instagramFilled1, telegram1];
+  List<dynamic> get values => [
+        chartSquare,
+        dangerCircle,
+        menuDots,
+        settings,
+        squareTransferHorizontal,
+        arrangeSquare,
+        bankFilled,
+        card,
+        chart2,
+        chart,
+        home2,
+        instagramFilled1,
+        setting,
+        telegram1
+      ];
 }
 
 class $AssetsIconsBrandsGen {
@@ -388,6 +414,9 @@ class $AssetsIconsPaymentMethodsGen {
   /// File path: assets/icons/payment_methods/google-pay.png
   AssetGenImage get googlePay => const AssetGenImage('assets/icons/payment_methods/google-pay.png');
 
+  /// File path: assets/icons/payment_methods/home-2.svg
+  SvgGenImage get home2 => const SvgGenImage('assets/icons/payment_methods/home-2.svg');
+
   /// File path: assets/icons/payment_methods/master-card.png
   AssetGenImage get masterCard => const AssetGenImage('assets/icons/payment_methods/master-card.png');
 
@@ -407,20 +436,53 @@ class $AssetsIconsPaymentMethodsGen {
   AssetGenImage get visa => const AssetGenImage('assets/icons/payment_methods/visa.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [applePay, creditCard, googlePay, masterCard, paypal, paystack, paytm, successfulPaymentIcon, visa];
+  List<dynamic> get values => [applePay, creditCard, googlePay, home2, masterCard, paypal, paystack, paytm, successfulPaymentIcon, visa];
 }
 
 class $AssetsIconsRegularGen {
   const $AssetsIconsRegularGen();
 
+  /// File path: assets/icons/regular/Filter.png
+  AssetGenImage get filter => const AssetGenImage('assets/icons/regular/Filter.png');
+
   /// File path: assets/icons/regular/Letter.png
   AssetGenImage get letter => const AssetGenImage('assets/icons/regular/Letter.png');
+
+  /// File path: assets/icons/regular/Magnifer.png
+  AssetGenImage get magnifer => const AssetGenImage('assets/icons/regular/Magnifer.png');
+
+  /// File path: assets/icons/regular/arrange-square.png
+  AssetGenImage get arrangeSquare => const AssetGenImage('assets/icons/regular/arrange-square.png');
+
+  /// File path: assets/icons/regular/bell.png
+  AssetGenImage get bell => const AssetGenImage('assets/icons/regular/bell.png');
+
+  /// File path: assets/icons/regular/card.png
+  AssetGenImage get card => const AssetGenImage('assets/icons/regular/card.png');
+
+  /// File path: assets/icons/regular/chart-2.png
+  AssetGenImage get chart2 => const AssetGenImage('assets/icons/regular/chart-2.png');
+
+  /// File path: assets/icons/regular/chart.png
+  AssetGenImage get chart => const AssetGenImage('assets/icons/regular/chart.png');
+
+  /// File path: assets/icons/regular/download.png
+  AssetGenImage get download => const AssetGenImage('assets/icons/regular/download.png');
+
+  /// File path: assets/icons/regular/home-2.png
+  AssetGenImage get home2 => const AssetGenImage('assets/icons/regular/home-2.png');
+
+  /// File path: assets/icons/regular/setting.png
+  AssetGenImage get setting => const AssetGenImage('assets/icons/regular/setting.png');
+
+  /// File path: assets/icons/regular/sort_desc.png
+  AssetGenImage get sortDesc => const AssetGenImage('assets/icons/regular/sort_desc.png');
 
   /// File path: assets/icons/regular/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/regular/user.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [letter, user];
+  List<AssetGenImage> get values => [filter, letter, magnifer, arrangeSquare, bell, card, chart2, chart, download, home2, setting, sortDesc, user];
 }
 
 class $AssetsImagesAnimationsGen {

@@ -4,7 +4,7 @@ import 'package:money_management_app/utils/utils.dart';
 class CommonModalBottomSheet extends StatelessWidget {
   const CommonModalBottomSheet({
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.image,
     required this.textButton,
     this.showTextButton = true,
@@ -14,7 +14,7 @@ class CommonModalBottomSheet extends StatelessWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final Widget image;
   final String textButton;
   final bool showTextButton;
@@ -46,7 +46,7 @@ class CommonModalBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: AppSpaces.space7),
           Text(
-            subtitle,
+            subtitle ?? '',
             style: AppTextStyles.bodyMd1.copyWith(
               color: appColors.textGray3,
             ),

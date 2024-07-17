@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:money_management_app/common/widgets/common_badge.dart';
+import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/utils/constants/colors.dart';
-import 'package:money_management_app/utils/theme/app_colors.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({
@@ -19,9 +17,11 @@ class NotificationWidget extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          icon: Icon(
-            Iconsax.notification,
-            color: color ?? appColors.backgroundWhite,
+          icon: Image.asset(
+            Assets.icons.regular.bell.path,
+            color: appColors.backgroundWhite,
+            width: 24,
+            height: 24,
           ),
           onPressed: () {},
         ),

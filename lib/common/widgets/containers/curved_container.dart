@@ -25,7 +25,7 @@ class CurvedContainer extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            if (child != null) child!,
+            if (child != null) Center(child: child!),
           ],
         ),
       ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/common_modal_bottom_sheet.dart';
+import 'package:money_management_app/common/widgets/stack_widget.dart';
 import 'package:money_management_app/forgot_password/reset_password.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -77,42 +77,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                         builder: (context) => CommonModalBottomSheet(
                           showTextButton: false,
                           title: S.verifyEmail,
-                          subtitle: '${S.verifyEmailSubTitle} ${emailController.text} ${S.verifyEmailSubTitle2}',
-                          image: Container(
-                            margin: const EdgeInsets.all(AppSpaces.space9),
-                            // padding: const EdgeInsets.all(16),
-
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      color: appColors.backgroundGray7_2,
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    child: Icon(
-                                      Iconsax.sms_tracking,
-                                      size: 48,
-                                      color: appColors.backgroundDarkVersion,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: SvgPicture.asset(
-                                    colorFilter: ColorFilter.mode(
-                                      appColors.backgroundDarkVersion,
-                                      BlendMode.srcIn,
-                                    ),
-                                    Assets.images.decor.path,
-                                    width: 200,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // subtitle: '${S.verifyEmailSubTitle} ${emailController.text} ${S.verifyEmailSubTitle2}',
+                          image: StackWidget(),
                           textButton: S.checkNow,
                           onPressedElevatedButton: () {
                             Navigator.push(

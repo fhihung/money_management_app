@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:money_management_app/app/common_bottom_navigation.dart';
 import 'package:money_management_app/forgot_password/screens/forgot_password_screen.dart';
 import 'package:money_management_app/home/pages/home_page.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
@@ -127,6 +128,12 @@ class LoginForm extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(),
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => const CommonBottomNavigation(),
+                        ),
+                      );
                       if (formKey.currentState!.validate()) {
                         bloc.add(
                           LoginButtonPressed(
