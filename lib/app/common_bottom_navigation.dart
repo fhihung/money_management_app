@@ -26,7 +26,7 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
   ];
 
   final List<String> _iconPaths = [
-    Assets.icons.linear.svg.home.path,
+    Assets.icons.linear.svg.home2.path,
     Assets.icons.linear.svg.arrangeSquare.path,
     Assets.icons.linear.svg.card.path,
     Assets.icons.linear.svg.chart2.path,
@@ -37,7 +37,7 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
     Assets.icons.bold.svg.home2.path,
     Assets.icons.bold.svg.arrangeSquare.path,
     Assets.icons.bold.svg.card.path,
-    Assets.icons.bold.svg.chart2.path,
+    Assets.icons.bold.svg.chart21.path,
     Assets.icons.bold.svg.setting.path,
   ];
 
@@ -61,6 +61,7 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
 
     return Scaffold(
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        scaleFactor: 0.4,
         itemCount: _iconPaths.length,
         tabBuilder: (int index, bool isActive) {
           final color = isActive ? appColors.backgroundPrimaryLight3 : appColors.backgroundGray4;

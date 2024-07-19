@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/transaction/pages/daily_transaction_page.dart';
 
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});
@@ -14,9 +15,10 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
   late TabController tabController;
   late List<Tab> tabs;
   late int tabControllerIndex;
-
+  late ScrollController _controller;
   @override
   void initState() {
+    _controller = ScrollController();
     tabs = [
       const Tab(
         text: 'All',
@@ -131,17 +133,15 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [
-                Center(
-                  child: Text('Content for Tab 1'),
-                ),
-                Center(
+              children: [
+                const Center(
                   child: Text('Content for Tab 2'),
                 ),
-                Center(
+                DailyTransactionPage(),
+                const Center(
                   child: Text('Content for Tab 3'),
                 ),
-                Center(
+                const Center(
                   child: Text('Content for Tab 4'),
                 ),
               ],

@@ -8091,6 +8091,9 @@ class $AssetsIconsLinearSvgGen {
   /// File path: assets/icons/linear/svg/hierarchy.svg
   SvgGenImage get hierarchy => const SvgGenImage('assets/icons/linear/svg/hierarchy.svg');
 
+  /// File path: assets/icons/linear/svg/home-2.svg
+  SvgGenImage get home2 => const SvgGenImage('assets/icons/linear/svg/home-2.svg');
+
   /// File path: assets/icons/linear/svg/home-hashtag.svg
   SvgGenImage get homeHashtag => const SvgGenImage('assets/icons/linear/svg/home-hashtag.svg');
 
@@ -10122,6 +10125,7 @@ class $AssetsIconsLinearSvgGen {
         hierarchySquare3,
         hierarchySquare,
         hierarchy,
+        home2,
         homeHashtag,
         homeTrendDown,
         homeTrendUp,

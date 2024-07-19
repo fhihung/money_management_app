@@ -22,7 +22,6 @@ class CommonTransaction extends StatelessWidget {
     final appColors = context.appColors;
     return Padding(
       padding: const EdgeInsets.only(
-        right: AppSpaces.space3,
         bottom: AppSpaces.space3,
         top: AppSpaces.space3,
       ),

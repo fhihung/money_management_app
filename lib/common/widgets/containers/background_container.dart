@@ -44,10 +44,7 @@ class _BackgroundContainerState extends State<BackgroundContainer> with SingleTi
                 Color(0xFF395DDE),
                 Color(0xFF4A6DE1),
               ],
-              options: AnimatedMeshGradientOptions(
-                grainAmount: 7,
-                grainSize: 0.008,
-              ),
+              options: AnimatedMeshGradientOptions(),
             ),
           ),
           if (widget.child != null) Center(child: widget.child!),

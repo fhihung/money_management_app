@@ -371,6 +371,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
+  flutter_sticky_widgets:
+    dependency: "direct main"
+    description:
+      name: flutter_sticky_widgets
+      sha256: d0624d3aec3f6acc25993515073c82233efcd658fa5a94818a212da97ee02c6f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -616,12 +624,11 @@ packages:
   mesh_gradient:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "8dcdf07db9e86cc5921eaf03b6c139712cf95d7f"
-      url: "https://github.com/definev/mesh_gradient"
-    source: git
-    version: "1.1.6"
+      name: mesh_gradient
+      sha256: "2cc874fa34d73a53eff8be99ff0dc72a0c363e7820b1c498e6f50f31c1e58a9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.7"
   meta:
     dependency: transitive
     description:
@@ -899,6 +906,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sliver_tools:
+    dependency: "direct main"
+    description:
+      name: sliver_tools
+      sha256: eae28220badfb9d0559207badcbbc9ad5331aac829a88cb0964d330d2a4636a6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.12"
   smooth_page_indicator:
     dependency: "direct main"
     description:
