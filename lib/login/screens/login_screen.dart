@@ -4,6 +4,7 @@ import 'package:money_management_app/app/bloc/app_bloc.dart';
 import 'package:money_management_app/app/bloc/app_event.dart';
 import 'package:money_management_app/app/bloc/app_state.dart';
 import 'package:money_management_app/common/widgets/app_divider.dart';
+import 'package:money_management_app/forgot_password/screens/forgot_password_screen.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/login/bloc/login_state.dart';
 import 'package:money_management_app/login/widgets/login_form.dart';
@@ -16,7 +17,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    final dark = THelperFunctions.isDarkMode(context);
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         return Scaffold(
@@ -61,7 +61,17 @@ class LoginScreen extends StatelessWidget {
                     ),
 
                     /// Form
-                    const LoginForm(),
+                    LoginForm(
+                      onForgetButtonPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const ForgotPasswordScreen(),
+                          ),
+                        );
+                        // bloc.add(const ForgotPasswordButtonPressed());
+                      },
+                    ),
 
                     /// Divider
                     AppDivider(text: S.or.toUpperCase()),

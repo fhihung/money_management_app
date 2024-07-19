@@ -1,5 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/home/pages/home_page.dart';
 import 'package:money_management_app/setting/pages/setting_page.dart';
@@ -25,19 +26,19 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
   ];
 
   final List<String> _iconPaths = [
-    Assets.icons.regular.home2.path,
-    Assets.icons.regular.arrangeSquare.path,
-    Assets.icons.regular.card.path,
-    Assets.icons.regular.chart2.path,
-    Assets.icons.regular.setting.path,
+    Assets.icons.linear.svg.home.path,
+    Assets.icons.linear.svg.arrangeSquare.path,
+    Assets.icons.linear.svg.card.path,
+    Assets.icons.linear.svg.chart2.path,
+    Assets.icons.linear.svg.setting.path,
   ];
 
   final List<String> _boldIconPaths = [
-    Assets.icons.bold.home2.path,
-    Assets.icons.bold.arrangeSquare.path,
-    Assets.icons.bold.card.path,
-    Assets.icons.bold.chart2.path,
-    Assets.icons.bold.setting.path,
+    Assets.icons.bold.svg.home2.path,
+    Assets.icons.bold.svg.arrangeSquare.path,
+    Assets.icons.bold.svg.card.path,
+    Assets.icons.bold.svg.chart2.path,
+    Assets.icons.bold.svg.setting.path,
   ];
 
   final List<String> _labelList = [
@@ -68,7 +69,7 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
+              SvgPicture.asset(
                 iconPath,
                 width: 24,
                 height: 24,

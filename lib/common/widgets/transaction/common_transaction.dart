@@ -23,6 +23,8 @@ class CommonTransaction extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         right: AppSpaces.space3,
+        bottom: AppSpaces.space3,
+        top: AppSpaces.space3,
       ),
       child: Row(
         children: [

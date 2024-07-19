@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/app/bloc/app_bloc.dart';
 import 'package:money_management_app/app/bloc/app_event.dart';
 import 'package:money_management_app/app/bloc/app_state.dart';
-import 'package:money_management_app/app/common_bottom_navigation.dart';
+import 'package:money_management_app/onboarding/screens/onboarding_screen.dart';
 import 'package:money_management_app/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
           themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
           // localizationsDelegates: AppLocalizations.localizationsDelegates,
           // supportedLocales: AppLocalizations.supportedLocales,
-          home: CommonBottomNavigation(),
+          home: OnBoardingScreen(),
         );
       },
     );

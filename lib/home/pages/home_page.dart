@@ -1,14 +1,12 @@
-import 'package:boxy/padding.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/containers/background_container.dart';
+import 'package:money_management_app/common/widgets/mini_statistic_chart_container.dart';
 import 'package:money_management_app/common/widgets/stack_widget.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';
 import 'package:money_management_app/common/widgets/vertical_text_button.dart';
-
-import '../../common/widgets/mini_statistic_chart_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -110,8 +108,8 @@ class _HomePageState extends State<HomePage> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 5,
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: AppSpaces.space6,
+                      separatorBuilder: (context, index) => const Divider(
+                        height: 10,
                       ),
                       itemBuilder: (context, index) {
                         return CommonTransaction(
@@ -186,67 +184,62 @@ class _HomePageState extends State<HomePage> {
 
   Widget _heading() {
     final appColors = context.appColors;
-    return OverflowPadding(
-      padding: const EdgeInsets.only(
-        bottom: -20,
-      ),
-      child: BackgroundContainer(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: AppSpaces.space13,
-                bottom: AppSpaces.space3,
-              ),
-              child: PriceUnit(
-                price: '1000',
-                textStyle: AppTextStyles.displaySm.copyWith(
-                  color: appColors.textWhite,
-                ),
-              ),
+    return BackgroundContainer(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: AppSpaces.space13,
+              bottom: AppSpaces.space3,
             ),
-            Text(
-              'Visa Card',
-              style: AppTextStyles.bodyXLg.copyWith(
+            child: PriceUnit(
+              price: '1000',
+              textStyle: AppTextStyles.displaySm.copyWith(
                 color: appColors.textWhite,
               ),
             ),
-            const SizedBox(
-              height: AppSpaces.space7,
+          ),
+          Text(
+            'Visa Card',
+            style: AppTextStyles.bodyXLg.copyWith(
+              color: appColors.textWhite,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: appColors.backgroundWhite2DarkVersion,
-                borderRadius: BorderRadius.circular(99),
+          ),
+          const SizedBox(
+            height: AppSpaces.space7,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: appColors.backgroundWhite2DarkVersion,
+              borderRadius: BorderRadius.circular(99),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpaces.space6,
+                vertical: AppSpaces.space4,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpaces.space6,
-                  vertical: AppSpaces.space4,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Iconsax.trend_up,
-                      color: appColors.backgroundGreen,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Iconsax.trend_up,
+                    color: appColors.backgroundGreen,
+                  ),
+                  const SizedBox(
+                    width: AppSpaces.space4,
+                  ),
+                  Text(
+                    '+ 10%',
+                    style: AppTextStyles.bodySm2.copyWith(
+                      color: appColors.textBlackDarkVersion,
                     ),
-                    const SizedBox(
-                      width: AppSpaces.space4,
-                    ),
-                    Text(
-                      '+ 10%',
-                      style: AppTextStyles.bodySm2.copyWith(
-                        color: appColors.textBlackDarkVersion,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
