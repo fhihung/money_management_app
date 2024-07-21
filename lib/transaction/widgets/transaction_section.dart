@@ -13,40 +13,41 @@ class TransactionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    return Column(
-      children: [
-        const SizedBox(
-          height: AppSpaces.space6,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  ColoredBox(
-                    color: appColors.backgroundPrimaryLight1,
-                    child: const SizedBox(
-                      width: 3,
-                      height: AppSpaces.space6,
-                    ),
+    return Container(
+      decoration: BoxDecoration(
+        color: appColors.backgroundWhite2DarkVersion,
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpaces.space4,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Row(
+              children: [
+                ColoredBox(
+                  color: appColors.backgroundPrimaryLight1,
+                  child: const SizedBox(
+                    width: 3,
+                    height: AppSpaces.space6,
                   ),
-                  const SizedBox(
-                    width: AppSpaces.space2,
+                ),
+                const SizedBox(
+                  width: AppSpaces.space2,
+                ),
+                DefaultTextStyle(
+                  style: AppTextStyles.bodySm2.copyWith(
+                    color: appColors.textGray2,
                   ),
-                  DefaultTextStyle(
-                    style: AppTextStyles.bodySm2.copyWith(
-                      color: appColors.textGray2,
-                    ),
-                    child: title,
-                  ),
-                ],
-              ),
+                  child: title,
+                ),
+              ],
             ),
-            content
-          ],
-        ),
-      ],
+          ),
+          content
+        ],
+      ),
     );
   }
 }

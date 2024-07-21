@@ -4,9 +4,11 @@ import 'package:money_management_app/app/app.dart';
 class CommonSearchField extends StatelessWidget {
   const CommonSearchField({
     required this.controller,
+    this.showFilter = false, // Add this line
     super.key,
   });
 
+  final bool showFilter; // Add this line
   final TextEditingController controller;
 
   @override
@@ -35,18 +37,20 @@ class CommonSearchField extends StatelessWidget {
           maxHeight: 20,
           maxWidth: 40,
         ),
-        suffixIcon: GestureDetector(
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: AppSpaces.space5,
-            ),
-            child: Image.asset(
-              Assets.icons.regular.filter.path,
-              color: appColors.backgroundGray3,
-            ),
-          ),
-        ),
+        suffixIcon: showFilter // Add this block
+            ? GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppSpaces.space5,
+                  ),
+                  child: Image.asset(
+                    Assets.icons.regular.filter.path,
+                    color: appColors.backgroundGray3,
+                  ),
+                ),
+              )
+            : null,
         suffixIconConstraints: const BoxConstraints(
           maxHeight: 20,
           maxWidth: 50,

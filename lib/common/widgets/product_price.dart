@@ -9,32 +9,36 @@ class PriceUnit extends StatelessWidget {
     this.currencyUnit = r'$',
     this.sign = '',
   });
+
   final String price;
   final String currencyUnit;
-  final TextStyle? textStyle;
   final String sign;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
+    return DefaultTextStyle(
+      style: textStyle ??
+          AppTextStyles.headlineSm.copyWith(
+            color: _getTextColor(context),
+          ),
+      child: Text(
+        '$sign$currencyUnit$price',
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }
+
+  Color _getTextColor(BuildContext context) {
     final appColors = context.appColors;
 
-    // Determine text color based on sign
-    Color textColor;
-    if (sign == '+') {
-      textColor = appColors.textGreen;
-    } else if (sign == '-') {
-      textColor = appColors.textRed;
-    } else {
-      textColor = appColors.textBlack;
+    switch (sign) {
+      case '+':
+        return appColors.textGreen;
+      case '-':
+        return appColors.textRed;
+      default:
+        return appColors.textBlack;
     }
-
-    return DefaultTextStyle(
-        style: AppTextStyles.headlineSm.copyWith(
-          color: textColor,
-        ),
-        child: Text(
-          '$sign$currencyUnit$price',
-          overflow: TextOverflow.ellipsis,
-        ));
   }
 }

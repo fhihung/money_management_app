@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:money_management_app/utils/utils.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:money_management_app/app/app.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CommonAppBar({
@@ -15,7 +15,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool? centerTitle;
   final bool showBackButton;
-  final IconData? leadingIcon;
+  final SvgPicture? leadingIcon;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
 
@@ -30,21 +30,19 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         leading: showBackButton
             ? IconButton(
-                icon: Icon(
-                  leadingIcon ?? Iconsax.arrow_left_2,
-                ),
+                icon: leadingIcon ?? Assets.icons.linear.svg.arrowLeft2.svg(),
                 onPressed: leadingOnPressed ??
                     () {
-                      // Get.back();
+                      Navigator.pop(context);
                     },
               )
-            : leadingIcon != null
-                ? IconButton(
-                    icon: Icon(leadingIcon),
-                    onPressed: leadingOnPressed ?? () {},
-                  )
-                : null,
-        title: title,
+            : null,
+        title: DefaultTextStyle(
+          style: AppTextStyles.bodyMd2.copyWith(
+            color: context.appColors.textBlackDarkVersion,
+          ),
+          child: title ?? const SizedBox.shrink(),
+        ),
         centerTitle: centerTitle,
         actions: actions,
       ),

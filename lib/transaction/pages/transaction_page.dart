@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/transaction/pages/create_transaction_page.dart';
 import 'package:money_management_app/transaction/pages/daily_transaction_page.dart';
 
 class TransactionPage extends StatefulWidget {
@@ -13,26 +14,23 @@ class TransactionPage extends StatefulWidget {
 
 class _TransactionPageState extends State<TransactionPage> with TickerProviderStateMixin {
   late TabController tabController;
-  late List<Tab> tabs;
   late int tabControllerIndex;
-  late ScrollController _controller;
+  List<Tab> tabs = [
+    const Tab(
+      text: 'All',
+    ),
+    const Tab(
+      text: 'Today',
+    ),
+    const Tab(
+      text: 'This Week',
+    ),
+    const Tab(
+      text: 'This Month',
+    ),
+  ];
   @override
   void initState() {
-    _controller = ScrollController();
-    tabs = [
-      const Tab(
-        text: 'All',
-      ),
-      const Tab(
-        text: 'Today',
-      ),
-      const Tab(
-        text: 'This Week',
-      ),
-      const Tab(
-        text: 'This Month',
-      ),
-    ];
     tabController = TabController(
       length: 4,
       vsync: this,
@@ -62,7 +60,14 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         elevation: 1,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (context) => const CreateTransactionPage(),
+            ),
+          );
+        },
         backgroundColor: appColors.backgroundPrimary,
         child: const Icon(
           Iconsax.add,

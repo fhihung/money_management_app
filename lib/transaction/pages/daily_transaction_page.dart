@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';
+import 'package:money_management_app/transaction/widgets/transaction_section.dart';
 import 'package:sliver_tools/sliver_tools.dart'; // Make sure to add this package to your pubspec.yaml
 
 class DailyTransactionPage extends StatelessWidget {
@@ -18,6 +19,10 @@ class DailyTransactionPage extends StatelessWidget {
         slivers: [
           TransactionSection(
             title: 'Today',
+            content: PriceUnit(
+              price: '1000',
+              sign: '+',
+            ),
             items: [
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
@@ -39,26 +44,33 @@ class DailyTransactionPage extends StatelessWidget {
               )
             ],
           ),
-          TransactionSection(title: 'Yesterday', items: [
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              itemCount: 10,
-              separatorBuilder: (context, index) => const Divider(
-                height: 10,
-              ),
-              itemBuilder: (context, index) {
-                return CommonTransaction(
-                  image: 'assets/images/products/tomi_dogfood.png',
-                  title: "Tommy's Food",
-                  subtitle: 'Food for Tommy',
-                  price: '100',
-                  dateTime: 'Yesterday, 10:00 AM',
-                );
-              },
-            )
-          ])
+          TransactionSection(
+            title: 'Yesterday',
+            items: [
+              ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                itemCount: 10,
+                separatorBuilder: (context, index) => const Divider(
+                  height: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return CommonTransaction(
+                    image: 'assets/images/products/tomi_dogfood.png',
+                    title: "Tommy's Food",
+                    subtitle: 'Food for Tommy',
+                    price: '100',
+                    dateTime: 'Yesterday, 10:00 AM',
+                  );
+                },
+              )
+            ],
+            content: PriceUnit(
+              price: '1000',
+              sign: '-',
+            ),
+          )
         ],
       ),
     );
@@ -68,6 +80,7 @@ class DailyTransactionPage extends StatelessWidget {
 class TransactionSection extends MultiSliver {
   TransactionSection({
     required String title,
+    required Widget content,
     required List<Widget> items,
     super.key,
     Color headerColor = Colors.white,
@@ -76,13 +89,7 @@ class TransactionSection extends MultiSliver {
           pushPinnedChildren: true,
           children: [
             SliverPinnedHeader(
-              child: ColoredBox(
-                color: headerColor,
-                child: ListTile(
-                  textColor: titleColor,
-                  title: Text(title),
-                ),
-              ),
+              child: TransactionTitle(title: Text(title), content: content),
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(items),

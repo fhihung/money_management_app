@@ -1,45 +1,46 @@
-// import 'package:flutter/material.dart';
-// import 'package:shipper_app/utils/utils.dart';
-//
-// class RoundedContainer extends StatelessWidget {
-//   const RoundedContainer({
-//     super.key,
-//     this.width,
-//     this.height,
-//     this.radius = AppSizes.cardRadiusLg,
-//     this.child,
-//     this.showBorder = false,
-//     this.backgroundColor = AppColors.white,
-//     this.borderColor = AppColors.borderPrimary,
-//     this.margin,
-//     this.padding,
-//   });
-//   final double? width;
-//   final double? height;
-//   final double? radius;
-//   final Widget? child;
-//   final bool showBorder;
-//   final Color backgroundColor;
-//   final Color borderColor;
-//   final EdgeInsetsGeometry? margin;
-//   final EdgeInsetsGeometry? padding;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: width,
-//       height: height,
-//       margin: margin,
-//       padding: padding,
-//       decoration: BoxDecoration(
-//         color: backgroundColor,
-//         borderRadius: BorderRadius.circular(radius ?? 0),
-//         border: showBorder
-//             ? Border.all(
-//                 color: borderColor,
-//               )
-//             : null,
-//       ),
-//       child: child,
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:money_management_app/app/app.dart';
+
+class RoundedContainer extends StatelessWidget {
+  const RoundedContainer({
+    required this.title,
+    required this.icon,
+    super.key,
+    this.padding,
+  });
+
+  final Widget title;
+  final Widget icon;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    final appColors = context.appColors;
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpaces.space5,
+        vertical: 13,
+      ),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: appColors.backgroundWhite2DarkVersion,
+        borderRadius: BorderRadius.circular(AppSpaces.space3),
+        border: Border.all(
+          color: appColors.border5,
+        ),
+      ),
+      child: Row(
+        children: [
+          Padding(padding: padding ?? EdgeInsets.zero, child: icon),
+          const SizedBox(width: AppSpaces.space2),
+          DefaultTextStyle(
+            style: AppTextStyles.bodySm2.copyWith(
+              color: appColors.textGray2,
+            ),
+            child: title,
+          ),
+        ],
+      ),
+    );
+  }
+}
