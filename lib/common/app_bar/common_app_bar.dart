@@ -30,7 +30,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         leading: showBackButton
             ? IconButton(
-                icon: leadingIcon ?? Assets.icons.linear.svg.arrowLeft2.svg(),
+                icon: leadingIcon ??
+                    Assets.icons.linear.svg.arrowLeft2.svg(
+                      colorFilter: ColorFilter.mode(
+                        context.appColors.textBlackDarkVersion,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                 onPressed: leadingOnPressed ??
                     () {
                       Navigator.pop(context);

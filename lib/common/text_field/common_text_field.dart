@@ -29,7 +29,7 @@ class CommonTextField extends StatelessWidget {
       maxLines: maxLines,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
-          vertical: AppSpaces.space6,
+          vertical: AppSpaces.space5,
           horizontal: AppSpaces.space5,
         ),
         prefixIcon: Padding(
@@ -40,8 +40,8 @@ class CommonTextField extends StatelessWidget {
           child: prefixIcon,
         ),
         prefixIconConstraints: const BoxConstraints(
-          maxHeight: 20,
-          maxWidth: 40,
+          maxWidth: 44,
+          maxHeight: 44,
         ),
         prefixIconColor: appColors.textGray2,
         labelText: labelText,

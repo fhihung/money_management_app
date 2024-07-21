@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/app/app.dart';
+import 'package:money_management_app/app/bloc/app_bloc.dart';
+import 'package:money_management_app/app/bloc/app_event.dart';
+import 'package:money_management_app/app/bloc/app_state.dart';
+import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/tab_bar/common_tab_bar.dart';
 import 'package:money_management_app/common/text_field/common_text_field.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/models/m_account.dart';
 import 'package:money_management_app/models/m_category.dart';
 import 'package:money_management_app/transaction/widgets/sub_category_modal.dart';
-
-import '../../models/m_account.dart';
+import 'package:smooth_sheets/smooth_sheets.dart';
 
 class CreateTransactionPage extends StatefulWidget {
   const CreateTransactionPage({super.key});
@@ -60,6 +64,38 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
       6,
       'Education',
     ),
+    MCategory(
+      7,
+      'Others',
+    ),
+    MCategory(
+      1,
+      'Food',
+    ),
+    MCategory(
+      2,
+      'Transport',
+    ),
+    MCategory(
+      3,
+      'Shopping',
+    ),
+    MCategory(
+      4,
+      'Medical',
+    ),
+    MCategory(
+      5,
+      'Entertainment',
+    ),
+    MCategory(
+      6,
+      'Education',
+    ),
+    MCategory(
+      7,
+      'Others',
+    ),
   ];
   String? selectedValue;
   List<Tab> tabs = [
@@ -94,52 +130,56 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
     }
   }
 
-  void _showCupertinoModalBottomSheet(BuildContext context, Widget child) {
-    showCupertinoModalBottomSheet<void>(
-      expand: true,
-      topRadius: const Radius.circular(AppSpaces.space7),
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Material(
-        child: SizedBox(
-          child: child,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    return Scaffold(
-      appBar: const CommonAppBar(
-        showBackButton: true,
-        title: Text('New Transaction'),
-      ),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: AppSpaces.space6,
+    return CupertinoStackedTransition(
+      cornerRadius: Tween(begin: 0.0, end: 16.0),
+      child: Scaffold(
+        appBar: const CommonAppBar(
+          showBackButton: true,
+          title: Text('New Transaction'),
+        ),
+        body: Column(
+          children: [
+            BlocBuilder<AppBloc, AppState>(
+              buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
+              builder: (context, state) {
+                return SwitchListTile.adaptive(
+                  title: const Text('Theme'
+                      // S.current.darkTheme,
+                      ),
+                  // tileColor: AppColors.current.primaryColor,
+                  value: state.isDarkTheme,
+                  onChanged: (isDarkTheme) => context.read<AppBloc>().add(
+                        ThemeChanged(isDarkTheme: isDarkTheme),
+                      ),
+                );
+              },
             ),
-            decoration: BoxDecoration(
-              color: appColors.backgroundGray7,
-              borderRadius: BorderRadius.circular(99),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: AppSpaces.space6,
+              ),
+              decoration: BoxDecoration(
+                color: appColors.backgroundGray7,
+                borderRadius: BorderRadius.circular(99),
+              ),
+              child: CommonTabBar(tabController: tabController, tabs: tabs),
             ),
-            child: CommonTabBar(tabController: tabController, tabs: tabs),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: [
-                _buildIncomeTab(),
-                const Center(
-                  child: Text('Content for Tab 2'),
-                ),
-              ],
+            Expanded(
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  _buildIncomeTab(),
+                  const Center(
+                    child: Text('Content for Tab 2'),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -159,7 +199,9 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
             keyboardType: TextInputType.text,
             controller: TextEditingController(),
             labelText: 'Title',
-            prefixIcon: Assets.icons.linear.svg.textBlock.svg(
+            prefixIcon: Assets.icons.linear.svg.documentText.svg(
+              width: 24,
+              height: 24,
               colorFilter: ColorFilter.mode(
                 appColors.textGray2,
                 BlendMode.srcIn,
@@ -171,49 +213,48 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
           ),
           GestureDetector(
             onTap: () {
-              _showCupertinoModalBottomSheet(
+              CommonModalSheet.show(
+                isFullScreen: false,
                 context,
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpaces.space6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: appColors.backgroundWhite,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                          vertical: AppSpaces.space6,
+                child: ColoredBox(
+                  color: appColors.backgroundWhite2DarkVersion,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpaces.space6,
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(
+                            vertical: AppSpaces.space6,
+                          ),
+                          width: 53,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: appColors.backgroundGray4,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
                         ),
-                        width: 53,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: appColors.backgroundGray4,
-                          borderRadius: BorderRadius.circular(99),
+                        const SizedBox(
+                          height: AppSpaces.space5,
                         ),
-                      ),
-                      const SizedBox(
-                        height: AppSpaces.space5,
-                      ),
-                      Text(
-                        'Select Account',
-                        style: AppTextStyles.bodyMd2.copyWith(
-                          color: appColors.textBlackDarkVersion,
+                        Text(
+                          'Select Account',
+                          style: AppTextStyles.bodyMd2.copyWith(
+                            color: appColors.textBlackDarkVersion,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      CommonSearchField(
-                        controller: TextEditingController(),
-                      ),
-                      const SizedBox(
-                        height: AppSpaces.space6,
-                      ),
-                      Flexible(
-                        child: ListView.builder(
+                        const SizedBox(
+                          height: AppSpaces.space7,
+                        ),
+                        CommonSearchField(
+                          controller: TextEditingController(),
+                        ),
+                        const SizedBox(
+                          height: AppSpaces.space6,
+                        ),
+                        ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           padding: const EdgeInsets.symmetric(
                             vertical: AppSpaces.space5,
@@ -249,8 +290,8 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                             );
                           },
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -313,14 +354,14 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
           ),
           GestureDetector(
             onTap: () {
-              _showCupertinoModalBottomSheet(
+              CommonModalSheet.show(
+                isFullScreen: false,
                 context,
-                Padding(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpaces.space6,
                   ),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         margin: const EdgeInsets.symmetric(
@@ -381,11 +422,12 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                               title: Text(categories[index].name!),
                               onTap: () {
                                 // Navigator.pop(context);
-                                _showCupertinoModalBottomSheet(
+                                CommonModalSheet.show(
                                   context,
-                                  SubCategoryModal(
+                                  child: SubCategoryModal(
                                     categoryId: categories[index].id!,
                                   ),
+                                  isFullScreen: false,
                                 );
                               },
                             );
@@ -400,6 +442,8 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
             child: RoundedContainer(
               title: const Text('Category'),
               icon: Assets.icons.linear.svg.category.svg(
+                width: 20,
+                height: 20,
                 colorFilter: ColorFilter.mode(
                   appColors.textGray2,
                   BlendMode.srcIn,

@@ -5,6 +5,7 @@ import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/home/pages/home_page.dart';
 import 'package:money_management_app/setting/pages/setting_page.dart';
 import 'package:money_management_app/transaction/pages/transaction_page.dart';
+import 'package:smooth_sheets/smooth_sheets.dart';
 
 class CommonBottomNavigation extends StatefulWidget {
   const CommonBottomNavigation({super.key});
@@ -59,42 +60,45 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
   Widget build(BuildContext context) {
     final appColors = context.appColors;
 
-    return Scaffold(
-      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        scaleFactor: 0.4,
-        itemCount: _iconPaths.length,
-        tabBuilder: (int index, bool isActive) {
-          final color = isActive ? appColors.backgroundPrimaryLight3 : appColors.backgroundGray4;
-          final iconPath = isActive ? _boldIconPaths[index] : _iconPaths[index];
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                iconPath,
-                width: 24,
-                height: 24,
-                color: color,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                _labelList[index],
-                style: TextStyle(
+    return CupertinoStackedTransition(
+      cornerRadius: Tween(begin: 0.0, end: 16.0),
+      child: Scaffold(
+        bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          scaleFactor: 0.4,
+          itemCount: _iconPaths.length,
+          tabBuilder: (int index, bool isActive) {
+            final color = isActive ? appColors.backgroundPrimaryLight3 : appColors.backgroundGray4;
+            final iconPath = isActive ? _boldIconPaths[index] : _iconPaths[index];
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  iconPath,
+                  width: 24,
+                  height: 24,
                   color: color,
-                  fontSize: 11,
                 ),
-              ),
-            ],
-          );
-        },
-        backgroundColor: appColors.backgroundWhite2DarkVersion,
-        activeIndex: _selectedIndex,
-        gapLocation: GapLocation.none,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        onTap: _onItemTapped,
-        //other params
+                const SizedBox(height: 4),
+                Text(
+                  _labelList[index],
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 11,
+                  ),
+                ),
+              ],
+            );
+          },
+          backgroundColor: appColors.backgroundWhite2DarkVersion,
+          activeIndex: _selectedIndex,
+          gapLocation: GapLocation.none,
+          notchSmoothness: NotchSmoothness.verySmoothEdge,
+          onTap: _onItemTapped,
+          //other params
+        ),
+        body: _screens[_selectedIndex],
       ),
-      body: _screens[_selectedIndex],
     );
   }
 }

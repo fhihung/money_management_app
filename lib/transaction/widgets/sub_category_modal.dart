@@ -29,7 +29,6 @@ class SubCategoryModal extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: filteredSubCategories.map((subCategory) {
           return ListTile(
             title: Text(subCategory.name ?? 'Unknown'),

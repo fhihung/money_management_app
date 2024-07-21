@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
-import 'package:money_management_app/common/widgets/containers/background_container.dart';
+import 'package:money_management_app/common/containers/background_container.dart';
 import 'package:money_management_app/common/widgets/mini_statistic_chart_container.dart';
 import 'package:money_management_app/common/widgets/stack_widget.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';

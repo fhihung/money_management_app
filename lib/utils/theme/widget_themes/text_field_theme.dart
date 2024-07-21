@@ -77,7 +77,7 @@ class CommonTextFormFieldTheme {
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSpaces.space3),
-      borderSide: BorderSide(color: AppColors.darkThemeColors.border1),
+      borderSide: BorderSide(color: AppColors.darkThemeColors.border5),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSpaces.space3),

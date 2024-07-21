@@ -2,11 +2,9 @@ import 'package:boxy/flex.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
-import 'package:money_management_app/common/common.dart';
-import 'package:money_management_app/common/widgets/containers/background_container.dart';
+import 'package:money_management_app/common/containers/background_container.dart';
 import 'package:money_management_app/common/widgets/stack_widget.dart';
-
-import '../../common/widgets/vertical_text_button.dart';
+import 'package:money_management_app/common/widgets/vertical_text_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,8 +53,8 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
               child: BoxyColumn(
                 children: [
