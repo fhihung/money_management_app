@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
-import 'package:money_management_app/transaction/pages/create_transaction_page.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/pages/create_transaction_page.dart';
 import 'package:money_management_app/transaction/pages/daily_transaction_page.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
 

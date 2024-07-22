@@ -5,8 +5,10 @@ class SubCategoryModal extends StatelessWidget {
   SubCategoryModal({
     required this.categoryId,
     super.key,
+    this.onTap,
   });
   final int categoryId;
+  final void Function(MSubCategory subCategory)? onTap;
 
   final List<MSubCategory> subCategories = [
     MSubCategory(1, 'Breakfast', 1),
@@ -32,9 +34,7 @@ class SubCategoryModal extends StatelessWidget {
         children: filteredSubCategories.map((subCategory) {
           return ListTile(
             title: Text(subCategory.name ?? 'Unknown'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => onTap?.call(subCategory),
           );
         }).toList(),
       ),

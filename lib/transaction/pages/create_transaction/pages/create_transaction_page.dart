@@ -11,8 +11,13 @@ import 'package:money_management_app/common/text_field/common_text_field.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
 import 'package:money_management_app/models/m_account.dart';
 import 'package:money_management_app/models/m_category.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
 import 'package:money_management_app/transaction/widgets/sub_category_modal.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
+
+import '../../../widgets/rounded_container_with_chips.dart';
 
 class CreateTransactionPage extends StatefulWidget {
   const CreateTransactionPage({super.key});
@@ -133,58 +138,65 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    return CupertinoStackedTransition(
-      cornerRadius: Tween(begin: 0.0, end: 16.0),
-      child: Scaffold(
-        appBar: const CommonAppBar(
-          showBackButton: true,
-          title: Text('New Transaction'),
-        ),
-        body: Column(
-          children: [
-            BlocBuilder<AppBloc, AppState>(
-              buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
-              builder: (context, state) {
-                return SwitchListTile.adaptive(
-                  title: const Text('Theme'
-                      // S.current.darkTheme,
-                      ),
-                  // tileColor: AppColors.current.primaryColor,
-                  value: state.isDarkTheme,
-                  onChanged: (isDarkTheme) => context.read<AppBloc>().add(
-                        ThemeChanged(isDarkTheme: isDarkTheme),
-                      ),
-                );
-              },
+    return BlocBuilder<CreateTransactionBloc, CreateTransactionState>(
+      builder: (context, state) {
+        return CupertinoStackedTransition(
+          cornerRadius: Tween(
+            begin: 0,
+            end: AppSpaces.space6,
+          ),
+          child: Scaffold(
+            appBar: const CommonAppBar(
+              showBackButton: true,
+              title: Text('New Transaction'),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: AppSpaces.space6,
-              ),
-              decoration: BoxDecoration(
-                color: appColors.backgroundGray7,
-                borderRadius: BorderRadius.circular(99),
-              ),
-              child: CommonTabBar(tabController: tabController, tabs: tabs),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: tabController,
-                children: [
-                  _buildIncomeTab(),
-                  const Center(
-                    child: Text('Content for Tab 2'),
+            body: Column(
+              children: [
+                BlocBuilder<AppBloc, AppState>(
+                  buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
+                  builder: (context, state) {
+                    return SwitchListTile.adaptive(
+                      title: const Text('Theme'
+                          // S.current.darkTheme,
+                          ),
+                      // tileColor: AppColors.current.primaryColor,
+                      value: state.isDarkTheme,
+                      onChanged: (isDarkTheme) => context.read<AppBloc>().add(
+                            ThemeChanged(isDarkTheme: isDarkTheme),
+                          ),
+                    );
+                  },
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: AppSpaces.space6,
                   ),
-                ],
-              ),
+                  decoration: BoxDecoration(
+                    color: appColors.backgroundGray7,
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  child: CommonTabBar(tabController: tabController, tabs: tabs),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: tabController,
+                    children: [
+                      _buildIncomeTab(state),
+                      const Center(
+                        child: Text('Content for Tab 2'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildIncomeTab() {
+  Widget _buildIncomeTab(CreateTransactionState state) {
     final appColors = context.appColors;
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -283,8 +295,13 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                                 ),
                               ),
                               title: Text(accounts[index].name!),
-                              subtitle: Text('Account number: ${accounts[index].accountNumber}'),
+                              subtitle: Text(
+                                'Account number: ${accounts[index].accountNumber}',
+                              ),
                               onTap: () {
+                                context.read<CreateTransactionBloc>().add(
+                                      AccountSelected(accounts[index]),
+                                    );
                                 Navigator.pop(context);
                               },
                             );
@@ -320,12 +337,20 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                     ),
                   ),
                   const SizedBox(width: AppSpaces.space2),
-                  Text(
-                    'Account',
-                    style: AppTextStyles.bodySm2.copyWith(
-                      color: appColors.textGray2,
+                  if (state.selectedAccount != null)
+                    Text(
+                      state.selectedAccount!.name!,
+                      style: AppTextStyles.bodySm2.copyWith(
+                        color: appColors.textGray2,
+                      ),
+                    )
+                  else
+                    Text(
+                      'Account',
+                      style: AppTextStyles.bodySm2.copyWith(
+                        color: appColors.textGray2,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -421,11 +446,16 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                               ),
                               title: Text(categories[index].name!),
                               onTap: () {
-                                // Navigator.pop(context);
                                 CommonModalSheet.show(
                                   context,
                                   child: SubCategoryModal(
                                     categoryId: categories[index].id!,
+                                    onTap: (subCategory) {
+                                      context.read<CreateTransactionBloc>().add(
+                                            SubCategorySelected(subCategory),
+                                          );
+                                      Navigator.pop(context);
+                                    },
                                   ),
                                   isFullScreen: false,
                                 );
@@ -439,7 +469,12 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                 ),
               );
             },
-            child: RoundedContainer(
+            child: RoundedContainerWithChips(
+              // onDeleted: (subCategory) {
+              //   context.read<CreateTransactionBloc>().add(
+              //         SubCategoryDeselected(subCategory),
+              //       );
+              // },
               title: const Text('Category'),
               icon: Assets.icons.linear.svg.category.svg(
                 width: 20,

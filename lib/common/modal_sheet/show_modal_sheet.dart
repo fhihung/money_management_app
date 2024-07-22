@@ -28,11 +28,10 @@ class FullScreenSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DraggableSheet(
+    return ScrollableSheet(
       child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(16),
           ),
           child: Material(child: child)),
     );
@@ -49,16 +48,15 @@ class HalfScreenSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DraggableSheet(
+    return ScrollableSheet(
       initialExtent: const Extent.proportional(0.5),
       minExtent: const Extent.proportional(0.5),
       physics: const BouncingSheetPhysics(
         parent: SnappingSheetPhysics(),
       ),
       child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(16),
           ),
           child: Material(child: child)),
     );

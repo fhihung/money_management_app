@@ -12,11 +12,26 @@ A Very Good Project created by Very Good CLI.
 
 ## Getting Started 🚀
 
+This project use:
+
+Flutter version: 3.22.6
+Dart version: 3.4.0
+
+
+
+Before running the app, run this command first:
+
+```sh
+dart pub run build_runner build --delete-conflicting-outputs
+
+```
+
 This project contains 3 flavors:
 
 - development
 - staging
 - production
+
 
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
