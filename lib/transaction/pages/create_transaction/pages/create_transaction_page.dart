@@ -9,15 +9,16 @@ import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/tab_bar/common_tab_bar.dart';
 import 'package:money_management_app/common/text_field/common_text_field.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/models/enums.dart';
 import 'package:money_management_app/models/m_account.dart';
 import 'package:money_management_app/models/m_category.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
+import 'package:money_management_app/transaction/widgets/rounded_container_with_chips.dart';
 import 'package:money_management_app/transaction/widgets/sub_category_modal.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
-
-import '../../../widgets/rounded_container_with_chips.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class CreateTransactionPage extends StatefulWidget {
   const CreateTransactionPage({super.key});
@@ -48,58 +49,72 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
     MCategory(
       1,
       'Food',
+      CategoryType.expense,
     ),
     MCategory(
       2,
       'Transport',
+      CategoryType.expense,
     ),
     MCategory(
       3,
       'Shopping',
+      CategoryType.expense,
     ),
     MCategory(
       4,
       'Medical',
+      CategoryType.expense,
     ),
     MCategory(
       5,
       'Entertainment',
+      CategoryType.expense,
     ),
     MCategory(
       6,
       'Education',
+      CategoryType.expense,
     ),
     MCategory(
       7,
       'Others',
+      CategoryType.expense,
     ),
     MCategory(
       1,
       'Food',
+      CategoryType.expense,
     ),
     MCategory(
       2,
       'Transport',
+      CategoryType.expense,
     ),
     MCategory(
       3,
       'Shopping',
+      CategoryType.expense,
     ),
     MCategory(
       4,
       'Medical',
+      CategoryType.expense,
     ),
     MCategory(
       5,
       'Entertainment',
+      CategoryType.expense,
     ),
     MCategory(
       6,
       'Education',
+      CategoryType.expense,
     ),
     MCategory(
       7,
       'Others',
+      CategoryType.expense,
     ),
   ];
   String? selectedValue;
@@ -146,6 +161,18 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
             end: AppSpaces.space6,
           ),
           child: Scaffold(
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpaces.space6,
+              ),
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(),
+                onPressed: () {},
+                child: const Text('Save'),
+              ),
+            ),
             appBar: const CommonAppBar(
               showBackButton: true,
               title: Text('New Transaction'),
@@ -483,6 +510,80 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                   appColors.textGray2,
                   BlendMode.srcIn,
                 ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: AppSpaces.space6,
+          ),
+          RoundedContainer(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Select Date Range'),
+                    content: Container(
+                      height: 400,
+                      width: 300,
+                      child: SfDateRangePicker(
+                        selectionMode: DateRangePickerSelectionMode.extendableRange,
+                        onCancel: () {
+                          Navigator.pop(context);
+                        },
+                        onSubmit: (Object? value) {
+                          Navigator.pop(context);
+                          // handle submission logic here
+                        },
+                        confirmText: 'Confirm',
+                        cancelText: 'Cancel',
+                        view: DateRangePickerView.month,
+                        monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // Retrieve the selected date range
+                          Navigator.pop(context);
+                          // handle confirmation logic here
+                        },
+                        child: Text('Confirm'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            title: Text('Date'),
+            icon: Assets.icons.linear.svg.calendar.svg(
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                appColors.textGray2,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: AppSpaces.space6,
+          ),
+          CommonTextField(
+            keyboardType: TextInputType.text,
+            controller: TextEditingController(),
+            labelText: 'Note',
+            prefixIcon: Assets.icons.linear.svg.documentText.svg(
+              width: 24,
+              height: 24,
+              colorFilter: ColorFilter.mode(
+                appColors.textGray2,
+                BlendMode.srcIn,
               ),
             ),
           ),

@@ -54,6 +54,7 @@ dependencies:
   flutter_sticky_widgets: ^0.0.3
   sliver_tools: ^0.2.12
   smooth_sheets: ^0.8.2
+  syncfusion_flutter_datepicker: ^26.1.42
 
   #--------------- ./ PACKAGES END ------------------#
 

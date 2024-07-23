@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:money_management_app/models/enums.dart';
 
 part 'm_category.g.dart';
 
@@ -8,12 +9,14 @@ class MCategory {
   MCategory(
     this.id,
     this.name,
+    this.categoryType,
   );
 
   factory MCategory.fromJson(Map<String, dynamic> json) => _$MCategoryFromJson(json);
 
   int? id;
   String? name;
+  CategoryType? categoryType;
 
   Map<String, dynamic> toJson() => _$MCategoryToJson(this);
 }
