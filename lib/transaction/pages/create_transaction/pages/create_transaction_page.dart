@@ -522,40 +522,113 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Select Date Range'),
+                    actionsPadding: const EdgeInsets.only(
+                      left: AppSpaces.space6,
+                      right: AppSpaces.space6,
+                      bottom: AppSpaces.space5,
+                    ),
+                    insetPadding: const EdgeInsets.symmetric(
+                      horizontal: AppSpaces.space8,
+                      vertical: AppSpaces.space5,
+                    ),
+                    actionsOverflowDirection: VerticalDirection.down,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSpaces.space6),
+                    ),
                     content: Container(
-                      height: 400,
-                      width: 300,
+                      decoration: BoxDecoration(
+                        color: appColors.backgroundWhite2DarkVersion,
+                        borderRadius: BorderRadius.circular(AppSpaces.space14),
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width,
                       child: SfDateRangePicker(
-                        selectionMode: DateRangePickerSelectionMode.extendableRange,
-                        onCancel: () {
-                          Navigator.pop(context);
-                        },
-                        onSubmit: (Object? value) {
-                          Navigator.pop(context);
-                          // handle submission logic here
-                        },
-                        confirmText: 'Confirm',
-                        cancelText: 'Cancel',
-                        view: DateRangePickerView.month,
-                        monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+                        monthFormat: 'MMMM',
+                        todayHighlightColor: appColors.backgroundPrimary,
+                        selectionColor: appColors.backgroundPrimary,
+                        selectionTextStyle: AppTextStyles.bodyXSm2.copyWith(
+                          color: appColors.textWhite2DarkVersion,
+                        ),
+                        showNavigationArrow: true,
+                        headerStyle: DateRangePickerHeaderStyle(
+                          textStyle: AppTextStyles.bodyMd2.copyWith(
+                            color: appColors.textBlackDarkVersion,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                        monthViewSettings: DateRangePickerMonthViewSettings(
+                          viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                            textStyle: AppTextStyles.bodyXSm1.copyWith(
+                              color: appColors.textBlackDarkVersion,
+                            ),
+                          ),
+                          firstDayOfWeek: 1,
+                          viewHeaderHeight: 50,
+                          dayFormat: 'EEE',
+                        ),
+                        monthCellStyle: DateRangePickerMonthCellStyle(
+                          todayCellDecoration: BoxDecoration(
+                            color: appColors.backgroundPrimaryLight8_2,
+                            shape: BoxShape.circle,
+                          ),
+                          textStyle: AppTextStyles.bodyXSm2.copyWith(
+                            color: appColors.textBlackDarkVersion,
+                          ),
+                          todayTextStyle: AppTextStyles.bodyXSm2.copyWith(
+                            color: appColors.textPrimary, // Change the text color of today to white
+                          ),
+                        ),
                       ),
                     ),
                     actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Retrieve the selected date range
-                          Navigator.pop(context);
-                          // handle confirmation logic here
-                        },
-                        child: Text('Confirm'),
-                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.only(
+                                  bottom: AppSpaces.space,
+                                ),
+                                side: BorderSide(
+                                  width: 1.5,
+                                  color: appColors.backgroundPrimary,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Cancel',
+                                style: AppTextStyles.buttonSm.copyWith(
+                                  color: appColors.textPrimary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: AppSpaces.space6,
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: AppSpaces.space3,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                              ),
+                              onPressed: () {
+                                // Retrieve the selected date range
+                                Navigator.pop(context);
+                                // handle confirmation logic here
+                              },
+                              child: const Text('Apply'),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   );
                 },
