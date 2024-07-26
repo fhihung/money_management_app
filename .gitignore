@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+*.freezed.dart
 .DS_Store
 .atom/
 .buildlog/
@@ -110,3 +111,5 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+/lib/transaction/pages/create_transaction/bloc/create_transaction_state.freezed.dart
+/lib/transaction/pages/create_transaction/bloc/create_transaction_event.freezed.dart

@@ -55,6 +55,8 @@ dependencies:
   sliver_tools: ^0.2.12
   smooth_sheets: ^0.8.2
   syncfusion_flutter_datepicker: ^26.1.42
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
 
   #--------------- ./ PACKAGES END ------------------#
 

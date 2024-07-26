@@ -7,6 +7,8 @@ import 'package:money_management_app/transaction/pages/create_transaction/pages/
 import 'package:money_management_app/transaction/pages/daily_transaction_page.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
 
+import 'all_transaction_page.dart';
+
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});
 
@@ -106,16 +108,6 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
                   ),
                 ),
               );
-              // _showModalSheet(
-              //   context,
-              //   isFullScreen: false,
-              //   child: Column(
-              //     children: [
-              //       const SizedBox(height: 16),
-              //       const Text('Content for Tab 1'),
-              //     ],
-              //   ),
-              // );
             },
           ),
         ],
@@ -165,9 +157,7 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
               child: TabBarView(
                 controller: tabController,
                 children: const [
-                  Center(
-                    child: Text('Content for Tab 2'),
-                  ),
+                  AllTransactionPage(),
                   DailyTransactionPage(),
                   Center(
                     child: Text('Content for Tab 3'),

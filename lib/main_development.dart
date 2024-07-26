@@ -7,6 +7,8 @@ import 'package:money_management_app/onboarding/bloc/onboarding_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 
+import 'transaction/bloc/transaction_bloc.dart';
+
 void main() {
   bootstrap(() {
     return Future.value(const App());
@@ -32,6 +34,9 @@ Future<void> bootstrap(Future<Widget> Function() builder) async {
         ),
         BlocProvider<CreateTransactionBloc>(
           create: (context) => CreateTransactionBloc(),
+        ),
+        BlocProvider<TransactionBloc>(
+          create: (context) => TransactionBloc(),
         ),
       ],
       child: await builder(),

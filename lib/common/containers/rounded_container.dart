@@ -35,8 +35,8 @@ class RoundedContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Padding(padding: padding ?? EdgeInsets.zero, child: icon),
-            const SizedBox(width: AppSpaces.space2),
+            // Padding(padding: padding ?? EdgeInsets.zero, child: icon),
+            // const SizedBox(width: AppSpaces.space2),
             DefaultTextStyle(
               style: AppTextStyles.bodySm2.copyWith(
                 color: appColors.textGray2,

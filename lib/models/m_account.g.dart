@@ -8,9 +8,10 @@ part of 'm_account.dart';
 
 MAccount _$MAccountFromJson(Map<String, dynamic> json) => MAccount(
       (json['id'] as num?)?.toInt(),
-      json['name'] as String?,
-      json['accountNumber'] as String?,
-      json['balance'] as String?,
+      name: json['name'] as String?,
+      accountNumber: json['accountNumber'] as String?,
+      balance: json['balance'] as String?,
+      alias: json['alias'] as String?,
     );
 
 Map<String, dynamic> _$MAccountToJson(MAccount instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$MAccountToJson(MAccount instance) => <String, dynamic>{
       'name': instance.name,
       'accountNumber': instance.accountNumber,
       'balance': instance.balance,
+      'alias': instance.alias,
     };

@@ -3,9 +3,9 @@ import 'package:money_management_app/app/app.dart';
 
 class TransactionTitle extends StatelessWidget {
   const TransactionTitle({
-    super.key,
     required this.title,
     required this.content,
+    super.key,
   });
   final Widget title;
   final Widget content;
@@ -23,29 +23,27 @@ class TransactionTitle extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            child: Row(
-              children: [
-                ColoredBox(
-                  color: appColors.backgroundPrimaryLight1,
-                  child: const SizedBox(
-                    width: 3,
-                    height: AppSpaces.space6,
-                  ),
+          Row(
+            children: [
+              ColoredBox(
+                color: appColors.backgroundPrimaryLight1,
+                child: const SizedBox(
+                  width: 3,
+                  height: AppSpaces.space6,
                 ),
-                const SizedBox(
-                  width: AppSpaces.space2,
+              ),
+              const SizedBox(
+                width: AppSpaces.space2,
+              ),
+              DefaultTextStyle(
+                style: AppTextStyles.bodySm2.copyWith(
+                  color: appColors.textGray2,
                 ),
-                DefaultTextStyle(
-                  style: AppTextStyles.bodySm2.copyWith(
-                    color: appColors.textGray2,
-                  ),
-                  child: title,
-                ),
-              ],
-            ),
+                child: title,
+              ),
+            ],
           ),
-          content
+          content,
         ],
       ),
     );

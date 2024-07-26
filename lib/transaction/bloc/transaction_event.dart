@@ -10,3 +10,8 @@ abstract class TransactionEvent {
 class TransactionInitiated extends TransactionEvent with _$TransactionInitiated {
   const factory TransactionInitiated() = _TransactionInitiated;
 }
+
+@freezed
+class AllTransactionFetched extends TransactionEvent with _$AllTransactionFetched {
+  const factory AllTransactionFetched() = _AllTransactionFetched;
+}
