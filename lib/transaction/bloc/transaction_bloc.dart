@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:money_management_app/app/storage_service.dart';
 import 'package:money_management_app/transaction/bloc/transaction_event.dart';
 import 'package:money_management_app/transaction/bloc/transaction_state.dart';
 import 'package:money_management_app/transaction/controllers/transaction_controller.dart';
@@ -15,6 +16,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     );
   }
   TransactionController transactionController = TransactionController();
+  final storageService = StorageService();
 
   FutureOr<void> _onTransactionInitiated(
     TransactionInitiated event,
@@ -25,11 +27,15 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-    final transactions = await transactionController.getTransactions();
+    final userId = await storageService.getUserId();
+
+    final transactions = await transactionController.getTransactionsByUserId(
+      userId!,
+    );
     emit(
       state.copyWith(
         isLoading: false,
-        allTransactions: transactions,
+        allTransactions: transactions!,
       ),
     );
   }

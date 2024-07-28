@@ -51,12 +51,12 @@ class DateSelected extends CreateTransactionEvent with _$DateSelected {
 @freezed
 class CreateExpenseTransactionButtonPressed extends CreateTransactionEvent
     with _$CreateExpenseTransactionButtonPressed {
-  const factory CreateExpenseTransactionButtonPressed(
-    String title,
-    int accountId,
-    String amount,
-    int categoryId,
-    DateTime transactionDate,
-    String note,
-  ) = _CreateExpenseTransactionButtonPressed;
+  const factory CreateExpenseTransactionButtonPressed({
+    required String title,
+    required int accountId,
+    required double amount,
+    required int categoryId,
+    required DateTime transactionDate,
+    @Default('') String note,
+  }) = _CreateExpenseTransactionButtonPressed;
 }

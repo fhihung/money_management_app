@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:money_management_app/app/app.dart';
 
 class CommonTransaction extends StatelessWidget {
@@ -9,6 +10,8 @@ class CommonTransaction extends StatelessWidget {
     this.subtitle,
     this.price,
     this.dateTime,
+    this.currencyUnit,
+    this.categoryType,
   });
 
   final String? image;
@@ -16,6 +19,8 @@ class CommonTransaction extends StatelessWidget {
   final String? subtitle;
   final String? price;
   final String? dateTime;
+  final String? currencyUnit;
+  final int? categoryType;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +43,18 @@ class CommonTransaction extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(AppSpaces.space3),
             child: image != null
-                ? Image.asset(
-                    image!,
-                    width: 24,
-                    height: 24,
-                  )
+                ? SvgPicture.network(image!, width: 24, height: 24, placeholderBuilder: (
+                    BuildContext context,
+                  ) {
+                    return Assets.icons.linear.svg.folderCross.svg(
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(
+                        appColors.backgroundRed,
+                        BlendMode.srcIn,
+                      ),
+                    );
+                  })
                 : const SizedBox(
                     width: 24,
                     height: 24,
@@ -69,7 +81,7 @@ class CommonTransaction extends StatelessWidget {
                       PriceUnit(
                         price: price!,
                         textStyle: AppTextStyles.bodySm2.copyWith(
-                          color: appColors.textBlackDarkVersion,
+                          color: categoryType == 1 ? appColors.textGreen : appColors.textRed,
                         ),
                       )
                     else

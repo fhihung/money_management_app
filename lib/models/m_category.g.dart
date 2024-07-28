@@ -7,21 +7,17 @@ part of 'm_category.dart';
 // **************************************************************************
 
 MCategory _$MCategoryFromJson(Map<String, dynamic> json) => MCategory(
-      (json['id'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      categoryType:
-          $enumDecodeNullable(_$CategoryTypeEnumMap, json['categoryType']),
-      icon: json['icon'] as String?,
+      type: (json['type'] as num?)?.toInt(),
+      iconPath: json['icon_path'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$MCategoryToJson(MCategory instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'categoryType': _$CategoryTypeEnumMap[instance.categoryType],
-      'icon': instance.icon,
+      'type': instance.type,
+      'icon_path': instance.iconPath,
+      'description': instance.description,
     };
-
-const _$CategoryTypeEnumMap = {
-  CategoryType.expense: 'expense',
-  CategoryType.income: 'income',
-};

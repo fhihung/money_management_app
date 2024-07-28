@@ -7839,6 +7839,9 @@ class $AssetsIconsLinearSvgGen {
   /// File path: assets/icons/linear/svg/folder-connection.svg
   SvgGenImage get folderConnection => const SvgGenImage('assets/icons/linear/svg/folder-connection.svg');
 
+  /// File path: assets/icons/linear/svg/folder-cross.svg
+  SvgGenImage get folderCross => const SvgGenImage('assets/icons/linear/svg/folder-cross.svg');
+
   /// File path: assets/icons/linear/svg/format-circle.svg
   SvgGenImage get formatCircle => const SvgGenImage('assets/icons/linear/svg/format-circle.svg');
 
@@ -10041,6 +10044,7 @@ class $AssetsIconsLinearSvgGen {
         flashSlash,
         flash,
         folderConnection,
+        folderCross,
         formatCircle,
         formatSquare,
         forward10Seconds,

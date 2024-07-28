@@ -11,5 +11,9 @@ class CreateTransactionState with _$CreateTransactionState {
     MAccount? selectedAccount,
     MCategory? selectedCategory,
     DateTime? selectedDate,
+    @Default([]) List<MCategory> categories,
+    @Default([]) List<MCategory> expenseCategories,
+    @Default([]) List<MCategory> incomeCategories,
+    @Default([]) List<MAccount> accounts,
   }) = _CreateTransactionState;
 }

@@ -7,32 +7,40 @@ part of 'm_transaction.dart';
 // **************************************************************************
 
 MTransaction _$MTransactionFromJson(Map<String, dynamic> json) => MTransaction(
-      (json['id'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
-      accountId: (json['accountId'] as num?)?.toInt(),
-      categoryId: (json['categoryId'] as num?)?.toInt(),
-      amount: json['amount'] as String?,
+      accountId: (json['account_id'] as num?)?.toInt(),
+      account: json['account'] == null
+          ? null
+          : MAccount.fromJson(json['account'] as Map<String, dynamic>),
+      categoryId: (json['category_id'] as num?)?.toInt(),
+      category: json['category'] == null
+          ? null
+          : MCategory.fromJson(json['category'] as Map<String, dynamic>),
+      amount: (json['amount'] as num?)?.toDouble(),
       note: json['note'] as String?,
-      transactionDate: json['transactionDate'] == null
+      transactionDate: json['transaction_date'] == null
           ? null
-          : DateTime.parse(json['transactionDate'] as String),
-      createdAt: json['createdAt'] == null
+          : DateTime.parse(json['transaction_date'] as String),
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$MTransactionToJson(MTransaction instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'accountId': instance.accountId,
-      'categoryId': instance.categoryId,
       'amount': instance.amount,
       'note': instance.note,
-      'transactionDate': instance.transactionDate?.toIso8601String(),
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'transaction_date': instance.transactionDate?.toIso8601String(),
+      'category_id': instance.categoryId,
+      'category': instance.category,
+      'account': instance.account,
+      'account_id': instance.accountId,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };

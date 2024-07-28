@@ -34,7 +34,7 @@ class DailyTransactionPage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return CommonTransaction(
-                    image: 'assets/images/products/tomi_dogfood.png',
+                    image: Assets.icons.linear.svg.cake.path,
                     title: "Tommy's Food",
                     subtitle: 'Food for Tommy',
                     price: '100',
@@ -57,7 +57,7 @@ class DailyTransactionPage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return CommonTransaction(
-                    image: 'assets/images/products/tomi_dogfood.png',
+                    image: Assets.icons.linear.svg.cake.path,
                     title: "Tommy's Food",
                     subtitle: 'Food for Tommy',
                     price: '100',
@@ -66,7 +66,7 @@ class DailyTransactionPage extends StatelessWidget {
                 },
               )
             ],
-            content: PriceUnit(
+            content: const PriceUnit(
               price: '1000',
               sign: '-',
             ),

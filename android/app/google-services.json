@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563671868242",
+    "project_id": "prosper-manager-95ee0",
+    "storage_bucket": "prosper-manager-95ee0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563671868242:android:cffebc2f8053b8419b908b",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.money_management_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALRvCZBtjCdXnMJZQbE_Vh-qTHRYdzw5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,9 +11,6 @@ import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/tab_bar/common_tab_bar.dart';
 import 'package:money_management_app/common/text_field/common_text_field.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
-import 'package:money_management_app/models/enums.dart';
-import 'package:money_management_app/models/m_account.dart';
-import 'package:money_management_app/models/m_category.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
@@ -34,28 +31,7 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
   final TextEditingController noteController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
-  final List<MAccount> accounts = [
-    MAccount(
-      1,
-      name: 'Cash',
-      accountNumber: '3600121203912',
-      balance: '1000',
-    ),
-    MAccount(
-      2,
-      name: 'Bank',
-      accountNumber: '21931293013103',
-      balance: '5000',
-    ),
-  ];
-  final List<MCategory> categories = [
-    MCategory(1, name: 'Shopping', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.shoppingCart.path),
-    MCategory(2, name: 'Transport', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.car.path),
-    MCategory(3, name: 'Medical', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.heart.path),
-    MCategory(4, name: 'Entertainment', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.gameboy.path),
-    MCategory(5, name: 'Education', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.book.path),
-    MCategory(6, name: 'Others', categoryType: CategoryType.expense, icon: Assets.icons.linear.svg.component.path),
-  ];
+
   String? selectedValue;
   List<Tab> tabs = [
     const Tab(text: 'Expense'),
@@ -71,6 +47,9 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
     );
     currentTab = tabController.index;
     tabController.addListener(_onTabChanged);
+    context.read<CreateTransactionBloc>().add(
+          const CreateTransactionInitiated(),
+        );
   }
 
   @override
@@ -196,16 +175,27 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
               onPressed: () {
                 context.read<CreateTransactionBloc>().add(
                       CreateExpenseTransactionButtonPressed(
-                        titleController.text,
-                        state.selectedAccount!.id!,
-                        amountController.text,
-                        state.selectedCategory!.id!,
-                        state.selectedDate!,
-                        noteController.text,
+                        title: titleController.text,
+                        accountId: state.selectedAccount!.id!,
+                        amount: double.parse(amountController.text),
+                        categoryId: state.selectedCategory!.id!,
+                        transactionDate: state.selectedDate!,
+                        note: noteController.text,
                       ),
                     );
               },
-              child: const Text('Save'),
+              child: state.isLoading
+                  ? SizedBox(
+                      height: 16,
+                      width: 16,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    )
+                  : const Text(
+                      'Save',
+                    ),
             ),
           ),
         ],
@@ -281,8 +271,9 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                     padding: const EdgeInsets.symmetric(
                       vertical: AppSpaces.space5,
                     ),
-                    itemCount: accounts.length,
+                    itemCount: state.accounts.length,
                     itemBuilder: (context, index) {
+                      final accounts = state.accounts[index];
                       return ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: Container(
@@ -304,13 +295,13 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                             ),
                           ),
                         ),
-                        title: Text(accounts[index].name!),
+                        title: Text(accounts.name!),
                         subtitle: Text(
-                          'Account number: ${accounts[index].accountNumber}',
+                          'Account number: ${accounts.accountNumber}',
                         ),
                         onTap: () {
                           context.read<CreateTransactionBloc>().add(
-                                AccountSelected(accounts[index]),
+                                AccountSelected(accounts),
                               );
                           Navigator.pop(context);
                         },
@@ -428,8 +419,9 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                     padding: const EdgeInsets.symmetric(
                       vertical: AppSpaces.space5,
                     ),
-                    itemCount: categories.length,
+                    itemCount: state.categories.length,
                     itemBuilder: (context, index) {
+                      final categories = state.categories[index];
                       return ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: Container(
@@ -442,20 +434,32 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
                               width: AppSpaces.space1,
                             ),
                           ),
-                          child: SvgPicture.asset(
-                            categories[index].icon ?? Assets.icons.linear.svg.component.path,
+                          child: SvgPicture.network(
+                            categories.iconPath!,
                             width: 20,
                             height: 20,
                             colorFilter: ColorFilter.mode(
                               appColors.textGray2,
                               BlendMode.srcIn,
                             ),
+                            placeholderBuilder: (
+                              BuildContext context,
+                            ) {
+                              return Assets.icons.linear.svg.folderCross.svg(
+                                width: 20,
+                                height: 20,
+                                colorFilter: ColorFilter.mode(
+                                  appColors.backgroundRed,
+                                  BlendMode.srcIn,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        title: Text(categories[index].name!),
+                        title: Text(categories.name!),
                         onTap: () {
                           context.read<CreateTransactionBloc>().add(
-                                CategorySelected(categories[index]),
+                                CategorySelected(categories),
                               );
                           Navigator.pop(context);
                         },

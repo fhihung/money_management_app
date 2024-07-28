@@ -5,9 +5,8 @@ import 'package:money_management_app/app/view/app.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/onboarding/bloc/onboarding_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
+import 'package:money_management_app/transaction/bloc/transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
-
-import 'transaction/bloc/transaction_bloc.dart';
 
 void main() {
   bootstrap(() {
@@ -17,6 +16,7 @@ void main() {
 
 Future<void> bootstrap(Future<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     MultiBlocProvider(
       providers: [

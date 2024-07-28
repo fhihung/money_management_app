@@ -9,22 +9,26 @@ class MUser {
     this.id,
     this.name,
     this.role,
-    this.password,
+    this.email,
     this.address,
     this.phoneNumber,
+    this.createdAt,
+    this.updatedAt,
   );
 
   factory MUser.fromJson(Map<String, dynamic> json) => _$MUserFromJson(json);
 
   int? id;
   String? name;
-  String? password;
-  String? role;
+  int? role;
   String? address;
+  String? email;
   @JsonKey(name: 'phone_number')
   String? phoneNumber;
-  // final DateTime createdAt;
-  // final DateTime updatedAt;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+  @JsonKey(name: 'updated_at')
+  final DateTime updatedAt;
 
   Map<String, dynamic> toJson() => _$MUserToJson(this);
 }

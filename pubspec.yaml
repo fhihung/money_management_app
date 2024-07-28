@@ -57,6 +57,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^26.1.42
   sqflite: ^2.3.3+1
   path: ^1.9.0
+  firebase_core: ^3.2.0
+  cloud_firestore: ^5.1.0
 
   #--------------- ./ PACKAGES END ------------------#
 
