@@ -15,3 +15,8 @@ class TransactionInitiated extends TransactionEvent with _$TransactionInitiated 
 class AllTransactionFetched extends TransactionEvent with _$AllTransactionFetched {
   const factory AllTransactionFetched() = _AllTransactionFetched;
 }
+
+@freezed
+class DailyTransactionFetched extends TransactionEvent with _$DailyTransactionFetched {
+  const factory DailyTransactionFetched() = _DailyTransactionFetched;
+}

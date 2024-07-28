@@ -12,18 +12,18 @@ import 'package:money_management_app/transaction/pages/create_transaction/bloc/c
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class CreateIncomeTransactionPage extends StatefulWidget {
-  const CreateIncomeTransactionPage({
+class CreateExpenseTransactionPage extends StatefulWidget {
+  const CreateExpenseTransactionPage({
     required this.state,
     super.key,
   });
   final CreateTransactionState state;
 
   @override
-  State<CreateIncomeTransactionPage> createState() => _CreateIncomeTransactionPageState();
+  State<CreateExpenseTransactionPage> createState() => _CreateExpenseTransactionPageState();
 }
 
-class _CreateIncomeTransactionPageState extends State<CreateIncomeTransactionPage> {
+class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionPage> {
   final TextEditingController noteController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
@@ -322,9 +322,9 @@ class _CreateIncomeTransactionPageState extends State<CreateIncomeTransactionPag
                     padding: const EdgeInsets.symmetric(
                       vertical: AppSpaces.space5,
                     ),
-                    itemCount: state.incomeCategories.length,
+                    itemCount: state.expenseCategories.length,
                     itemBuilder: (context, index) {
-                      final incomeCategories = state.incomeCategories[index];
+                      final expenseCategories = state.expenseCategories[index];
                       return ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: Container(
@@ -338,7 +338,7 @@ class _CreateIncomeTransactionPageState extends State<CreateIncomeTransactionPag
                             ),
                           ),
                           child: SvgPicture.network(
-                            incomeCategories.iconPath!,
+                            expenseCategories.iconPath!,
                             width: 20,
                             height: 20,
                             colorFilter: ColorFilter.mode(
@@ -359,10 +359,10 @@ class _CreateIncomeTransactionPageState extends State<CreateIncomeTransactionPag
                             },
                           ),
                         ),
-                        title: Text(incomeCategories.name!),
+                        title: Text(expenseCategories.name!),
                         onTap: () {
                           context.read<CreateTransactionBloc>().add(
-                                CategorySelected(incomeCategories),
+                                CategorySelected(expenseCategories),
                               );
                           Navigator.pop(context);
                         },

@@ -14,7 +14,11 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     on<AllTransactionFetched>(
       _onAllTransactionFetched,
     );
+    on<DailyTransactionFetched>(
+      _onDailyTransactionFetched,
+    );
   }
+
   TransactionController transactionController = TransactionController();
   final storageService = StorageService();
 
@@ -22,6 +26,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     TransactionInitiated event,
     Emitter<TransactionState> emit,
   ) {}
+
   FutureOr<void> _onAllTransactionFetched(
     AllTransactionFetched event,
     Emitter<TransactionState> emit,
@@ -38,5 +43,26 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         allTransactions: transactions!,
       ),
     );
+  }
+
+  FutureOr<void> _onDailyTransactionFetched(
+    DailyTransactionFetched event,
+    Emitter<TransactionState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+    final userId = await storageService.getUserId();
+
+    if (userId != null) {
+      final transactions = await transactionController.getTransactionsByDate(
+        userId: userId,
+        startDate: DateTime.now(),
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+          dailyTransactions: transactions!,
+        ),
+      );
+    }
   }
 }

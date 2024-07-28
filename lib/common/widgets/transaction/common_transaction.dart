@@ -81,7 +81,7 @@ class CommonTransaction extends StatelessWidget {
                       PriceUnit(
                         price: price!,
                         textStyle: AppTextStyles.bodySm2.copyWith(
-                          color: categoryType == 1 ? appColors.textGreen : appColors.textRed,
+                          color: categoryType == 1 ? appColors.textRed : appColors.textGreen,
                         ),
                       )
                     else

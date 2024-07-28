@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:money_management_app/app/storage_service.dart';
 import 'package:money_management_app/models/m_account.dart';
 import 'package:money_management_app/models/m_response.dart';
@@ -148,9 +149,13 @@ class TransactionController {
     }
   }
 
-  Future<List<MCategory>> getCategories() async {
+  Future<List<MCategory>> getCategoriesByType(String type) async {
     try {
-      final uri = Uri.parse('${baseUrl}categories');
+      final uri = Uri.parse('${baseUrl}categories_by_type').replace(
+        queryParameters: {
+          'type': type,
+        },
+      );
 
       final response = await http.get(
         uri,
@@ -163,7 +168,7 @@ class TransactionController {
         return jsonResponse.map((category) => MCategory.fromJson(category as Map<String, dynamic>)).toList();
       } else {
         if (kDebugMode) {
-          print('Failed to load categories. Status code: ${response.statusCode}');
+          print('Failed to load categories by type. Status code: ${response.statusCode}');
         }
         return [];
       }
@@ -173,6 +178,55 @@ class TransactionController {
         print('Error occurred: $e');
       }
       return [];
+    }
+  }
+
+  Future<List<MTransaction>?> getTransactionsByDate({
+    required String userId,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    try {
+      // Build query parameters conditionally
+      final queryParameters = <String, String>{
+        'user_id': userId,
+      };
+
+      if (startDate != null) {
+        queryParameters['start_date'] = DateFormat('yyyy-MM-dd').format(startDate);
+      }
+
+      if (endDate != null) {
+        queryParameters['end_date'] = DateFormat('yyyy-MM-dd').format(endDate);
+      }
+
+      // Create the URI with query parameters
+      final uri = Uri.parse('${baseUrl}transactions_by_date').replace(
+        queryParameters: queryParameters,
+      );
+
+      final response = await http.get(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body) as List<dynamic>;
+        return jsonResponse.map((transaction) => MTransaction.fromJson(transaction as Map<String, dynamic>)).toList();
+      } else {
+        if (kDebugMode) {
+          print('Failed to load transactions by date. Status code: ${response.statusCode}');
+        }
+        return null;
+      }
+    } catch (e) {
+      // Handle network or other errors
+      if (kDebugMode) {
+        print('Error occurred: $e');
+      }
+      return null;
     }
   }
 }

@@ -60,3 +60,15 @@ class CreateExpenseTransactionButtonPressed extends CreateTransactionEvent
     @Default('') String note,
   }) = _CreateExpenseTransactionButtonPressed;
 }
+
+@freezed
+class CreateIncomeTransactionButtonPressed extends CreateTransactionEvent with _$CreateIncomeTransactionButtonPressed {
+  const factory CreateIncomeTransactionButtonPressed({
+    required String title,
+    required int accountId,
+    required double amount,
+    required int categoryId,
+    required DateTime transactionDate,
+    @Default('') String note,
+  }) = _CreateIncomeTransactionButtonPressed;
+}

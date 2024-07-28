@@ -4,11 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:money_management_app/app/storage_service.dart';
+import 'package:money_management_app/models/m_transaction.dart';
+import 'package:money_management_app/transaction/controllers/transaction_controller.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
-
-import '../../../../models/m_transaction.dart';
-import '../../../controllers/transaction_controller.dart';
 
 class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransactionState> {
   CreateTransactionBloc() : super(const CreateTransactionState()) {
@@ -38,14 +37,20 @@ class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransacti
     Emitter<CreateTransactionState> emit,
   ) async {
     final userId = await storageService.getUserId();
-    final categories = await transactionController.getCategories();
+    final expenseCategories = await transactionController.getCategoriesByType(
+      '1',
+    );
+    final incomeCategories = await transactionController.getCategoriesByType(
+      '0',
+    );
     if (userId != null) {
       final accounts = await transactionController.getAccounts(
         userId,
       );
       emit(
         state.copyWith(
-          categories: categories,
+          expenseCategories: expenseCategories,
+          incomeCategories: incomeCategories,
           accounts: accounts,
         ),
       );
@@ -112,14 +117,51 @@ class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransacti
       ),
     );
     if (response?.statusCode == 200) {
-      Fluttertoast.showToast(
+      await Fluttertoast.showToast(
         msg: 'Transaction created successfully',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0,
+        fontSize: 16,
+      );
+    }
+  }
+
+  FutureOr<void> _onCreateIncomeTransactionButtonPressed(
+    CreateIncomeTransactionButtonPressed event,
+    Emitter<CreateTransactionState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
+    final transaction = MTransaction(
+      title: event.title,
+      accountId: event.accountId,
+      categoryId: event.categoryId,
+      amount: event.amount,
+      note: event.note,
+      transactionDate: event.transactionDate,
+    );
+
+    final response = await transactionController.createTransaction(
+      transaction: transaction,
+    );
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
+    if (response?.statusCode == 200) {
+      await Fluttertoast.showToast(
+        msg: 'Transaction created successfully',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16,
       );
     }
   }

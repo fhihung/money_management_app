@@ -34,7 +34,6 @@ class _AllTransactionPageState extends State<AllTransactionPage> {
               horizontal: AppSpaces.space6,
             ),
             child: ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               itemCount: state.allTransactions.length,
@@ -44,8 +43,8 @@ class _AllTransactionPageState extends State<AllTransactionPage> {
               itemBuilder: (context, index) {
                 final transaction = state.allTransactions[index];
                 return CommonTransaction(
-                  categoryType: transaction.category!.type,
-                  image: transaction.category!.iconPath,
+                  categoryType: transaction.category?.type,
+                  image: transaction.category?.iconPath,
                   title: transaction.title,
                   subtitle: transaction.note,
                   price: transaction.amount.toString(),

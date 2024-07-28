@@ -8,5 +8,6 @@ class TransactionState with _$TransactionState {
   const factory TransactionState({
     @Default(false) bool isLoading,
     @Default([]) List<MTransaction> allTransactions,
+    @Default([]) List<MTransaction> dailyTransactions,
   }) = _TransactionState;
 }
