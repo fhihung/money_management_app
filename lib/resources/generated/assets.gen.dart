@@ -8,8 +8,9 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 
 class $AssetsFontsGen {
   const $AssetsFontsGen();
@@ -86,24 +87,41 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// Directory path: assets/icons/bold
   $AssetsIconsBoldGen get bold => const $AssetsIconsBoldGen();
+
+  /// Directory path: assets/icons/brands
   $AssetsIconsBrandsGen get brands => const $AssetsIconsBrandsGen();
+
+  /// Directory path: assets/icons/categories
   $AssetsIconsCategoriesGen get categories => const $AssetsIconsCategoriesGen();
+
+  /// Directory path: assets/icons/color
   $AssetsIconsColorGen get color => const $AssetsIconsColorGen();
+
+  /// Directory path: assets/icons/linear
   $AssetsIconsLinearGen get linear => const $AssetsIconsLinearGen();
+
+  /// Directory path: assets/icons/payment_methods
   $AssetsIconsPaymentMethodsGen get paymentMethods => const $AssetsIconsPaymentMethodsGen();
+
+  /// Directory path: assets/icons/regular
   $AssetsIconsRegularGen get regular => const $AssetsIconsRegularGen();
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/animations
   $AssetsImagesAnimationsGen get animations => const $AssetsImagesAnimationsGen();
+
+  /// Directory path: assets/images/banners
   $AssetsImagesBannersGen get banners => const $AssetsImagesBannersGen();
 
   /// File path: assets/images/bg_gradiante.png
   AssetGenImage get bgGradiante => const AssetGenImage('assets/images/bg_gradiante.png');
 
+  /// Directory path: assets/images/content
   $AssetsImagesContentGen get content => const $AssetsImagesContentGen();
 
   /// File path: assets/images/decor.svg
@@ -112,8 +130,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/notification_app.png
   AssetGenImage get notificationApp => const AssetGenImage('assets/images/notification_app.png');
 
+  /// Directory path: assets/images/on_boarding_images
   $AssetsImagesOnBoardingImagesGen get onBoardingImages => const $AssetsImagesOnBoardingImagesGen();
+
+  /// Directory path: assets/images/products
   $AssetsImagesProductsGen get products => const $AssetsImagesProductsGen();
+
+  /// Directory path: assets/images/reviews
   $AssetsImagesReviewsGen get reviews => const $AssetsImagesReviewsGen();
 
   /// File path: assets/images/success.png
@@ -145,6 +168,7 @@ class $AssetsLogosGen {
 class $AssetsIconsBoldGen {
   const $AssetsIconsBoldGen();
 
+  /// Directory path: assets/icons/bold/svg
   $AssetsIconsBoldSvgGen get svg => const $AssetsIconsBoldSvgGen();
 }
 
@@ -348,7 +372,10 @@ class $AssetsIconsColorGen {
 class $AssetsIconsLinearGen {
   const $AssetsIconsLinearGen();
 
+  /// Directory path: assets/icons/linear/png
   $AssetsIconsLinearPngGen get png => const $AssetsIconsLinearPngGen();
+
+  /// Directory path: assets/icons/linear/svg
   $AssetsIconsLinearSvgGen get svg => const $AssetsIconsLinearSvgGen();
 }
 
@@ -2463,6 +2490,9 @@ class $AssetsIconsBoldSvgGen {
   /// File path: assets/icons/bold/svg/mask.svg
   SvgGenImage get mask => const SvgGenImage('assets/icons/bold/svg/mask.svg');
 
+  /// File path: assets/icons/bold/svg/master_card.svg
+  SvgGenImage get masterCard => const SvgGenImage('assets/icons/bold/svg/master_card.svg');
+
   /// File path: assets/icons/bold/svg/math.svg
   SvgGenImage get math => const SvgGenImage('assets/icons/bold/svg/math.svg');
 
@@ -3711,6 +3741,9 @@ class $AssetsIconsBoldSvgGen {
   /// File path: assets/icons/bold/svg/video.svg
   SvgGenImage get video => const SvgGenImage('assets/icons/bold/svg/video.svg');
 
+  /// File path: assets/icons/bold/svg/visa.svg
+  SvgGenImage get visa => const SvgGenImage('assets/icons/bold/svg/visa.svg');
+
   /// File path: assets/icons/bold/svg/voice-cricle.svg
   SvgGenImage get voiceCricle => const SvgGenImage('assets/icons/bold/svg/voice-cricle.svg');
 
@@ -4367,6 +4400,7 @@ class $AssetsIconsBoldSvgGen {
         mask1,
         mask2,
         mask,
+        masterCard,
         math,
         maximize1,
         maximize2,
@@ -4783,6 +4817,7 @@ class $AssetsIconsBoldSvgGen {
         videoTime,
         videoVertical,
         video,
+        visa,
         voiceCricle,
         voiceSquare,
         volumeCross,
@@ -10669,9 +10704,16 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,
@@ -10743,9 +10785,22 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName);
+  const SvgGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = false;
+
+  const SvgGenImage.vec(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = true;
 
   final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
 
   SvgPicture svg({
     Key? key,
@@ -10760,19 +10815,32 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
+    SvgTheme? theme,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture.asset(
-      _assetName,
+    final BytesLoader loader;
+    if (_isVecFormat) {
+      loader = AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
+    return SvgPicture(
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
       width: width,
       height: height,
       fit: fit,
@@ -10781,10 +10849,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
+      colorFilter: colorFilter ?? (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );

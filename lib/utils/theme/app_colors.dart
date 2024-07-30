@@ -93,7 +93,12 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     required this.divider1,
     required this.divider2,
     required this.divider3,
+    required this.gradientPrimary1,
+    required this.gradientPrimary2,
+    required this.gradientPrimary3,
+    required this.gradientPrimary4,
   });
+
   @override
   Color textBlackDarkVersion;
   @override
@@ -266,6 +271,14 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
   Color divider2;
   @override
   Color divider3;
+  @override
+  Color gradientPrimary1;
+  @override
+  Color gradientPrimary2;
+  @override
+  Color gradientPrimary3;
+  @override
+  Color gradientPrimary4;
 
   static final defaultAppColors = AppColors(
     textBlackDarkVersion: NeutralColors.black,
@@ -354,6 +367,10 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     divider1: NeutralColors.gray4,
     divider2: NeutralColors.gray5,
     divider3: NeutralColors.gray9,
+    gradientPrimary1: PrimaryColors.baseLightMode,
+    gradientPrimary2: PrimaryColors.light1LightMode,
+    gradientPrimary3: PrimaryColors.light2LightMode,
+    gradientPrimary4: PrimaryColors.light3LightMode,
   );
   static final lightThemeColors = AppColors(
     textBlackDarkVersion: NeutralColors.black,
@@ -442,6 +459,10 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     divider1: NeutralColors.gray4,
     divider2: NeutralColors.gray5,
     divider3: NeutralColors.gray9,
+    gradientPrimary1: PrimaryColors.baseLightMode,
+    gradientPrimary2: PrimaryColors.light1LightMode,
+    gradientPrimary3: PrimaryColors.light2LightMode,
+    gradientPrimary4: PrimaryColors.light3LightMode,
   );
   static final darkThemeColors = AppColors(
     textBlackDarkVersion: NeutralColors.gray7,
@@ -530,5 +551,9 @@ class AppColors extends ThemeExtension<AppColors> with _$AppColorsTailorMixin {
     divider1: NeutralColors.gray3,
     divider2: NeutralColors.gray4,
     divider3: NeutralColors.gray9,
+    gradientPrimary1: PrimaryColors.dark1LightMode,
+    gradientPrimary2: PrimaryColors.dark3LightMode,
+    gradientPrimary3: PrimaryColors.dark5LightMode,
+    gradientPrimary4: PrimaryColors.dark2LightMode,
   );
 }

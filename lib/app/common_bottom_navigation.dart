@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:money_management_app/app/app.dart';
+import 'package:money_management_app/card/pages/card_page.dart';
 import 'package:money_management_app/home/pages/home_page.dart';
 import 'package:money_management_app/setting/pages/setting_page.dart';
 import 'package:money_management_app/transaction/pages/transaction_page.dart';
@@ -15,12 +16,12 @@ class CommonBottomNavigation extends StatefulWidget {
 }
 
 class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   final List<Widget> _screens = [
     const HomePage(),
     const TransactionPage(),
-    const TransactionPage(),
+    const CardPage(),
     const TransactionPage(),
     const SettingPage(),
     // const SettingScreen(),
@@ -67,8 +68,11 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
           scaleFactor: 0.4,
           itemCount: _iconPaths.length,
           tabBuilder: (int index, bool isActive) {
-            final color = isActive ? appColors.backgroundPrimaryLight3 : appColors.backgroundGray4;
-            final iconPath = isActive ? _boldIconPaths[index] : _iconPaths[index];
+            final color = isActive
+                ? appColors.backgroundPrimaryLight3
+                : appColors.backgroundGray4;
+            final iconPath =
+                isActive ? _boldIconPaths[index] : _iconPaths[index];
             return Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

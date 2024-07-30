@@ -95,6 +95,10 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
   Color get divider1;
   Color get divider2;
   Color get divider3;
+  Color get gradientPrimary1;
+  Color get gradientPrimary2;
+  Color get gradientPrimary3;
+  Color get gradientPrimary4;
 
   @override
   AppColors copyWith({
@@ -184,6 +188,10 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
     Color? divider1,
     Color? divider2,
     Color? divider3,
+    Color? gradientPrimary1,
+    Color? gradientPrimary2,
+    Color? gradientPrimary3,
+    Color? gradientPrimary4,
   }) {
     return AppColors(
       textBlackDarkVersion: textBlackDarkVersion ?? this.textBlackDarkVersion,
@@ -290,6 +298,10 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
       divider1: divider1 ?? this.divider1,
       divider2: divider2 ?? this.divider2,
       divider3: divider3 ?? this.divider3,
+      gradientPrimary1: gradientPrimary1 ?? this.gradientPrimary1,
+      gradientPrimary2: gradientPrimary2 ?? this.gradientPrimary2,
+      gradientPrimary3: gradientPrimary3 ?? this.gradientPrimary3,
+      gradientPrimary4: gradientPrimary4 ?? this.gradientPrimary4,
     );
   }
 
@@ -424,6 +436,14 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
       divider1: Color.lerp(divider1, other.divider1, t)!,
       divider2: Color.lerp(divider2, other.divider2, t)!,
       divider3: Color.lerp(divider3, other.divider3, t)!,
+      gradientPrimary1:
+          Color.lerp(gradientPrimary1, other.gradientPrimary1, t)!,
+      gradientPrimary2:
+          Color.lerp(gradientPrimary2, other.gradientPrimary2, t)!,
+      gradientPrimary3:
+          Color.lerp(gradientPrimary3, other.gradientPrimary3, t)!,
+      gradientPrimary4:
+          Color.lerp(gradientPrimary4, other.gradientPrimary4, t)!,
     );
   }
 
@@ -559,7 +579,11 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
             const DeepCollectionEquality().equals(borderPrimaryDark, other.borderPrimaryDark) &&
             const DeepCollectionEquality().equals(divider1, other.divider1) &&
             const DeepCollectionEquality().equals(divider2, other.divider2) &&
-            const DeepCollectionEquality().equals(divider3, other.divider3));
+            const DeepCollectionEquality().equals(divider3, other.divider3) &&
+            const DeepCollectionEquality().equals(gradientPrimary1, other.gradientPrimary1) &&
+            const DeepCollectionEquality().equals(gradientPrimary2, other.gradientPrimary2) &&
+            const DeepCollectionEquality().equals(gradientPrimary3, other.gradientPrimary3) &&
+            const DeepCollectionEquality().equals(gradientPrimary4, other.gradientPrimary4));
   }
 
   @override
@@ -652,6 +676,10 @@ mixin _$AppColorsTailorMixin on ThemeExtension<AppColors> {
       const DeepCollectionEquality().hash(divider1),
       const DeepCollectionEquality().hash(divider2),
       const DeepCollectionEquality().hash(divider3),
+      const DeepCollectionEquality().hash(gradientPrimary1),
+      const DeepCollectionEquality().hash(gradientPrimary2),
+      const DeepCollectionEquality().hash(gradientPrimary3),
+      const DeepCollectionEquality().hash(gradientPrimary4),
     ]);
   }
 }
@@ -746,4 +774,8 @@ extension AppColorsBuildContextProps on BuildContext {
   Color get divider1 => appColors.divider1;
   Color get divider2 => appColors.divider2;
   Color get divider3 => appColors.divider3;
+  Color get gradientPrimary1 => appColors.gradientPrimary1;
+  Color get gradientPrimary2 => appColors.gradientPrimary2;
+  Color get gradientPrimary3 => appColors.gradientPrimary3;
+  Color get gradientPrimary4 => appColors.gradientPrimary4;
 }

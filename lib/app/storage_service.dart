@@ -23,18 +23,19 @@ class StorageService {
 
   Future<void> saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('access_token', token);
+    await prefs.setString('token', token);
   }
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('access_token');
+    final token = prefs.getString('token');
     return token;
   }
 
   Future<void> clear() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('access_token');
+    await prefs.remove('token');
+    await prefs.remove('userId');
   }
 
   Future<void> setOnboardingComplete() async {
@@ -58,7 +59,7 @@ class StorageService {
   // }
   Future<void> setThemeMode({required ThemeMode themeMode}) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt('theme_mode', themeMode.index);
+    await prefs.setInt('theme_mode', themeMode.index);
   }
 
   Future<ThemeMode?> getThemeMode() async {

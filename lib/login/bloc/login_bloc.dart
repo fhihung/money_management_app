@@ -29,12 +29,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       _onForgotPasswordButtonPressed,
     );
   }
+
   final storageService = StorageService();
   final LoginController loginController = LoginController();
+
   FutureOr<void> _onLoginInitiated(
     LoginInitiated event,
     Emitter<LoginState> emit,
   ) {}
+
   FutureOr<void> _onEyeSlashPressed(
     EyeSlashPressed event,
     Emitter<LoginState> emit,
@@ -76,13 +79,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await storageService.saveUserId(
         user.id.toString(),
       );
-
-      await Navigator.pushReplacement(
-        event.context,
-        MaterialPageRoute<void>(
-          builder: (context) => const CommonBottomNavigation(),
-        ),
-      );
       await Fluttertoast.showToast(
         msg: 'Login Successful',
         toastLength: Toast.LENGTH_SHORT,
@@ -91,6 +87,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 16.0,
+      );
+      await Navigator.pushReplacement(
+        event.context,
+        MaterialPageRoute<void>(
+          builder: (context) => const CommonBottomNavigation(),
+        ),
       );
     } else {
       final errorMessage = response.body['error'].toString();

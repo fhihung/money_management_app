@@ -11,6 +11,9 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     on<SettingInitiated>(
       _onSettingInitiated,
     );
+    on<LogoutPressed>(
+      _onLogoutPressed,
+    );
   }
 
   final storageService = StorageService();
@@ -27,5 +30,19 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
         user: user,
       ),
     );
+  }
+
+  FutureOr<void> _onLogoutPressed(
+    LogoutPressed event,
+    Emitter<SettingState> emit,
+  ) async {
+    final token = await storageService.getToken();
+    final response = await settingController.logOut(token ?? '');
+    if (response?.statusCode == 200) {
+      event.onLogoutSuccess();
+      await storageService.clear();
+    } else {
+      event.onLogoutFailed();
+    }
   }
 }

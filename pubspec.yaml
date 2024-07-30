@@ -162,4 +162,4 @@ flutter_gen:
 # Run the following command to generate the files:
 
 #  fluttergen -h
-#  fluttergen -c /flutter_gen.yaml
+#  fluttergen -c pubspec.yaml

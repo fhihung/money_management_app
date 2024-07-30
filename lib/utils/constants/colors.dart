@@ -9,6 +9,10 @@ class PrimaryColors {
   static const Color dark2DarkMode = Color(0xFF2E5798);
   static const Color dark3LightMode = Color(0xFF0046B5);
   static const Color dark3DarkMode = Color(0xFF2E67C2);
+  static const Color dark4LightMode = Color(0xFF0025CE);
+  static const Color dark5LightMode = Color(0xFF192DD9);
+  static const Color dark6LightMode = Color(0xFF395DDE);
+  static const Color dark7LightMode = Color(0xFF4A6DE1);
   static const Color light1LightMode = Color(0xFF1E6CEB);
   static const Color light1DarkMode = Color(0xFF4B89EF);
   static const Color light2LightMode = Color(0xFF3B7FEE);

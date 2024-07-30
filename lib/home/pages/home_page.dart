@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
             actions: const [
               NotificationWidget(),
             ],
-            backgroundColor: appColors.backgroundPrimary,
+            backgroundColor: appColors.gradientPrimary2,
             title: Text(
               "Hung's Wallet",
               style: AppTextStyles.bodyLg.copyWith(
