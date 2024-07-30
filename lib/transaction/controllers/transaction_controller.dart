@@ -10,6 +10,7 @@ import 'package:money_management_app/models/m_transaction.dart';
 import 'package:money_management_app/utils/constants/api_constants.dart';
 
 import '../../models/m_category.dart';
+import '../../models/m_transaction_group.dart';
 
 class TransactionController {
   final baseUrl = APIConstants.apiBaseUrl;
@@ -56,37 +57,24 @@ class TransactionController {
     }
   }
 
-  Future<List<Map<String, List<MTransaction>>>?> getTransactionsByUserId(
+  Future<List<MTransactionGroup>?> getTransactionsByUserId(
       String userId) async {
     try {
       final uri = Uri.parse('${baseUrl}transactions_by_user_id').replace(
-        queryParameters: {
-          'user_id': userId.toString(),
-        },
+        queryParameters: {'user_id': userId},
       );
 
       final response = await http.get(
         uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        final List<Map<String, List<MTransaction>>> transactionsByDate = [];
-
-        for (var entry in jsonResponse) {
-          final date = entry['date'] as String;
-          final transactionsJson = entry['transactions'] as List<dynamic>;
-          final transactions = transactionsJson
-              .map((transactionJson) => MTransaction.fromJson(
-                  transactionJson as Map<String, dynamic>))
-              .toList();
-          transactionsByDate.add({date: transactions});
-        }
-
-        return transactionsByDate;
+        return jsonResponse
+            .map((transactionGroup) => MTransactionGroup.fromJson(
+                transactionGroup as Map<String, dynamic>))
+            .toList();
       } else {
         if (kDebugMode) {
           print(
@@ -95,7 +83,6 @@ class TransactionController {
         return null;
       }
     } catch (e) {
-      // Handle network or other errors
       if (kDebugMode) {
         print('Error occurred: $e');
       }
