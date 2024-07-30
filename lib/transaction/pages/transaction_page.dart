@@ -3,11 +3,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/transaction/pages/all_transaction_page.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/pages/create_transaction_page.dart';
 import 'package:money_management_app/transaction/pages/daily_transaction_page.dart';
-import 'package:smooth_sheets/smooth_sheets.dart';
-
-import 'all_transaction_page.dart';
+import 'package:money_management_app/transaction/pages/monthly_transaction_page.dart';
+import 'package:money_management_app/transaction/pages/weekly_transaction_page.dart';
 
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});
@@ -99,11 +99,11 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
               CommonModalSheet.show(
                 context,
                 isFullScreen: false,
-                child: Scaffold(
+                child: const Scaffold(
                   body: Column(
                     children: [
-                      const SizedBox(height: 16),
-                      const Text('Content for Tab 1'),
+                      SizedBox(height: 16),
+                      Text('Content for Tab 1'),
                     ],
                   ),
                 ),
@@ -159,12 +159,8 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
                 children: const [
                   AllTransactionPage(),
                   DailyTransactionPage(),
-                  Center(
-                    child: Text('Content for Tab 3'),
-                  ),
-                  Center(
-                    child: Text('Content for Tab 4'),
-                  ),
+                  WeeklyTransactionPage(),
+                  MonthlyTransactionPage(),
                 ],
               ),
             ),
@@ -175,50 +171,3 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
   }
 }
 
-class HalfScreenSheet extends StatelessWidget {
-  const HalfScreenSheet({super.key, required this.child});
-  final Widget child;
-  @override
-  Widget build(BuildContext context) {
-    // `CupertinoStackedTransition` won't start the transition animation until
-    // the visible height of a modal sheet (the extent) exceeds 50% of the screen height.
-    return DraggableSheet(
-      initialExtent: Extent.proportional(0.5),
-      minExtent: Extent.proportional(0.5),
-      physics: BouncingSheetPhysics(
-        parent: SnappingSheetPhysics(),
-      ),
-      child: child,
-    );
-  }
-}
-
-void _showModalSheet(BuildContext context, {required bool isFullScreen, required Widget child}) {
-  // Use `CupertinoModalSheetRoute` to show an ios 15 style modal sheet.
-  // For declarative navigation (Navigator 2.0), use `CupertinoModalSheetPage` instead.
-  final modalRoute = CupertinoModalSheetRoute(
-    swipeDismissible: true, // Enable the swipe-to-dismiss behavior.
-    builder: (context) => switch (isFullScreen) {
-      true => FullScreenSheet(
-          child: child,
-        ),
-      false => HalfScreenSheet(
-          child: child,
-        ),
-    },
-  );
-
-  Navigator.push(context, modalRoute);
-}
-
-class FullScreenSheet extends StatelessWidget {
-  const FullScreenSheet({super.key, required this.child});
-
-  final Widget child;
-  @override
-  Widget build(BuildContext context) {
-    // Wrap the sheet with `SheetDismissible` to
-    // enable the pull-to-dismiss action.
-    return DraggableSheet(child: child);
-  }
-}

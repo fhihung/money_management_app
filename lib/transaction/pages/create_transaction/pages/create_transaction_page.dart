@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/app/app.dart';
-import 'package:money_management_app/app/bloc/app_bloc.dart';
-import 'package:money_management_app/app/bloc/app_event.dart';
-import 'package:money_management_app/app/bloc/app_state.dart';
 import 'package:money_management_app/common/tab_bar/common_tab_bar.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
@@ -20,7 +17,8 @@ class CreateTransactionPage extends StatefulWidget {
   State<CreateTransactionPage> createState() => _CreateTransactionPageState();
 }
 
-class _CreateTransactionPageState extends State<CreateTransactionPage> with TickerProviderStateMixin {
+class _CreateTransactionPageState extends State<CreateTransactionPage>
+    with TickerProviderStateMixin {
   late int currentTab;
   late TabController tabController;
 
@@ -73,21 +71,21 @@ class _CreateTransactionPageState extends State<CreateTransactionPage> with Tick
             ),
             body: Column(
               children: [
-                BlocBuilder<AppBloc, AppState>(
-                  buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
-                  builder: (context, state) {
-                    return SwitchListTile.adaptive(
-                      title: const Text('Theme'
-                          // S.current.darkTheme,
-                          ),
-                      // tileColor: AppColors.current.primaryColor,
-                      value: state.isDarkTheme,
-                      onChanged: (isDarkTheme) => context.read<AppBloc>().add(
-                            ThemeChanged(isDarkTheme: isDarkTheme),
-                          ),
-                    );
-                  },
-                ),
+                // BlocBuilder<AppBloc, AppState>(
+                //   buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
+                //   builder: (context, state) {
+                //     return SwitchListTile.adaptive(
+                //       title: const Text('Theme'
+                //           // S.current.darkTheme,
+                //           ),
+                //       // tileColor: AppColors.current.primaryColor,
+                //       value: state.isDarkTheme,
+                //       onChanged: (isDarkTheme) => context.read<AppBloc>().add(
+                //             ThemeChanged(isDarkTheme: isDarkTheme),
+                //           ),
+                //     );
+                //   },
+                // ),
                 Container(
                   margin: const EdgeInsets.symmetric(
                     horizontal: AppSpaces.space6,

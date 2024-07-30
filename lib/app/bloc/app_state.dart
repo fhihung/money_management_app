@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_state.freezed.dart';
@@ -7,7 +8,7 @@ class AppState with _$AppState {
   const factory AppState({
     @Default(false) bool isLoading,
     @Default(false) bool isCompleteOnboarding,
-    @Default(false) bool isDarkTheme,
+    @Default(ThemeMode.system) ThemeMode themeMode,
     String? token,
   }) = _AppState;
 }

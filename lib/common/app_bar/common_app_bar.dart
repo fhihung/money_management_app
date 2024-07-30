@@ -12,6 +12,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingOnPressed,
     this.centerTitle,
   });
+
   final Widget? title;
   final bool? centerTitle;
   final bool showBackButton;
@@ -28,6 +29,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
+        leadingWidth: 36,
         leading: showBackButton
             ? IconButton(
                 icon: leadingIcon ??

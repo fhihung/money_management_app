@@ -77,7 +77,7 @@ abstract class _AppInitiated implements AppInitiated {
 
 /// @nodoc
 mixin _$ThemeChanged {
-  bool get isDarkTheme => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeChangedCopyWith<ThemeChanged> get copyWith =>
@@ -90,7 +90,7 @@ abstract class $ThemeChangedCopyWith<$Res> {
           ThemeChanged value, $Res Function(ThemeChanged) then) =
       _$ThemeChangedCopyWithImpl<$Res, ThemeChanged>;
   @useResult
-  $Res call({bool isDarkTheme});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -106,13 +106,13 @@ class _$ThemeChangedCopyWithImpl<$Res, $Val extends ThemeChanged>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isDarkTheme = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
-      isDarkTheme: null == isDarkTheme
-          ? _value.isDarkTheme
-          : isDarkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ) as $Val);
   }
 }
@@ -125,7 +125,7 @@ abstract class _$$ThemeChangedImplCopyWith<$Res>
       __$$ThemeChangedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isDarkTheme});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -139,13 +139,13 @@ class __$$ThemeChangedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isDarkTheme = null,
+    Object? themeMode = null,
   }) {
     return _then(_$ThemeChangedImpl(
-      isDarkTheme: null == isDarkTheme
-          ? _value.isDarkTheme
-          : isDarkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
@@ -153,14 +153,14 @@ class __$$ThemeChangedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ThemeChangedImpl implements _ThemeChanged {
-  const _$ThemeChangedImpl({required this.isDarkTheme});
+  const _$ThemeChangedImpl({required this.themeMode});
 
   @override
-  final bool isDarkTheme;
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'ThemeChanged(isDarkTheme: $isDarkTheme)';
+    return 'ThemeChanged(themeMode: $themeMode)';
   }
 
   @override
@@ -168,12 +168,12 @@ class _$ThemeChangedImpl implements _ThemeChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeChangedImpl &&
-            (identical(other.isDarkTheme, isDarkTheme) ||
-                other.isDarkTheme == isDarkTheme));
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isDarkTheme);
+  int get hashCode => Object.hash(runtimeType, themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -183,11 +183,11 @@ class _$ThemeChangedImpl implements _ThemeChanged {
 }
 
 abstract class _ThemeChanged implements ThemeChanged {
-  const factory _ThemeChanged({required final bool isDarkTheme}) =
+  const factory _ThemeChanged({required final ThemeMode themeMode}) =
       _$ThemeChangedImpl;
 
   @override
-  bool get isDarkTheme;
+  ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$ThemeChangedImplCopyWith<_$ThemeChangedImpl> get copyWith =>

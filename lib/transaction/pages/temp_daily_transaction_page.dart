@@ -83,8 +83,6 @@ class TransactionSection extends MultiSliver {
     required Widget content,
     required List<Widget> items,
     super.key,
-    Color headerColor = Colors.white,
-    Color titleColor = Colors.black,
   }) : super(
           pushPinnedChildren: true,
           children: [

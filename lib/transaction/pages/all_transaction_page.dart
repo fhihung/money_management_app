@@ -30,50 +30,62 @@ class _AllTransactionPageState extends State<AllTransactionPage> {
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
         return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpaces.space6,
-            ),
-            child: ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              itemCount: state.allTransactions.length,
-              separatorBuilder: (context, index) => const Divider(
-                height: 10,
-              ),
-              itemBuilder: (context, index) {
-                final transaction = state.allTransactions[index];
-                return CommonTransaction(
-                  categoryType: transaction.category?.type,
-                  image: transaction.category?.iconPath,
-                  title: transaction.title,
-                  subtitle: transaction.note,
-                  price: transaction.amount.toString(),
-                  dateTime: DateFormat('dd/MM/yyyy').format(
-                    transaction.transactionDate!,
-                  ),
-                );
-              },
-            ));
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpaces.space6,
+          ),
+          child: CustomScrollView(
+            slivers: [
+              if (state.allTransactions != null) ...[
+                for (final transactionMap in state.allTransactions!)
+                  for (final entry in transactionMap.entries)
+                    TransactionSection(
+                      title: entry.key,
+                      items: entry.value
+                          .map(
+                            (transaction) => CommonTransaction(
+                              categoryType: transaction?.category?.type,
+                              image: transaction?.category?.iconPath,
+                              title: transaction?.title,
+                              subtitle: transaction?.note,
+                              price: transaction?.amount.toString(),
+                              dateTime: DateFormat('dd-MM-yyyy').format(
+                                transaction?.transactionDate ?? DateTime.now(),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+              ],
+            ],
+          ),
+        );
       },
     );
   }
 }
 
-class TransactionSection extends MultiSliver {
-  TransactionSection({
-    required String title,
-    required Widget content,
-    required List<Widget> items,
+class TransactionSection extends StatelessWidget {
+  const TransactionSection({
+    required this.title,
+    required this.items,
     super.key,
-  }) : super(
-          pushPinnedChildren: true,
-          children: [
-            SliverPinnedHeader(
-              child: TransactionTitle(title: Text(title), content: content),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate.fixed(items),
-            ),
-          ],
-        );
+  });
+
+  final String title;
+  final List<Widget> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiSliver(
+      pushPinnedChildren: true,
+      children: [
+        SliverPinnedHeader(
+          child: TransactionTitle(title: Text(title)),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate.fixed(items),
+        ),
+      ],
+    );
+  }
 }

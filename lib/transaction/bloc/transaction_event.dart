@@ -20,3 +20,13 @@ class AllTransactionFetched extends TransactionEvent with _$AllTransactionFetche
 class DailyTransactionFetched extends TransactionEvent with _$DailyTransactionFetched {
   const factory DailyTransactionFetched() = _DailyTransactionFetched;
 }
+
+@freezed
+class WeeklyTransactionFetched extends TransactionEvent with _$WeeklyTransactionFetched {
+  const factory WeeklyTransactionFetched() = _WeeklyTransactionFetched;
+}
+
+@freezed
+class MonthlyTransactionFetched extends TransactionEvent with _$MonthlyTransactionFetched {
+  const factory MonthlyTransactionFetched() = _MonthlyTransactionFetched;
+}

@@ -7,32 +7,29 @@ import 'package:money_management_app/app/storage_service.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(const AppState()) {
-    on<AppInitiated>(
-      _onAppInitiated,
-    );
-    on<ThemeChanged>(
-      _onThemeChanged,
-    );
+    on<AppInitiated>(_onAppInitiated);
+    on<ThemeChanged>(_onThemeChanged);
   }
+
   StorageService storageService = StorageService();
 
   FutureOr<void> _onAppInitiated(
-    AppInitiated event,
-    Emitter<AppState> emit,
-  ) async {
+      AppInitiated event, Emitter<AppState> emit) async {
     final isCompleteOnboarding = await storageService.isOnboardingComplete();
     emit(state.copyWith(isCompleteOnboarding: isCompleteOnboarding));
     final token = await storageService.getToken();
     if (token != null) {
       emit(state.copyWith(token: token));
     }
+    final savedThemeMode = await storageService.getThemeMode();
+    if (savedThemeMode != null) {
+      emit(state.copyWith(themeMode: savedThemeMode));
+    }
   }
 
   FutureOr<void> _onThemeChanged(
-    ThemeChanged event,
-    Emitter<AppState> emit,
-  ) async {
-    await storageService.setDarkTheme(isDarkTheme: event.isDarkTheme);
-    emit(state.copyWith(isDarkTheme: event.isDarkTheme));
+      ThemeChanged event, Emitter<AppState> emit) async {
+    await storageService.setThemeMode(themeMode: event.themeMode);
+    emit(state.copyWith(themeMode: event.themeMode));
   }
 }

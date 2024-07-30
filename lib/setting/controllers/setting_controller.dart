@@ -1,30 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:money_management_app/models/m_response.dart';
 import 'package:money_management_app/models/m_user.dart';
 import 'package:money_management_app/utils/constants/api_constants.dart';
 
-class LoginController {
+class SettingController {
   final String apiUrl = APIConstants.apiBaseUrl;
-
-  Future<MResponse> login(
-      String email, String password, BuildContext context) async {
-    final url = Uri.parse('${apiUrl}login');
-    final response = await http.post(
-      url,
-      body: {
-        'email': email,
-        'password': password,
-      },
-    );
-
-    return MResponse(
-      body: jsonDecode(response.body),
-      statusCode: response.statusCode,
-    );
-  }
 
   Future<MUser> getUser(String token) async {
     final url = Uri.parse('${apiUrl}user');

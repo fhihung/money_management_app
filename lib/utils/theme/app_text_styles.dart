@@ -188,7 +188,7 @@ abstract class AppTextStyles {
   static const TextStyle bodySm2 = TextStyle(
     fontFamily: 'Archivo',
     fontSize: 14,
-    height: 1.29,
+    height: 1.20,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.14,
   );

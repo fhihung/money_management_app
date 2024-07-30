@@ -17,6 +17,12 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     on<DailyTransactionFetched>(
       _onDailyTransactionFetched,
     );
+    on<WeeklyTransactionFetched>(
+      _onWeeklyTransactionFetched,
+    );
+    on<MonthlyTransactionFetched>(
+      _onMonthlyTransactionFetched,
+    );
   }
 
   TransactionController transactionController = TransactionController();
@@ -61,6 +67,48 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         state.copyWith(
           isLoading: false,
           dailyTransactions: transactions!,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _onWeeklyTransactionFetched(
+    WeeklyTransactionFetched event,
+    Emitter<TransactionState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+    final userId = await storageService.getUserId();
+
+    if (userId != null) {
+      final transactions =
+          await transactionController.getTransactionsForCurrentWeek(
+        userId: userId,
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+          weeklyTransactions: transactions!,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _onMonthlyTransactionFetched(
+    MonthlyTransactionFetched event,
+    Emitter<TransactionState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+    final userId = await storageService.getUserId();
+
+    if (userId != null) {
+      final transactions =
+          await transactionController.getTransactionsForCurrentWeek(
+        userId: userId,
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+          monthlyTransactions: transactions!,
         ),
       );
     }

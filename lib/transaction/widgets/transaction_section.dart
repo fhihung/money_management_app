@@ -4,11 +4,12 @@ import 'package:money_management_app/app/app.dart';
 class TransactionTitle extends StatelessWidget {
   const TransactionTitle({
     required this.title,
-    required this.content,
+    this.content,
     super.key,
   });
+
   final Widget title;
-  final Widget content;
+  final Widget? content;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class TransactionTitle extends StatelessWidget {
               ),
             ],
           ),
-          content,
+          content ?? const SizedBox(),
         ],
       ),
     );

@@ -56,7 +56,8 @@ class TransactionController {
     }
   }
 
-  Future<List<MTransaction>?> getTransactionsByUserId(String userId) async {
+  Future<List<Map<String, List<MTransaction>>>?> getTransactionsByUserId(
+      String userId) async {
     try {
       final uri = Uri.parse('${baseUrl}transactions_by_user_id').replace(
         queryParameters: {
@@ -73,15 +74,28 @@ class TransactionController {
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        return jsonResponse.map((transaction) => MTransaction.fromJson(transaction as Map<String, dynamic>)).toList();
+        final List<Map<String, List<MTransaction>>> transactionsByDate = [];
+
+        for (var entry in jsonResponse) {
+          final date = entry['date'] as String;
+          final transactionsJson = entry['transactions'] as List<dynamic>;
+          final transactions = transactionsJson
+              .map((transactionJson) => MTransaction.fromJson(
+                  transactionJson as Map<String, dynamic>))
+              .toList();
+          transactionsByDate.add({date: transactions});
+        }
+
+        return transactionsByDate;
       } else {
         if (kDebugMode) {
-          print('Failed to load transactions. Status code: ${response.statusCode}');
+          print(
+              'Failed to load transactions. Status code: ${response.statusCode}');
         }
         return null;
       }
     } catch (e) {
-      // Xử lý lỗi mạng hoặc các lỗi khác
+      // Handle network or other errors
       if (kDebugMode) {
         print('Error occurred: $e');
       }
@@ -101,10 +115,14 @@ class TransactionController {
       );
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        return jsonResponse.map((category) => MCategory.fromJson(category as Map<String, dynamic>)).toList();
+        return jsonResponse
+            .map((category) =>
+                MCategory.fromJson(category as Map<String, dynamic>))
+            .toList();
       } else {
         if (kDebugMode) {
-          print('Failed to load categories. Status code: ${response.statusCode}');
+          print(
+              'Failed to load categories. Status code: ${response.statusCode}');
         }
         return [];
       }
@@ -133,7 +151,10 @@ class TransactionController {
       );
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        return jsonResponse.map((category) => MAccount.fromJson(category as Map<String, dynamic>)).toList();
+        return jsonResponse
+            .map((category) =>
+                MAccount.fromJson(category as Map<String, dynamic>))
+            .toList();
       } else {
         if (kDebugMode) {
           print('Failed to load accounts. Status code: ${response.statusCode}');
@@ -165,10 +186,14 @@ class TransactionController {
       );
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        return jsonResponse.map((category) => MCategory.fromJson(category as Map<String, dynamic>)).toList();
+        return jsonResponse
+            .map((category) =>
+                MCategory.fromJson(category as Map<String, dynamic>))
+            .toList();
       } else {
         if (kDebugMode) {
-          print('Failed to load categories by type. Status code: ${response.statusCode}');
+          print(
+              'Failed to load categories by type. Status code: ${response.statusCode}');
         }
         return [];
       }
@@ -193,7 +218,8 @@ class TransactionController {
       };
 
       if (startDate != null) {
-        queryParameters['start_date'] = DateFormat('yyyy-MM-dd').format(startDate);
+        queryParameters['start_date'] =
+            DateFormat('yyyy-MM-dd').format(startDate);
       }
 
       if (endDate != null) {
@@ -214,10 +240,98 @@ class TransactionController {
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as List<dynamic>;
-        return jsonResponse.map((transaction) => MTransaction.fromJson(transaction as Map<String, dynamic>)).toList();
+        return jsonResponse
+            .map((transaction) =>
+                MTransaction.fromJson(transaction as Map<String, dynamic>))
+            .toList();
       } else {
         if (kDebugMode) {
-          print('Failed to load transactions by date. Status code: ${response.statusCode}');
+          print(
+              'Failed to load transactions by date. Status code: ${response.statusCode}');
+        }
+        return null;
+      }
+    } catch (e) {
+      // Handle network or other errors
+      if (kDebugMode) {
+        print('Error occurred: $e');
+      }
+      return null;
+    }
+  }
+
+  Future<List<MTransaction>?> getTransactionsForCurrentWeek({
+    required String userId,
+  }) async {
+    try {
+      final queryParameters = <String, String>{
+        'user_id': userId,
+      };
+
+      // Create the URI with query parameters
+      final uri = Uri.parse('${baseUrl}transactions_for_current_week').replace(
+        queryParameters: queryParameters,
+      );
+
+      final response = await http.get(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body) as List<dynamic>;
+        return jsonResponse
+            .map((transaction) =>
+                MTransaction.fromJson(transaction as Map<String, dynamic>))
+            .toList();
+      } else {
+        if (kDebugMode) {
+          print(
+              'Failed to load transactions by week. Status code: ${response.statusCode}');
+        }
+        return null;
+      }
+    } catch (e) {
+      // Handle network or other errors
+      if (kDebugMode) {
+        print('Error occurred: $e');
+      }
+      return null;
+    }
+  }
+
+  Future<List<MTransaction>?> getTransactionsForCurrenMonth({
+    required String userId,
+  }) async {
+    try {
+      final queryParameters = <String, String>{
+        'user_id': userId,
+      };
+
+      // Create the URI with query parameters
+      final uri = Uri.parse('${baseUrl}transactions_for_current_month').replace(
+        queryParameters: queryParameters,
+      );
+
+      final response = await http.get(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body) as List<dynamic>;
+        return jsonResponse
+            .map((transaction) =>
+                MTransaction.fromJson(transaction as Map<String, dynamic>))
+            .toList();
+      } else {
+        if (kDebugMode) {
+          print(
+              'Failed to load transactions by month. Status code: ${response.statusCode}');
         }
         return null;
       }

@@ -8,6 +8,7 @@ import 'package:money_management_app/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
@@ -17,9 +18,7 @@ class App extends StatelessWidget {
           title: 'Food Delivery App',
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
-          themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          // localizationsDelegates: AppLocalizations.localizationsDelegates,
-          // supportedLocales: AppLocalizations.supportedLocales,
+          themeMode: state.themeMode,
           home: const LoginScreen(),
         );
       },

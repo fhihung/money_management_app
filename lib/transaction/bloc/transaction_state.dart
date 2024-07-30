@@ -7,7 +7,9 @@ part 'transaction_state.freezed.dart';
 class TransactionState with _$TransactionState {
   const factory TransactionState({
     @Default(false) bool isLoading,
-    @Default([]) List<MTransaction> allTransactions,
+    List<Map<String, List<MTransaction?>>>? allTransactions,
     @Default([]) List<MTransaction> dailyTransactions,
+    @Default([]) List<MTransaction> weeklyTransactions,
+    @Default([]) List<MTransaction> monthlyTransactions,
   }) = _TransactionState;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_event.freezed.dart';
@@ -14,6 +15,6 @@ class AppInitiated extends AppEvent with _$AppInitiated {
 @freezed
 class ThemeChanged extends AppEvent with _$ThemeChanged {
   const factory ThemeChanged({
-    required bool isDarkTheme,
+    required ThemeMode themeMode,
   }) = _ThemeChanged;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
@@ -6,6 +7,7 @@ class StorageService {
   }
 
   StorageService._internal();
+
   static final StorageService _instance = StorageService._internal();
 
   Future<void> saveUserId(String userId) async {
@@ -45,13 +47,26 @@ class StorageService {
     return prefs.getBool('onboarding_complete') ?? false;
   }
 
-  Future<void> setDarkTheme({required bool isDarkTheme}) async {
+  // Future<void> setDarkTheme({required bool isDarkTheme}) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.setBool('isDarkMode', isDarkTheme);
+  // }
+  //
+  // Future<bool> isDarkTheme() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   return prefs.getBool('isDarkMode') ?? false;
+  // }
+  Future<void> setThemeMode({required ThemeMode themeMode}) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isDarkMode', isDarkTheme);
+    prefs.setInt('theme_mode', themeMode.index);
   }
 
-  Future<bool> isDarkTheme() async {
+  Future<ThemeMode?> getThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isDarkMode') ?? false;
+    final themeModeIndex = prefs.getInt('theme_mode');
+    if (themeModeIndex != null) {
+      return ThemeMode.values[themeModeIndex];
+    }
+    return null;
   }
 }

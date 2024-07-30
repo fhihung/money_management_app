@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:money_management_app/app/bloc/app_bloc.dart';
-import 'package:money_management_app/app/bloc/app_event.dart';
-import 'package:money_management_app/app/bloc/app_state.dart';
 import 'package:money_management_app/common/widgets/app_divider.dart';
 import 'package:money_management_app/forgot_password/screens/forgot_password_screen.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
@@ -31,21 +28,21 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// Logo, Title, Subtitle
-                    BlocBuilder<AppBloc, AppState>(
-                      buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
-                      builder: (context, state) {
-                        return SwitchListTile.adaptive(
-                          title: const Text('Theme'
-                              // S.current.darkTheme,
-                              ),
-                          // tileColor: AppColors.current.primaryColor,
-                          value: state.isDarkTheme,
-                          onChanged: (isDarkTheme) => context.read<AppBloc>().add(
-                                ThemeChanged(isDarkTheme: isDarkTheme),
-                              ),
-                        );
-                      },
-                    ),
+                    // BlocBuilder<AppBloc, AppState>(
+                    //   buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
+                    //   builder: (context, state) {
+                    //     return SwitchListTile.adaptive(
+                    //       title: const Text('Theme'
+                    //           // S.current.darkTheme,
+                    //           ),
+                    //       // tileColor: AppColors.current.primaryColor,
+                    //       value: state.isDarkTheme,
+                    //       onChanged: (isDarkTheme) => context.read<AppBloc>().add(
+                    //             ThemeChanged(isDarkTheme: isDarkTheme),
+                    //           ),
+                    //     );
+                    //   },
+                    // ),
                     Text(
                       'Log In',
                       style: AppTextStyles.headlineLg.copyWith(
