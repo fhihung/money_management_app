@@ -1,6 +1,12 @@
-// part of 'home_bloc.dart';
-//
-// @freezed
-// class HomeEvent with _$HomeEvent {
-//   const factory HomeEvent.started() = _Started;
-// }
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'home_event.freezed.dart';
+
+abstract class HomeEvent {
+  const HomeEvent();
+}
+
+@freezed
+class HomeInitiated extends HomeEvent with _$HomeInitiated {
+  const factory HomeInitiated() = _HomeInitiated;
+}

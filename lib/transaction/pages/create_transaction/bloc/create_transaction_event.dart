@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:money_management_app/models/m_account.dart';
 import 'package:money_management_app/models/m_category.dart';
@@ -9,7 +11,8 @@ abstract class CreateTransactionEvent {
 }
 
 @freezed
-class CreateTransactionInitiated extends CreateTransactionEvent with _$CreateTransactionInitiated {
+class CreateTransactionInitiated extends CreateTransactionEvent
+    with _$CreateTransactionInitiated {
   const factory CreateTransactionInitiated() = _CreateTransactionInitiated;
 }
 
@@ -57,12 +60,14 @@ class CreateExpenseTransactionButtonPressed extends CreateTransactionEvent
     required double amount,
     required int categoryId,
     required DateTime transactionDate,
+    required VoidCallback onSuccessCreated,
     @Default('') String note,
   }) = _CreateExpenseTransactionButtonPressed;
 }
 
 @freezed
-class CreateIncomeTransactionButtonPressed extends CreateTransactionEvent with _$CreateIncomeTransactionButtonPressed {
+class CreateIncomeTransactionButtonPressed extends CreateTransactionEvent
+    with _$CreateIncomeTransactionButtonPressed {
   const factory CreateIncomeTransactionButtonPressed({
     required String title,
     required int accountId,

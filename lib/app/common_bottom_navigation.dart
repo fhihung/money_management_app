@@ -9,15 +9,17 @@ import 'package:money_management_app/transaction/pages/transaction_page.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
 
 class CommonBottomNavigation extends StatefulWidget {
-  const CommonBottomNavigation({super.key});
+  CommonBottomNavigation({
+    super.key,
+    this.selectedIndex = 0,
+  });
 
   @override
   State<CommonBottomNavigation> createState() => _CommonBottomNavigationState();
+  int selectedIndex;
 }
 
 class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
-  int _selectedIndex = 0;
-
   final List<Widget> _screens = [
     const HomePage(),
     const TransactionPage(),
@@ -53,7 +55,7 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -95,13 +97,13 @@ class _CommonBottomNavigationState extends State<CommonBottomNavigation> {
             );
           },
           backgroundColor: appColors.backgroundWhite2DarkVersion,
-          activeIndex: _selectedIndex,
+          activeIndex: widget.selectedIndex,
           gapLocation: GapLocation.none,
           notchSmoothness: NotchSmoothness.verySmoothEdge,
           onTap: _onItemTapped,
           //other params
         ),
-        body: _screens[_selectedIndex],
+        body: _screens[widget.selectedIndex],
       ),
     );
   }

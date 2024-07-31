@@ -5,10 +5,9 @@ import 'package:money_management_app/common/tab_bar/common_tab_bar.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/pages/create_expense_transaction_page.dart';
+import 'package:money_management_app/transaction/pages/create_transaction/pages/create_income_transaction_page.dart';
 import 'package:smooth_sheets/smooth_sheets.dart';
-
-import 'create_expense_transaction_page.dart';
-import 'create_income_transaction_page.dart';
 
 class CreateTransactionPage extends StatefulWidget {
   const CreateTransactionPage({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';
 import 'package:money_management_app/transaction/bloc/transaction_bloc.dart';
@@ -29,12 +30,13 @@ class _MonthlyTransactionPageState extends State<MonthlyTransactionPage> {
         return Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpaces.space6,
+            vertical: AppSpaces.space3,
           ),
           child: CustomScrollView(
             slivers: [
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
+                  (BuildContext context, int index) {
                     final monthlyTransaction = state.monthlyTransactions[index];
                     return Column(
                       children: [
@@ -44,7 +46,9 @@ class _MonthlyTransactionPageState extends State<MonthlyTransactionPage> {
                           title: monthlyTransaction.title,
                           subtitle: monthlyTransaction.note,
                           price: monthlyTransaction.amount.toString(),
-                          dateTime: monthlyTransaction.transactionDate.toString(),
+                          dateTime: DateFormat('yyyy-MM-dd HH:mm').format(
+                            monthlyTransaction.transactionDate!,
+                          ),
                         ),
                         const Divider(
                           height: 10,

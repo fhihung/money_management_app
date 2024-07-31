@@ -22,27 +22,12 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.md,
+                  horizontal: AppSpaces.space6,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// Logo, Title, Subtitle
-                    // BlocBuilder<AppBloc, AppState>(
-                    //   buildWhen: (previous, current) => previous.isDarkTheme != current.isDarkTheme,
-                    //   builder: (context, state) {
-                    //     return SwitchListTile.adaptive(
-                    //       title: const Text('Theme'
-                    //           // S.current.darkTheme,
-                    //           ),
-                    //       // tileColor: AppColors.current.primaryColor,
-                    //       value: state.isDarkTheme,
-                    //       onChanged: (isDarkTheme) => context.read<AppBloc>().add(
-                    //             ThemeChanged(isDarkTheme: isDarkTheme),
-                    //           ),
-                    //     );
-                    //   },
-                    // ),
                     Text(
                       'Log In',
                       style: AppTextStyles.headlineLg.copyWith(

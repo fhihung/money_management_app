@@ -91,7 +91,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await Navigator.pushReplacement(
         event.context,
         MaterialPageRoute<void>(
-          builder: (context) => const CommonBottomNavigation(),
+          builder: (context) => CommonBottomNavigation(),
         ),
       );
     } else {

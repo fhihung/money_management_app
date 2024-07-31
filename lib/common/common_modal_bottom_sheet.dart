@@ -24,16 +24,17 @@ class CommonModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
+
     return Padding(
       padding: const EdgeInsets.only(
         top: AppSpaces.space8,
         left: AppSpaces.space7,
         right: AppSpaces.space7,
+        bottom: AppSpaces.space7,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // const SizedBox(height: AppSpaces.space7),
           Text(
             title,
             style: AppTextStyles.headlineSm1.copyWith(
@@ -44,14 +45,16 @@ class CommonModalBottomSheet extends StatelessWidget {
           SizedBox(
             child: image,
           ),
-          const SizedBox(height: AppSpaces.space7),
-          Text(
-            subtitle ?? '',
-            style: AppTextStyles.bodyMd1.copyWith(
-              color: appColors.textGray3,
+          if (subtitle != null) ...[
+            const SizedBox(height: AppSpaces.space6),
+            Text(
+              subtitle!,
+              style: AppTextStyles.bodyMd1.copyWith(
+                color: appColors.textGray3,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
+          ],
           const SizedBox(height: AppSpaces.space9),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -60,7 +63,7 @@ class CommonModalBottomSheet extends StatelessWidget {
             onPressed: onPressedElevatedButton,
             child: Text(
               textButton,
-              style: AppTextStyles.buttonMd.copyWith(
+              style: AppTextStyles.bodyMd2.copyWith(
                 color: appColors.backgroundWhite,
               ),
             ),
@@ -72,13 +75,12 @@ class CommonModalBottomSheet extends StatelessWidget {
               onPressed: onPressedTextButton,
               child: Text(
                 S.notNow,
-                style: AppTextStyles.buttonMd.copyWith(
+                style: AppTextStyles.bodyMd2.copyWith(
                   color: appColors.textPrimary,
                 ),
               ),
             ),
           ),
-          const SizedBox(height: AppSpaces.space8),
         ],
       ),
     );

@@ -1,32 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_app/app/app.dart';
+import 'package:money_management_app/app/common_bottom_navigation.dart';
 import 'package:money_management_app/common/modal_sheet/show_modal_sheet.dart';
 import 'package:money_management_app/common/text_field/common_text_field.dart';
 import 'package:money_management_app/common/widgets/search/common_search_field.dart';
+import 'package:money_management_app/common/widgets/stack_widget.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_bloc.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+
+import '../../../../common/common_modal_bottom_sheet.dart';
 
 class CreateExpenseTransactionPage extends StatefulWidget {
   const CreateExpenseTransactionPage({
     required this.state,
     super.key,
   });
+
   final CreateTransactionState state;
 
   @override
-  State<CreateExpenseTransactionPage> createState() => _CreateExpenseTransactionPageState();
+  State<CreateExpenseTransactionPage> createState() =>
+      _CreateExpenseTransactionPageState();
 }
 
-class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionPage> {
+class _CreateExpenseTransactionPageState
+    extends State<CreateExpenseTransactionPage> {
   final TextEditingController noteController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
+
+  Future<void> clearController() async {
+    noteController.clear();
+    amountController.clear();
+    titleController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
@@ -34,7 +48,8 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpaces.space6,
       ),
-      child: Stack(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             children: [
@@ -64,10 +79,11 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
               _buildNote(),
             ],
           ),
-          Positioned(
-            bottom: AppSpaces.space8, // Adjust the position as needed
-            left: 0,
-            right: 0,
+          Container(
+            margin: const EdgeInsets.only(
+              bottom: AppSpaces.space7,
+            ),
+            width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: appColors.backgroundPrimary,
@@ -84,6 +100,46 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
                         categoryId: widget.state.selectedCategory!.id!,
                         transactionDate: widget.state.selectedDate!,
                         note: noteController.text,
+                        onSuccessCreated: () {
+                          clearController();
+                          showModalBottomSheet<void>(
+                            isScrollControlled: true,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(AppSpaces.space8),
+                                topRight: Radius.circular(AppSpaces.space8),
+                              ),
+                            ),
+                            backgroundColor:
+                                appColors.backgroundWhite2DarkVersion,
+                            context: context,
+                            builder: (context) => CommonModalBottomSheet(
+                              title: 'Transaction Created',
+                              subtitle:
+                                  'Your transaction has been created successfully\n'
+                                  'Create another transaction? ',
+                              image: StackWidget(
+                                icon: Iconsax.tick_square,
+                                iconColor: appColors.backgroundGreen,
+                              ),
+                              textButton: 'Create New Transaction',
+                              onPressedElevatedButton: () {
+                                Navigator.pop(context);
+                              },
+                              onPressedTextButton: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        CommonBottomNavigation(
+                                      selectedIndex: 1,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                     );
               },
@@ -258,9 +314,6 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
       keyboardType: const TextInputType.numberWithOptions(
         decimal: true,
       ),
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-      ],
       controller: amountController,
       labelText: 'Amount',
       prefixIcon: Assets.icons.linear.svg.dollarCircle.svg(
@@ -379,7 +432,8 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
         title: state.selectedCategory != null
             ? Text(
                 state.selectedCategory!.name!,
-                style: AppTextStyles.bodySm2.copyWith(color: appColors.textBlackDarkVersion),
+                style: AppTextStyles.bodySm2
+                    .copyWith(color: appColors.textBlackDarkVersion),
               )
             : const Text(
                 'Category',
@@ -541,7 +595,8 @@ class _CreateExpenseTransactionPageState extends State<CreateExpenseTransactionP
       title: state.selectedDate != null
           ? Text(
               DateFormat('dd/MM/yyyy').format(state.selectedDate!),
-              style: AppTextStyles.bodySm2.copyWith(color: appColors.textBlackDarkVersion),
+              style: AppTextStyles.bodySm2
+                  .copyWith(color: appColors.textBlackDarkVersion),
             )
           : const Text(
               'Date',

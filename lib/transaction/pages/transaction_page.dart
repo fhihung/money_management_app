@@ -16,7 +16,8 @@ class TransactionPage extends StatefulWidget {
   State<TransactionPage> createState() => _TransactionPageState();
 }
 
-class _TransactionPageState extends State<TransactionPage> with TickerProviderStateMixin {
+class _TransactionPageState extends State<TransactionPage>
+    with TickerProviderStateMixin {
   late TabController tabController;
   late int tabControllerIndex;
   List<Tab> tabs = [
@@ -33,6 +34,7 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
       text: 'This Month',
     ),
   ];
+
   @override
   void initState() {
     tabController = TabController(
@@ -53,7 +55,8 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
   }
 
   void _onTabChanged() {
-    if (!tabController.indexIsChanging && tabControllerIndex != tabController.index) {
+    if (!tabController.indexIsChanging &&
+        tabControllerIndex != tabController.index) {
       tabControllerIndex = tabController.index;
     }
   }
@@ -170,4 +173,3 @@ class _TransactionPageState extends State<TransactionPage> with TickerProviderSt
     );
   }
 }
-

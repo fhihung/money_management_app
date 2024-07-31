@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';
 import 'package:money_management_app/transaction/bloc/transaction_bloc.dart';
+import 'package:money_management_app/transaction/bloc/transaction_event.dart';
 import 'package:money_management_app/transaction/bloc/transaction_state.dart';
-
-import '../bloc/transaction_event.dart';
 
 class DailyTransactionPage extends StatefulWidget {
   const DailyTransactionPage({
@@ -29,6 +29,7 @@ class _DailyTransactionPageState extends State<DailyTransactionPage> {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(
+            vertical: AppSpaces.space3,
             horizontal: AppSpaces.space6,
           ),
           child: CustomScrollView(
@@ -45,7 +46,9 @@ class _DailyTransactionPageState extends State<DailyTransactionPage> {
                           title: dailyTransaction.title,
                           subtitle: dailyTransaction.note,
                           price: dailyTransaction.amount.toString(),
-                          dateTime: dailyTransaction.transactionDate.toString(),
+                          dateTime: DateFormat('yyyy-MM-dd HH:mm').format(
+                            dailyTransaction.transactionDate!,
+                          ),
                         ),
                         const Divider(
                           height: 10,

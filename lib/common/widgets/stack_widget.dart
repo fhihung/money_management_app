@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/app/app.dart';
 
 class StackWidget extends StatelessWidget {
   const StackWidget({
+    required this.icon,
     super.key,
-    this.icon,
     this.iconColor,
     this.subtitle,
     this.subtitleColor,
   });
-  final IconData? icon;
+
+  final IconData icon;
   final Color? iconColor;
   final String? subtitle;
   final Color? subtitleColor;
@@ -36,7 +36,7 @@ class StackWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Icon(
-                    icon ?? Iconsax.sms_tracking,
+                    icon,
                     size: 48,
                     color: iconColor ?? appColors.backgroundDarkVersion,
                   ),
@@ -46,7 +46,7 @@ class StackWidget extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: SvgPicture.asset(
                   colorFilter: ColorFilter.mode(
-                    appColors.backgroundDarkVersion,
+                    iconColor ?? appColors.backgroundDarkVersion,
                     BlendMode.srcIn,
                   ),
                   Assets.images.decor.path,
@@ -55,13 +55,6 @@ class StackWidget extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Text(
-          subtitle ?? '',
-          style: AppTextStyles.bodyMd1.copyWith(
-            color: subtitleColor ?? appColors.textGray3,
-          ),
-          textAlign: TextAlign.center,
         ),
       ],
     );

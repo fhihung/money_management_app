@@ -1,12 +1,17 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/containers/background_container.dart';
 import 'package:money_management_app/common/widgets/mini_statistic_chart_container.dart';
 import 'package:money_management_app/common/widgets/stack_widget.dart';
 import 'package:money_management_app/common/widgets/transaction/common_transaction.dart';
 import 'package:money_management_app/common/widgets/vertical_text_button.dart';
+import 'package:money_management_app/home/bloc/home_bloc.dart';
+import 'package:money_management_app/home/bloc/home_event.dart';
+import 'package:money_management_app/home/bloc/home_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,48 +22,65 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(const HomeInitiated());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            actions: const [
-              NotificationWidget(),
-            ],
-            backgroundColor: appColors.gradientPrimary2,
-            title: Text(
-              "Hung's Wallet",
-              style: AppTextStyles.bodyLg.copyWith(
-                color: appColors.textWhite,
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                actions: const [
+                  NotificationWidget(),
+                ],
+                backgroundColor: appColors.gradientPrimary2,
+                title: Text(
+                  "Hung's Wallet",
+                  style: AppTextStyles.bodyLg.copyWith(
+                    color: appColors.textWhite,
+                  ),
+                ),
+                automaticallyImplyLeading: false,
+                centerTitle: false,
+                floating: true,
+                pinned: true,
+                snap: true,
+                expandedHeight: 250,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: _heading(state), // Keep background as required
+                ),
               ),
-            ),
-            automaticallyImplyLeading: false,
-            centerTitle: false,
-            floating: true,
-            pinned: true,
-            snap: true,
-            expandedHeight: 250,
-            flexibleSpace: FlexibleSpaceBar(
-              background: _heading(), // Keep background as required
-            ),
+              _buildBody(state),
+            ],
           ),
-          _buildBody(),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(HomeState state) {
     final appColors = context.appColors;
 
     // Sample data for mini charts
-    final miniChartSpots1 = <FlSpot>[
-      const FlSpot(0, 1),
-      const FlSpot(1, 2),
-      const FlSpot(2, 1.5),
-      const FlSpot(3, 3),
-    ];
+    final spots =
+        state.totalIncomeByWeekForCurrentMonth.asMap().entries.map((entry) {
+      final index = entry.key.toDouble();
+      final expense = double.parse(entry.value['total_income'] as String);
+      return FlSpot(index, expense);
+    }).toList();
+
+    final spot2 =
+        state.totalExpenseByWeekForCurrentMonth.asMap().entries.map((entry) {
+      final index = entry.key.toDouble();
+      final expense = double.parse(entry.value['total_expense'] as String);
+      return FlSpot(index, expense);
+    }).toList();
 
     return SliverToBoxAdapter(
       child: Column(
@@ -73,7 +95,11 @@ class _HomePageState extends State<HomePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildOverview(miniChartSpots1),
+              _buildOverview(
+                spots,
+                spot2,
+                state,
+              ),
               const SizedBox(
                 height: AppSpaces.space11,
               ),
@@ -107,17 +133,19 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 5,
+                      itemCount: state.transactionsByMonth.length,
                       separatorBuilder: (context, index) => const Divider(
                         height: 10,
                       ),
                       itemBuilder: (context, index) {
+                        final transactions = state.transactionsByMonth[index];
                         return CommonTransaction(
                           image: Assets.images.products.tomiDogfood.path,
-                          title: "Tommy's Food",
-                          subtitle: 'Food for Tommy',
-                          price: '100',
-                          dateTime: 'Today, 10:00 AM',
+                          title: transactions.title,
+                          subtitle: transactions.note,
+                          price: transactions.amount.toString(),
+                          dateTime: DateFormat('dd MMM yyyy')
+                              .format(transactions.transactionDate!),
                         );
                       },
                     )
@@ -182,7 +210,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _heading() {
+  Widget _heading(HomeState state) {
     final appColors = context.appColors;
     return BackgroundContainer(
       child: Column(
@@ -194,14 +222,14 @@ class _HomePageState extends State<HomePage> {
               bottom: AppSpaces.space3,
             ),
             child: PriceUnit(
-              price: '1000',
+              price: state.totalBalance.toString(),
               textStyle: AppTextStyles.displaySm.copyWith(
                 color: appColors.textWhite,
               ),
             ),
           ),
           Text(
-            'Visa Card',
+            'Total Balance',
             style: AppTextStyles.bodyXLg.copyWith(
               color: appColors.textWhite,
             ),
@@ -244,7 +272,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildOverview(List<FlSpot> spotData) {
+  Widget _buildOverview(
+      List<FlSpot> spotData, List<FlSpot> spotData1, HomeState state) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpaces.space6,
@@ -260,13 +289,15 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               MiniStatisticChartContainer(
+                price: state.totalIncomeForCurrentMonth.toString(),
                 spotData: spotData,
               ),
               const SizedBox(
                 width: AppSpaces.space5,
               ),
               MiniStatisticChartContainer(
-                spotData: spotData,
+                price: state.totalExpenseForCurrentMonth.toString(),
+                spotData: spotData1,
                 isLower: true,
               ),
             ],

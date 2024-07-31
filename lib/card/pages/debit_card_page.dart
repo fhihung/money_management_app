@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 import 'package:money_management_app/app/app.dart';
+import 'package:money_management_app/card/pages/add_new_card_page/add_new_card_page.dart';
 
-class DebitCardPage extends StatelessWidget {
+class DebitCardPage extends StatefulWidget {
   const DebitCardPage({super.key});
+
+  @override
+  State<DebitCardPage> createState() => _DebitCardPageState();
+}
+
+class _DebitCardPageState extends State<DebitCardPage> {
+  late TextEditingController cardNumbercontroller;
+
+  @override
+  void initState() {
+    cardNumbercontroller = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +39,16 @@ class DebitCardPage extends StatelessWidget {
                     color: appColors.backgroundPrimary,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) {
+                        return const AddNewCardPage();
+                      },
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: AppSpaces.space5,
@@ -104,9 +127,12 @@ class DebitCardPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Number',
-                                    style: AppTextStyles.bodyMd2.copyWith(
+                                    style: AppTextStyles.captionSm.copyWith(
                                       color: appColors.textWhite,
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSpaces.space4,
                                   ),
                                   Text(
                                     '**** **** **** 1234',
@@ -121,9 +147,12 @@ class DebitCardPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Exp',
-                                    style: AppTextStyles.bodyMd2.copyWith(
+                                    style: AppTextStyles.captionSm.copyWith(
                                       color: appColors.textWhite,
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSpaces.space4,
                                   ),
                                   Text(
                                     '02/12',

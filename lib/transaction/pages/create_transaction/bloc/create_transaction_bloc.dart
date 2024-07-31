@@ -9,7 +9,8 @@ import 'package:money_management_app/transaction/controllers/transaction_control
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_event.dart';
 import 'package:money_management_app/transaction/pages/create_transaction/bloc/create_transaction_state.dart';
 
-class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransactionState> {
+class CreateTransactionBloc
+    extends Bloc<CreateTransactionEvent, CreateTransactionState> {
   CreateTransactionBloc() : super(const CreateTransactionState()) {
     on<CreateTransactionInitiated>(
       _onCreateTransactionInitiated,
@@ -90,6 +91,16 @@ class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransacti
     );
   }
 
+  FutureOr<void> _resetState(Emitter<CreateTransactionState> emit) {
+    emit(
+      state.copyWith(
+        selectedAccount: null,
+        selectedCategory: null,
+        selectedDate: null,
+      ),
+    );
+  }
+
   FutureOr<void> _onCreateExpenseTransactionButtonPressed(
     CreateExpenseTransactionButtonPressed event,
     Emitter<CreateTransactionState> emit,
@@ -117,14 +128,8 @@ class CreateTransactionBloc extends Bloc<CreateTransactionEvent, CreateTransacti
       ),
     );
     if (response?.statusCode == 200) {
-      await Fluttertoast.showToast(
-        msg: 'Transaction created successfully',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16,
-      );
+      event.onSuccessCreated();
+      _resetState(emit);
     }
   }
 

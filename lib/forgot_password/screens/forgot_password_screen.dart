@@ -78,13 +78,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                           showTextButton: false,
                           title: S.verifyEmail,
                           // subtitle: '${S.verifyEmailSubTitle} ${emailController.text} ${S.verifyEmailSubTitle2}',
-                          image: StackWidget(),
+                          image: const StackWidget(
+                            icon: Iconsax.sms_tracking,
+                          ),
                           textButton: S.checkNow,
                           onPressedElevatedButton: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
-                                builder: (context) => const ResetPasswordScreen(),
+                                builder: (context) =>
+                                    const ResetPasswordScreen(),
                               ),
                             );
                           },

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/app/app.dart';
-
-import '../../../app/bloc/app_bloc.dart';
-import '../../../app/bloc/app_event.dart';
+import 'package:money_management_app/app/bloc/app_bloc.dart';
+import 'package:money_management_app/app/bloc/app_event.dart';
 
 class ThemePage extends StatelessWidget {
   const ThemePage({super.key});
@@ -64,7 +63,7 @@ class ThemePage extends StatelessWidget {
               onTap: () {
                 context
                     .read<AppBloc>()
-                    .add(ThemeChanged(themeMode: ThemeMode.light));
+                    .add(const ThemeChanged(themeMode: ThemeMode.light));
               },
             ),
             ListTile(
@@ -88,10 +87,11 @@ class ThemePage extends StatelessWidget {
               onTap: () {
                 context
                     .read<AppBloc>()
-                    .add(ThemeChanged(themeMode: ThemeMode.dark));
+                    .add(const ThemeChanged(themeMode: ThemeMode.dark));
               },
             ),
             ListTile(
+              splashColor: Colors.transparent,
               contentPadding: EdgeInsets.zero,
               title: Text(
                 'System Default',
@@ -112,7 +112,7 @@ class ThemePage extends StatelessWidget {
               onTap: () {
                 context
                     .read<AppBloc>()
-                    .add(ThemeChanged(themeMode: ThemeMode.system));
+                    .add(const ThemeChanged(themeMode: ThemeMode.system));
               },
             ),
           ],

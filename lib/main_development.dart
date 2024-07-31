@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_management_app/app/bloc/app_bloc.dart';
 import 'package:money_management_app/app/view/app.dart';
+import 'package:money_management_app/home/bloc/home_bloc.dart';
 import 'package:money_management_app/login/bloc/login_bloc.dart';
 import 'package:money_management_app/onboarding/bloc/onboarding_bloc.dart';
 import 'package:money_management_app/setting/bloc/setting_bloc.dart';
@@ -41,6 +42,9 @@ Future<void> bootstrap(Future<Widget> Function() builder) async {
         ),
         BlocProvider<SettingBloc>(
           create: (context) => SettingBloc(),
+        ),
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc(),
         ),
       ],
       child: await builder(),
