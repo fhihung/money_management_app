@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:money_management_app/common/common_modal_bottom_sheet.dart';
-import 'package:money_management_app/resources/generated/assets.gen.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_event.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_state.dart';
 import 'package:money_management_app/sign_up/widgets/search_dropdown_button.dart';
 import 'package:money_management_app/utils/utils.dart';
+
+import '../../login/screens/login_screen.dart';
 
 class SelectCurrencyScreen extends StatefulWidget {
   const SelectCurrencyScreen({super.key});
@@ -40,22 +42,30 @@ class _SelectCurrencyScreenState extends State<SelectCurrencyScreen> {
                   context: context,
                   builder: (context) {
                     return CommonModalBottomSheet(
-                      title: S.notification,
-                      subtitle: S.turnOnNotification,
-                      image: Assets.images.notificationApp.image(
-                        width: 100,
-                        height: 100,
+                      title: 'Register Successfully',
+                      subtitle:
+                          'You have successfully registered for a Finance app account. Now you can start managing your finance.',
+                      image: Icon(
+                        Iconsax.tick_square,
+                        size: AppSpaces.space11,
+                        color: appColors.backgroundGreen,
                       ),
-                      textButton: S.done,
+                      showTextButton: false,
+                      textButton: 'Login Now',
                       onPressedElevatedButton: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
                       },
                     );
                   },
                 );
               },
               child: Text(
-                state.selectedCountry != null ? state.selectedCountry! : S.skip,
+                S.skip,
                 style: AppTextStyles.buttonLg.copyWith(
                   color: appColors.backgroundWhite,
                 ),

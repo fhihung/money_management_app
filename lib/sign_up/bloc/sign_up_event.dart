@@ -20,6 +20,8 @@ class SignUpSubmitted extends SignUpEvent with _$SignUpSubmitted {
     required String password,
     required String passwordConfirmation,
     required BuildContext context,
+    @Default('') String phoneNumber,
+    @Default('') String address,
   }) = _SignUpSubmitted;
 }
 

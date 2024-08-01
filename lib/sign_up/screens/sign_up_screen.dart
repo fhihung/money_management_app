@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:money_management_app/app/app.dart';
 import 'package:money_management_app/common/widgets/app_divider.dart';
 import 'package:money_management_app/login/screens/login_screen.dart';
 import 'package:money_management_app/onboarding/widgets/app_social_buttons.dart';
@@ -8,7 +9,6 @@ import 'package:money_management_app/sign_up/bloc/sign_up_bloc.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_event.dart';
 import 'package:money_management_app/sign_up/bloc/sign_up_state.dart';
 import 'package:money_management_app/sign_up/screens/select_country_screen.dart';
-import 'package:money_management_app/utils/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -21,6 +21,8 @@ class SignUpScreen extends StatelessWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
+    final phoneNumberController = TextEditingController();
+    final addressController = TextEditingController();
 
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
@@ -60,7 +62,8 @@ class SignUpScreen extends StatelessWidget {
                           children: [
                             // Username
                             TextFormField(
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return '${S.pleaseEnterYour} ${S.name.toLowerCase()}';
@@ -129,6 +132,30 @@ class SignUpScreen extends StatelessWidget {
                                 suffixIcon: Icon(Iconsax.eye_slash),
                               ),
                             ),
+                            const SizedBox(
+                              height: AppSizes.spaceBtwInputFields,
+                            ),
+
+                            // Confirm Password
+                            TextFormField(
+                              controller: phoneNumberController,
+                              decoration: const InputDecoration(
+                                labelText: S.phoneNo,
+                                prefixIcon: Icon(Iconsax.call),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: AppSizes.spaceBtwInputFields,
+                            ),
+
+                            // Confirm Password
+                            TextFormField(
+                              controller: addressController,
+                              decoration: const InputDecoration(
+                                labelText: 'Address',
+                                prefixIcon: Icon(Iconsax.location),
+                              ),
+                            ),
                             const SizedBox(height: AppSpaces.space6),
                             // Term & Condition
                             Row(
@@ -148,26 +175,30 @@ class SignUpScreen extends StatelessWidget {
                                       children: [
                                         TextSpan(
                                           text: '${S.iAgreeTo} ',
-                                          style: AppTextStyles.captionLg.copyWith(
+                                          style:
+                                              AppTextStyles.captionLg.copyWith(
                                             color: appColors.textGray3,
                                           ),
                                         ),
                                         TextSpan(
                                           text: '${S.privacyPolicy} ',
                                           style: AppTextStyles.captionLg.apply(
-                                            color: appColors.textBlackDarkVersion,
+                                            color:
+                                                appColors.textBlackDarkVersion,
                                           ),
                                         ),
                                         TextSpan(
                                           text: '${S.and} ',
-                                          style: AppTextStyles.captionLg.copyWith(
+                                          style:
+                                              AppTextStyles.captionLg.copyWith(
                                             color: appColors.textGray3,
                                           ),
                                         ),
                                         TextSpan(
                                           text: '${S.termsOfUse} ',
                                           style: AppTextStyles.captionLg.apply(
-                                            color: appColors.textBlackDarkVersion,
+                                            color:
+                                                appColors.textBlackDarkVersion,
                                           ),
                                         ),
                                       ],
@@ -187,19 +218,26 @@ class SignUpScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute<void>(
-                                        builder: (context) => const SelectCountryScreen(),
+                                        builder: (context) =>
+                                            const SelectCountryScreen(),
                                       ),
                                     );
                                     // Form is valid, proceed with the action
                                     // Do something, like sending data to server
-                                    if (passwordController.text == confirmPasswordController.text) {
+                                    if (passwordController.text ==
+                                        confirmPasswordController.text) {
                                       context.read<SignUpBloc>().add(
                                             SignUpSubmitted(
                                               context: context,
                                               email: emailController.text,
                                               name: nameController.text,
                                               password: passwordController.text,
-                                              passwordConfirmation: confirmPasswordController.text,
+                                              passwordConfirmation:
+                                                  confirmPasswordController
+                                                      .text,
+                                              phoneNumber:
+                                                  phoneNumberController.text,
+                                              address: addressController.text,
                                             ),
                                           );
                                     }
@@ -228,13 +266,15 @@ class SignUpScreen extends StatelessWidget {
                                   style: TextButton.styleFrom(
                                     padding: EdgeInsets.zero,
                                     minimumSize: Size.zero,
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
                                   ),
                                   onPressed: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute<void>(
-                                        builder: (context) => const LoginScreen(),
+                                        builder: (context) =>
+                                            const LoginScreen(),
                                       ),
                                     );
                                   },

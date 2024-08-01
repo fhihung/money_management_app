@@ -7,7 +7,7 @@ class CommonModalBottomSheet extends StatelessWidget {
     this.subtitle,
     required this.image,
     required this.textButton,
-    this.showTextButton = true,
+    this.showTextButton,
     super.key,
     this.onPressedElevatedButton,
     this.onPressedTextButton,
@@ -17,7 +17,7 @@ class CommonModalBottomSheet extends StatelessWidget {
   final String? subtitle;
   final Widget image;
   final String textButton;
-  final bool showTextButton;
+  final bool? showTextButton;
   final void Function()? onPressedElevatedButton;
   final void Function()? onPressedTextButton;
 
@@ -70,7 +70,7 @@ class CommonModalBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: AppSpaces.space5),
           Visibility(
-            visible: showTextButton,
+            visible: showTextButton ?? true,
             child: TextButton(
               onPressed: onPressedTextButton,
               child: Text(

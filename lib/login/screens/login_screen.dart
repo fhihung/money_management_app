@@ -28,6 +28,9 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// Logo, Title, Subtitle
+                    SizedBox(
+                      height: 80,
+                    ),
                     Text(
                       'Log In',
                       style: AppTextStyles.headlineLg.copyWith(
@@ -36,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Fill all required* inputs and submit form to log in for Finance app account.',
+                      'Fill all inputs and submit form to log in for Finance app account.',
                       style: AppTextStyles.bodyMd1.copyWith(
                         color: appColors.textGray2,
                       ),

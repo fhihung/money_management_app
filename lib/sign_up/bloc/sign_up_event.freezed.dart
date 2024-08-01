@@ -82,6 +82,8 @@ mixin _$SignUpSubmitted {
   String get password => throw _privateConstructorUsedError;
   String get passwordConfirmation => throw _privateConstructorUsedError;
   BuildContext get context => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpSubmittedCopyWith<SignUpSubmitted> get copyWith =>
@@ -99,7 +101,9 @@ abstract class $SignUpSubmittedCopyWith<$Res> {
       String email,
       String password,
       String passwordConfirmation,
-      BuildContext context});
+      BuildContext context,
+      String phoneNumber,
+      String address});
 }
 
 /// @nodoc
@@ -120,6 +124,8 @@ class _$SignUpSubmittedCopyWithImpl<$Res, $Val extends SignUpSubmitted>
     Object? password = null,
     Object? passwordConfirmation = null,
     Object? context = null,
+    Object? phoneNumber = null,
+    Object? address = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -142,6 +148,14 @@ class _$SignUpSubmittedCopyWithImpl<$Res, $Val extends SignUpSubmitted>
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -159,7 +173,9 @@ abstract class _$$SignUpSubmittedImplCopyWith<$Res>
       String email,
       String password,
       String passwordConfirmation,
-      BuildContext context});
+      BuildContext context,
+      String phoneNumber,
+      String address});
 }
 
 /// @nodoc
@@ -178,6 +194,8 @@ class __$$SignUpSubmittedImplCopyWithImpl<$Res>
     Object? password = null,
     Object? passwordConfirmation = null,
     Object? context = null,
+    Object? phoneNumber = null,
+    Object? address = null,
   }) {
     return _then(_$SignUpSubmittedImpl(
       name: null == name
@@ -200,6 +218,14 @@ class __$$SignUpSubmittedImplCopyWithImpl<$Res>
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -212,7 +238,9 @@ class _$SignUpSubmittedImpl implements _SignUpSubmitted {
       required this.email,
       required this.password,
       required this.passwordConfirmation,
-      required this.context});
+      required this.context,
+      this.phoneNumber = '',
+      this.address = ''});
 
   @override
   final String name;
@@ -224,10 +252,16 @@ class _$SignUpSubmittedImpl implements _SignUpSubmitted {
   final String passwordConfirmation;
   @override
   final BuildContext context;
+  @override
+  @JsonKey()
+  final String phoneNumber;
+  @override
+  @JsonKey()
+  final String address;
 
   @override
   String toString() {
-    return 'SignUpSubmitted(name: $name, email: $email, password: $password, passwordConfirmation: $passwordConfirmation, context: $context)';
+    return 'SignUpSubmitted(name: $name, email: $email, password: $password, passwordConfirmation: $passwordConfirmation, context: $context, phoneNumber: $phoneNumber, address: $address)';
   }
 
   @override
@@ -241,12 +275,15 @@ class _$SignUpSubmittedImpl implements _SignUpSubmitted {
                 other.password == password) &&
             (identical(other.passwordConfirmation, passwordConfirmation) ||
                 other.passwordConfirmation == passwordConfirmation) &&
-            (identical(other.context, context) || other.context == context));
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, email, password, passwordConfirmation, context);
+  int get hashCode => Object.hash(runtimeType, name, email, password,
+      passwordConfirmation, context, phoneNumber, address);
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +299,9 @@ abstract class _SignUpSubmitted implements SignUpSubmitted {
       required final String email,
       required final String password,
       required final String passwordConfirmation,
-      required final BuildContext context}) = _$SignUpSubmittedImpl;
+      required final BuildContext context,
+      final String phoneNumber,
+      final String address}) = _$SignUpSubmittedImpl;
 
   @override
   String get name;
@@ -274,6 +313,10 @@ abstract class _SignUpSubmitted implements SignUpSubmitted {
   String get passwordConfirmation;
   @override
   BuildContext get context;
+  @override
+  String get phoneNumber;
+  @override
+  String get address;
   @override
   @JsonKey(ignore: true)
   _$$SignUpSubmittedImplCopyWith<_$SignUpSubmittedImpl> get copyWith =>

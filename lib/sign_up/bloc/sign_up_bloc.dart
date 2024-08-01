@@ -20,6 +20,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       _onCurrencySelected,
     );
   }
+
   final signUpController = SignUpController();
 
   FutureOr<void> _onSignUpInitiated(
@@ -34,12 +35,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     emit(state.copyWith(isLoading: true));
     try {
       await signUpController.register(
-        context: event.context,
         name: event.name,
-        role: 2,
         email: event.email,
         password: event.password,
         passwordConfirmation: event.passwordConfirmation,
+        phoneNumber: event.phoneNumber,
+        address: event.address,
       );
       emit(state.copyWith(isLoading: false));
     } catch (error) {

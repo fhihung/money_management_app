@@ -2,142 +2,84 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:money_management_app/login/screens/login_screen.dart';
-import 'package:money_management_app/models/m_user.dart';
+import 'package:money_management_app/utils/constants/api_constants.dart';
 
 class SignUpController {
-  final String apiUrl = 'https://371e-14-248-162-193.ngrok-free.app/api/';
+  final String apiUrl = APIConstants.apiBaseUrl;
 
-  Future<MUser?> register({
+  Future<void> register({
     required String name,
-    required int role,
     required String email,
     required String password,
     required String passwordConfirmation,
-    required BuildContext context,
+    required String phoneNumber,
+    required String address,
+    int role = 0,
   }) async {
-    final response = await http.post(
-      Uri.parse('${apiUrl}register'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, dynamic>{
-        'name': name.toString(),
-        'role': role.toString(),
-        'email': email.toString(),
-        'password': password.toString(),
-        'password_confirmation': passwordConfirmation.toString(),
-      }),
-    );
+    // Define the API URL
+    final String url = '${apiUrl}register';
 
-    if (response.statusCode == 200) {
-      final jsonResponse = json.decode(response.body);
-      if (jsonResponse is Map<String, dynamic>) {
-        await showDialog<void>(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              // backgroundColor: AppColors.current.white,
-              title: Text(
-                'Registration Successful',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              content: const Text(
-                'Your account has been created successfully.',
-                textAlign: TextAlign.center,
-              ),
-              actions: <Widget>[
-                SizedBox(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    child: const Text('OK'),
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            );
-          },
-        );
+    // Define the headers
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
 
-        return MUser.fromJson(jsonResponse);
-      } else {
-        await showDialog<void>(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              // backgroundColor: AppColors.current.white,
-              title: Text(
-                'Unexpected response format.',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium!.apply(
-                    // color: AppColors.current.backgroundWhite,
-                    ),
-              ),
-              content: const Text('The response was not in the expected format.'),
-              actions: <Widget>[
-                SizedBox(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    child: const Text('Again'),
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                ),
-              ],
-            );
-          },
-        );
-        if (kDebugMode) {
-          print('Unexpected response format.');
-        }
-        return null;
-      }
-    } else {
-      await showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            // backgroundColor: AppColors.current.white,
-            title: Text(
-              'Failed to register user',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium!.apply(
-                  // color: AppColors.current.textRed,
-                  ),
-            ),
-            content: Text(
-              'Status Code: ${response.statusCode}',
-              textAlign: TextAlign.center,
-            ),
-            actions: <Widget>[
-              SizedBox(
-                width: double.maxFinite,
-                child: ElevatedButton(
-                  child: const Text('Again'),
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
-                  },
-                ),
-              ),
-            ],
-          );
-        },
+    // Define the body data
+    final Map<String, dynamic> body = {
+      "name": name,
+      "email": email,
+      "password": password,
+      "password_confirmation": passwordConfirmation,
+      "phone_number": phoneNumber,
+      "address": address,
+      "role": role,
+    };
+
+    try {
+      // Make the POST request
+      final http.Response response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(body),
       );
-      if (kDebugMode) {
-        print('Failed to register user: ${response.statusCode}');
+
+      // Check the status code for the result
+      if (response.statusCode == 201) {
+        jsonDecode(response.body);
+        if (kDebugMode) {
+          print('User registered successfully.');
+        }
+        Fluttertoast.showToast(
+          msg: 'User registered successfully.',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        print('Response body: ${response.body}');
+      } else {
+        jsonDecode(response.body);
+        if (kDebugMode) {
+          print('Failed to register user. Status code: ${response.statusCode}');
+        }
+        await Fluttertoast.showToast(
+          msg:
+              '${jsonDecode(response.body)['error']}. Status code: ${response.statusCode}',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        print('Response body: ${response.body}');
       }
-      return null;
+    } catch (e) {
+      print('Error occurred: $e');
     }
   }
 }
